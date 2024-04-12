@@ -1,23 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindPedia menu</title>
-    <link rel="stylesheet" href="menu-style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindPedia Menu</title>
+    <link rel="stylesheet" href="menu-style.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </nav>
+      <h1>Menu Principal</h1>
+
+      <div id="datetime">
+        <span id="date"></span><br />
+        <span id="time"></span>
+      </div>
+
+      <script>
+        var dt = new Date();
+        var dateElement = document.getElementById("date");
+        var timeElement = document.getElementById("time");
+
+        var options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        dateElement.textContent = dt.toLocaleDateString("pt-BR", options);
+
+        var timeOptions = {
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+        };
+        timeElement.textContent = dt.toLocaleTimeString("pt-BR", timeOptions);
+      </script>
     </header>
-    <main></main>
+
+    <main>
+      <section>
+
+        <a href="ficha-cadastro.html" class="card special-card">
+          <img src="contatos.jpg" alt="Contatos" />
+          <span class="name">Paul medicamentos</span>
+          <span class="action">Iniciar consulta</span>
+        </a>
+
+      </section>
+      <nav>
+        <ul>
+          <!-- Cards regulares -->
+          <li>
+            <a href="#" class="card">
+              <img src="foto1.jpg" alt="Foto 1" />
+              <span class="name">Sergio cozinhas</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="card">
+              <img src="foto2.jpg" alt="Foto 2" />
+              <span class="name">Rogerio together</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="card">
+              <img src="foto3.jpg" alt="Foto 2" />
+              <span class="name">Marcos condado</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="card">
+              <img src="foto4.jpg" alt="Foto 2" />
+              <span class="name">Auto tavares</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="card">
+              <img src="foto4.jpg" alt="Foto 2" />
+              <span class="name">Pau10 caronas</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="card">
+              <img src="foto4.jpg" alt="Foto 2" />
+              <span class="name">DeusDeath</span>
+            </a>
+          </li>
+          <!-- Card especial -->
+          <li>
+            <a href="pagina-contatos.html" class="card special-card">
+              <img src="contatos.jpg" alt="Contatos" />
+              <span class="name">Ver Todos os Contatos</span>
+            </a>
+          </li>
+          <li>
+            <a href="ficha-cadastro.html" class="card special-card">
+              <img src="contatos.jpg" alt="Contatos" />
+              <span class="name">Cadastrar novo contato</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </main>
     
-</body>
+  </body>
 </html>
