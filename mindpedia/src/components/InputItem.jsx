@@ -1,14 +1,12 @@
 import React from 'react';
 
-function InputItem({ type, required, children }) {
+function InputField({ label, id, type, name, required }) {
   return (
     <article>
-      <label>
-        {children}
-        <input type={type} required={required} />
-      </label>
+      <label htmlFor={id}>{label}</label>
+      <input type={type} id={id} name={name} required={required} />
     </article>
   );
 }
 
-export default InputItem;
+export default InputField;
