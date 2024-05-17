@@ -1,0 +1,44 @@
+$vwnav: 16vw;
+$vwaside: 20vw;
+$vwspace: 8vw;
+$vwmeio: 100vw - $vwaside - $vwspace - $vwnav; 
+
+$vhheader: 14vh;
+$vhmain: 100vh - $vhheader;
+
+
+
+$hpadding: 6px;
+header {
+    padding: $hpadding;
+    width: 100vw;
+    height: calc($vhheader - 2*$hpadding);
+}
+
+nav {
+    background-color: blue;
+    width: $vwnav;
+    height: 100%;
+}
+
+.calendar-container {
+    width: $vwmeio;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+aside {
+    width: $vwaside;
+    height: 40vh;
+}
+
+main {
+    width: 100vw;
+    height: $vhmain;
+
+    background-color: #fffeff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}	
