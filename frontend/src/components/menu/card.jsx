@@ -1,11 +1,12 @@
 
     import React from 'react';
     
-    const Card = ({ img, name }) => {
+    const Card = ({ img, name, data }) => {
         return (
             <div className="card">
-                <img src={`../../../../public/assets/${img}.jpg`} alt={name} className="card-img" />
+                <img src={`../../assets/${img}.jpeg`} alt={name} className="card-img" />
                 <span className="card-name">{name}</span>
+                
             </div>
         );
     }
