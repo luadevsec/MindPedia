@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #caeeff; /* Cor de fundo */
+  }
+  
+  .container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  img {
+    max-width: 100%;
+    margin-bottom: 6vh; /* Espaçamento entre a imagem e o botão */
+    background-color: purple;
+    width: 30vw;
+    height: 30vh;
+    font-size: 8cap;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 24px;
+    text-decoration: none;
+    background-color: #5f27cd; /* Cor do botão */
+    color: #fff; /* Cor do texto do botão */
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #4a148c; /* Cor do botão no hover */
+  }

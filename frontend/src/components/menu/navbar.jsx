@@ -60,8 +60,8 @@ const Navbar = () => {
             <section className="navbar-section">
                 {aaa.map((obj) => { return <Card img={obj.imagem} name={obj.nome} data= {obj.data} key={obj.nome} /> })}
             </section>
-            <button className="navbar-button" onClick={generate}>+ cadastrar</button>
-            
+            <button className="navbar-button" onClick={generate}>+ gerar</button>
+            <a className="navbar-button"href="/cadastro">cadastrar</a>
         </nav>
     );
 }
