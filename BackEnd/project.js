@@ -32,7 +32,6 @@ function salvarPacientes(pacientes) {
 // Lista de pacientes (carregada do arquivo ou vazia)
 let pacientes = carregarPacientes();
 
-
 app.use(express.json());
 
 // Funções para gerar dados aleatórios
