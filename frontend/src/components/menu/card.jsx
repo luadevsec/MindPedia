@@ -1,13 +1,13 @@
 
     import React from 'react';
     
-    const Card = ({ img, name, data }) => {
+    const Card = ({ img, name, data, id}) => {
         return (
-            <div className="card">
+            <a href={`/ficha/${id}`} className="card">
                 <img src={`../../assets/${img}.jpeg`} alt={name} className="card-img" />
                 <span className="card-name">{name}</span>
                 
-            </div>
+            </a>
         );
     }
     

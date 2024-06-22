@@ -1,0 +1,50 @@
+/* Estilo para o container do menu toggle */
+.toggle-menu {
+    position: relative;
+    display: inline-block; /* Para permitir o posicionamento relativo */
+}
+
+/* Estilo para o botão de toggle */
+.toggle-menu button {
+    position: absolute; /* Botão posicionado dentro do toggle-menu */
+    top: 0;
+    right: -826px; /* Para ajustar o botão à direita da bandeja */
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 2; /* Botão deve estar acima do conteúdo da bandeja */
+    transition: right 0.3s ease; /* Transição para o movimento do botão */
+}
+
+.toggle-menu button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o menu lateral */
+.toggle-menu aside {
+    position: fixed; /* Menu fixo na lateral direita */
+    top: 0;
+    right: 0px;
+    width: 250px;
+    height: 100%;
+    background-color: #f4f4f4;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, right 0.3s ease; /* Transições para transformação e movimento */
+    transform: translateX(100%); /* Menu escondido fora da tela */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1; /* Menu deve estar atrás do botão */
+}
+
+.toggle-menu aside p {
+    margin: 0;
+    color: #333;
+}
+
+/* Classe para ajustar a posição do botão quando a bandeja está aberta */
+.toggle-menu.open button {
+    right: -576px; /* Ajusta o botão para a esquerda quando a bandeja está aberta */
+}

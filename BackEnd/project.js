@@ -5,6 +5,13 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const faker = require('faker-br');
 
+
+const cors = require('cors'); // Importando o middleware CORS
+
+// Configuração CORS
+app.use(cors());
+
+
 // Funções para carregar e salvar pacientes
 function carregarPacientes() {
   if (!fs.existsSync('pacientes.json')) {
@@ -147,13 +154,6 @@ app.post('/ramCreate', (req, res) => {
     email: getRandomEmail(),
     data: getRandomDate(new Date('2023-01-01'), new Date()),
     imagem: getRandomInt(1, 11),
-    cpf: getRandomCPF(),
-    rg: getRandomRG(),
-    telefone: getRandomPhoneNumber(),
-    contatoEmergencia: {
-      nome: getRandomName(),
-      telefone: getRandomPhoneNumber()
-    }
   };
 
   pacientes.push(novoPaciente);

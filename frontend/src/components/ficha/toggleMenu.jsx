@@ -8,9 +8,9 @@ const ToggleMenu = () => {
     };
 
     return (
-        <div>
-            <button onClick={handleToggle}>Toggle Menu</button>
-            <aside style={{ transform: isOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
+        <div className={`toggle-menu ${isOpen ? 'open' : ''}`}>
+            <button onClick={handleToggle}>&lt;</button>
+            <aside style={{ transform: isOpen ? 'translateX(0)' : 'translateX(100%)' }}>
                 <p>você não tem nenhum arquivo no momento para esse paciente</p>
             </aside>
         </div>
