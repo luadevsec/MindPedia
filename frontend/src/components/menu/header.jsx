@@ -22,7 +22,7 @@ const Header = () => {
     };
 
     return (
-        <header className="header">
+        <header className="menu-header-container-defou">
             <h1>Consultas</h1>
             <time dateTime={currentTime.toISOString()}>{formatTime(currentTime)}</time>
         </header>

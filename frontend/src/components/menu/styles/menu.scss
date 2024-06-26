@@ -9,30 +9,30 @@ $vhmain: 100vh - $vhheader;
 
 
 $hpadding: 6px;
-header {
+.menu-header-container-defou {
     padding: $hpadding;
     width: 100vw;
     height: calc($vhheader - 2*$hpadding);
 }
 
-nav {
+.menu-navbar-container-defou {
     background-color: blue;
     width: $vwnav;
     height: 100%;
 }
 
-.calendar-container {
+.menu-calendar-container-defou {
     width: $vwmeio;
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
-aside {
+.menu-aside-container-defou {
     width: $vwaside;
     height: 40vh;
 }
 
-main {
+.menu-main-container-defou {
     width: 100vw;
     height: $vhmain;
 

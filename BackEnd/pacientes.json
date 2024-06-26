@@ -78,5 +78,29 @@
     "email": "helena@examplo.com",
     "data": "26-08-2023",
     "imagem": 5
+  },
+  {
+    "id": "87e0f7af-8edc-459f-a517-fe93d313a26d",
+    "nome": "Julia",
+    "idade": 58,
+    "email": "julia@examplo.com",
+    "data": "17-01-2024",
+    "imagem": 9
+  },
+  {
+    "id": "3fd42c34-0bdf-48c5-9e06-2c01fdbfb7c1",
+    "nome": "Diana",
+    "idade": 55,
+    "email": "eduardo@examplo.com",
+    "data": "06-01-2023",
+    "imagem": 5
+  },
+  {
+    "id": "b1dfc1e8-07b7-4dc1-80c8-3603b2388d11",
+    "nome": "Eduardo",
+    "idade": 38,
+    "email": "diana@examplo.com",
+    "data": "29-08-2023",
+    "imagem": 9
   }
 ]

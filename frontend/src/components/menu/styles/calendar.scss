@@ -1,5 +1,5 @@
 // Estilos para o componente Calendar
-.calendar-container {
+.menu-calendar-container-defou {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,14 +7,14 @@
 
   }
   
-  .calendar-header {
+  .menu-calendar-header-defou {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
   }
   
-  .calendar-header button {
+  .menu-calendar-header-defou button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -22,13 +22,13 @@
     padding: 5px 10px;
   }
   
-  .calendar {
+  .menu-calendar-grade-defou {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
   }
   
-  .calendar-day {
+  .menu-calendar-day-defou {
     display: flex;
     align-items: center;
     justify-content: center;

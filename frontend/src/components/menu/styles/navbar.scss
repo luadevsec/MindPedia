@@ -1,6 +1,6 @@
 $navcor : #d3f5fa;
 
-.card {
+.menu-card-container-defou {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -19,7 +19,7 @@ $navcor : #d3f5fa;
     
 }
 
-.card-img {
+.menu-card-img-defou {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -28,12 +28,12 @@ $navcor : #d3f5fa;
     background-color: #0056b3;
 }
 
-.card-name {
+.menu-card-name-defou {
     font-size: 16px;
     font-weight: 500;
 }
 
-.navbar {
+.menu-navbar-container-defou {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,7 +44,7 @@ $navcor : #d3f5fa;
     
 }
 
-.navbar-section {
+.menu-navbar-section-defou {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -52,7 +52,7 @@ $navcor : #d3f5fa;
     max-height: calc(100vh - 60px); /* Adjust the height as needed to fit your layout */
 }
 
-.navbar-button {
+.menu-navbar-button-defou {
     padding: 10px 60px;
     background-color: #007bff;
     color: white;

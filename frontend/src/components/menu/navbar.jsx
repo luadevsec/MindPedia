@@ -56,12 +56,12 @@ const Navbar = () => {
     
 
     return (
-        <nav className="navbar">
-            <section className="navbar-section">
+        <nav className="menu-navbar-container-defou">
+            <section className="menu-navbar-section-defou">
                 {aaa.map((obj) => { return <Card id={obj.id} img={obj.imagem} name={obj.nome} data= {obj.data} key={obj.nome} /> })}
             </section>
-            <button className="navbar-button" onClick={generate}>+ gerar</button>
-            <a className="navbar-button"href="/cadastro">cadastrar</a>
+            <button className="menu-navbar-button-defou" onClick={generate}>+ gerar</button>
+            <a className="menu-navbar-button-defou"href="/cadastro">cadastrar</a>
         </nav>
     );
 }

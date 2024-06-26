@@ -23,7 +23,7 @@ const Calendar = () => {
 
         for (let i = 1; i <= daysInMonth; i++) {
             days.push(
-                <div key={i} className="calendar-day" onClick={() => handleDayClick(i)}>
+                <div key={i} className="menu-calendar-day-defou" onClick={() => handleDayClick(i)}>
                     {i}
                 </div>
             );
@@ -41,14 +41,14 @@ const Calendar = () => {
     };
 
     return (
-        <div className="calendar-container">
-            <div className="calendar-header">
+        <div className="menu-calendar-container-defou">
+            <div className="menu-calendar-header-defou">
                 <button onClick={handlePrevMonth}>&lt;</button>
                 <h2>Mês {currentMonth}</h2>
                 <button onClick={handleNextMonth}>&gt;</button>
             </div>
 
-            <div className="calendar">
+            <div className="menu-calendar-grade-defou">
                 {renderCalendar()}
             </div>
         </div>

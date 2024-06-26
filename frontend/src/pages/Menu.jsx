@@ -10,8 +10,8 @@ const Menu = () => {
     return (
         <>
         <Header />
-        <main>
-            <Aside name="lucas" img="9" />
+        <main className='menu-main-container-defou'>
+            <Aside/>
             <Calendar />
             <Navbar />
             

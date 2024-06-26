@@ -3,9 +3,9 @@
     
     const Card = ({ img, name, data, id}) => {
         return (
-            <a href={`/ficha/${id}`} className="card">
-                <img src={`../../assets/${img}.jpeg`} alt={name} className="card-img" />
-                <span className="card-name">{name}</span>
+            <a href={`/ficha/${id}`} className="menu-card-container-defou">
+                <img src={`../../assets/${img}.jpeg`} alt={name} className="menu-card-img-defou" />
+                <span className="menu-card-name-defou">{name}</span>
                 
             </a>
         );
