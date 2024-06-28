@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SectionForm from '../components/cadastro/sectionForm';
 import CampoCadastro from '../components/cadastro/campoCadastro';
 import CampoSelect from '../components/cadastro/campoSelect';
+import './cadastroNew.css';
 
 const generoOptions = [
     { value: 'feminino', label: 'Feminino' },
@@ -39,30 +40,37 @@ const estadoCivilOptions = [
 
 const Cadastro = () => {
     return (
-        <form>
-            <SectionForm section_name="Ficha básica">
-                <CampoCadastro label="Nome" name="nome" type="text" />
-                <CampoCadastro label="CPF" name="cpf" type="text" />
-                <CampoCadastro label="Data de Nascimento" name="data_nascimento" type="date" />
-                <CampoSelect label="Gênero" name="genero" options={generoOptions} />
-                <CampoSelect label="Sexualidade" name="sexualidade" options={sexualidadeOptions} />
-            </SectionForm>
+        <div className='cadastro-body-container'>
+            <header className='cadastro-header-container'>
+                <h1>Cadastro de Paciente</h1>
+            </header>
+            <main className='cadastro-main-section'>
+                <form className='cadastro-form'>
+                    <SectionForm section_name="Ficha básica">
+                        <CampoCadastro label="Nome" name="nome" type="text" />
+                        <CampoCadastro label="CPF" name="cpf" type="text" />
+                        <CampoCadastro label="Data de Nascimento" name="data_nascimento" type="date" />
+                        <CampoSelect label="Gênero" name="genero" options={generoOptions} />
+                        <CampoSelect label="Sexualidade" name="sexualidade" options={sexualidadeOptions} />
+                    </SectionForm>
 
-            <SectionForm section_name="Ficha de contato">
-                <CampoCadastro label="Email" name="email" type="email" required={true} />
-                <CampoCadastro label="Telefone" name="telefone" type="tel" />
-                <CampoCadastro label="Número Auxiliar" name="numero_auxiliar" type="tel" />
-            </SectionForm>
+                    <SectionForm section_name="Ficha de contato">
+                        <CampoCadastro label="Email" name="email" type="email" required={true} />
+                        <CampoCadastro label="Telefone" name="telefone" type="tel" />
+                        <CampoCadastro label="Número Auxiliar" name="numero_auxiliar" type="tel" />
+                    </SectionForm>
 
-            <SectionForm section_name="Informações adicionais">
-                <CampoSelect label="Etnia" name="etnia" options={etniaOptions} />
-                <CampoCadastro label="Atuação Profissional" name="atuacao_profissional" type="text" />
-                <CampoSelect label="Estado Civil" name="estado_civil" options={estadoCivilOptions} />
-                <CampoCadastro label="Hobby" name="hobby" type="text" />
-            </SectionForm>
+                    <SectionForm section_name="Informações adicionais">
+                        <CampoSelect label="Etnia" name="etnia" options={etniaOptions} />
+                        <CampoCadastro label="Atuação Profissional" name="atuacao_profissional" type="text" />
+                        <CampoSelect label="Estado Civil" name="estado_civil" options={estadoCivilOptions} />
+                        <CampoCadastro label="Hobby" name="hobby" type="text" />
+                    </SectionForm>
 
-            <input type="submit" value="Cadastrar Paciente" />
-        </form>
+                    <input className='cadastro-submit' type="submit" value="Cadastrar Paciente" />
+                </form>
+            </main>
+        </div>
     );
 };
 

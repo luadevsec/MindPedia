@@ -1,0 +1,153 @@
+/* Ficha.css */
+
+/* Reset básico */
+.ficha * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ficha-body-container {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.ficha-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    height: 10vh;
+    background-color: #83baf0;
+    color: white;
+}
+
+.ficha-header-container img {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    margin-top: 40px;
+    object-fit: cover;
+}
+
+.ficha-body-container h2 {
+    margin-left: 20px;
+    font-size: 1.5em;
+}
+
+.ficha-body-container button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.ficha-main-section {
+    padding: 20px;
+    display: flex;
+    height: 65vh;
+    flex-direction: column;
+}
+
+.ficha-body-container section {
+    margin-bottom: 20px;
+}
+
+.ficha-body-container h2 {
+    margin-bottom: 10px;
+    color: #2980b9;
+}
+
+.ficha-article {
+    margin-bottom: 20px;
+}
+
+.ficha-aside {
+    margin-top: 20px;
+    color: #7f8c8d;
+}
+
+.ficha-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 6vh;
+    background-color: #ecf0f1;
+    border-top: 1px solid #bdc3c7;
+}
+
+.ficha-footer button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ficha-footer button:hover {
+    background-color: #2980b9;
+}
+
+.ficha-aside {
+    position: relative;
+}
+
+.ficha-aside-inner {
+    position: absolute;
+    width: 200px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.ficha-aside button {
+    position: relative;
+    z-index: 1;
+}
+
+.ficha-main-section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ficha-main-section-article {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.ficha-container-contato {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.ficha-contato {
+    width: 100vw;
+    background-color: #c6edf7;
+    border-top: #2c3e50 solid 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    align-items: center;
+}
+
+/* Campo.css */
+
+.component-campo {
+    font-size: 1.2em;
+    color: #333;
+}

@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react';
+import './campoSelect.css';
 
-const CampoSelect = ({ name, options, required }) => {
+const CampoSelect = ({ label, name, options, required}) => {
     return (
-        <article>
+        <article className='cadastro-field'>
             <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)}:</label>
-            <select id={name} name={name} required={required}>
+            <select name={name} id={name} required={required}>
                 {options.map(option => (
                     <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
             </select>
         </article>
     );
-}
+};
 
 export default CampoSelect;

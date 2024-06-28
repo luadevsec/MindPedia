@@ -3,13 +3,10 @@ import { useParams } from 'react-router-dom';
 import Campo from '../components/ficha/campo';
 import ButtonHome from '../components/utils/button_home';
 import ToggleMenu from '../components/ficha/toggleMenu';
-
-
-
+import './FichaNew.css';
 
 function Ficha() {
     const nfez = "matheus n fez ainda";
-
 
     const { id } = useParams(); // Obtenha o ID da URL
     const [dados, setDados] = useState(null); // Estado para armazenar os dados do paciente
@@ -60,47 +57,47 @@ function Ficha() {
 
     return (
         <>
-            <header className='ficha-header-container-new'>
-            <img 
+            <header className='ficha-header-container'>
+                <img 
                     src={require(`../../public/assets/${dados.idFoto}.jpeg`)}
                     alt="Foto do Paciente" 
                 />
                 <Campo titulo="Nome do Paciente" conteudo={dados.nome} />
                 <ButtonHome />
             </header>
-            <main className='ficha-main-conatiner-new'>
-                <section className='ficha-main-section-new'>
-                    <section className='ficha-mainsection-section-new'>
+            <main className='ficha-main-container'>
+                <section className='ficha-main-section'>
+                    <section className='ficha-mainsection-section'>
                         <h2>informações</h2>
-                        <div className='ficha-mainsection-content-new'>
-                        <Campo titulo="CPF ou RG" conteudo={dados.rg} />
-                        <Campo titulo="Data de Nascimento" conteudo={dados.dataNascimento} />
-                        <Campo titulo="Idade" conteudo={dados.idade} />
-                        <Campo titulo="Sexualidade" conteudo={dados.sexualidade} />
-                        <Campo titulo="Genero" conteudo={dados.genero} />
+                        <div className='ficha-mainsection-content'>
+                            <Campo titulo="CPF ou RG" conteudo={dados.rg} />
+                            <Campo titulo="Data de Nascimento" conteudo={dados.dataNascimento} />
+                            <Campo titulo="Idade" conteudo={dados.idade} />
+                            <Campo titulo="Sexualidade" conteudo={dados.sexualidade} />
+                            <Campo titulo="Genero" conteudo={dados.genero} />
                         </div>
                     </section>
-                    <section className='ficha-mainsection-section-new'>
+                    <section className='ficha-mainsection-section'>
                         <h2>contatos</h2>
-                        <div className='ficha-mainsection-content-new'>
-                        <Campo titulo="Numero" conteudo={dados.numero} />
-                        <Campo titulo="Numero auxiliar" conteudo={dados.numeroaux} />
-                        <Campo titulo="Email" conteudo={dados.email} />
+                        <div className='ficha-mainsection-content'>
+                            <Campo titulo="Numero" conteudo={dados.numero} />
+                            <Campo titulo="Numero auxiliar" conteudo={dados.numeroaux} />
+                            <Campo titulo="Email" conteudo={dados.email} />
                         </div>
                     </section>
-                    <section className='ficha-mainsection-section-new'>
+                    <section className='ficha-mainsection-section'>
                         <h2>informações adicionais</h2>
-                        <div className='ficha-mainsection-content-new'>
-                        <Campo titulo="estado civil" conteudo={dados.estadocivil} />
-                        <Campo titulo="profissão" conteudo={dados.profissao} />
-                        <Campo titulo="etinia" conteudo={dados.etinia} />
-                        <Campo titulo="hobby" conteudo={dados.hobby} />
+                        <div className='ficha-mainsection-content'>
+                            <Campo titulo="estado civil" conteudo={dados.estadocivil} />
+                            <Campo titulo="profissão" conteudo={dados.profissao} />
+                            <Campo titulo="etinia" conteudo={dados.etinia} />
+                            <Campo titulo="hobby" conteudo={dados.hobby} />
                         </div>
                     </section>
                 </section>
-                <ToggleMenu className='ficha-main-aside-new'/>
+                <ToggleMenu className='ficha-main-aside' />
             </main>
-            <footer className='ficha-footer-container-new'>
+            <footer className='ficha-footer'>
                 <button>&lt; anterior</button>
                 <button>próximo &gt;</button>
             </footer>
