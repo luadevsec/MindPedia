@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Menu from './pages/Menu';
-import Cadastro from './pages/cadastro';
+import Cadastro from './pages/cadastroNew';
 import Ficha from './pages/FichaNew';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
