@@ -3,16 +3,8 @@ const app = express();
 const port = 8080;
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-const faker = require('faker-br');
+const { cpf, cnpj } = require('cpf-cnpj-validator');
 
-
-const cors = require('cors'); // Importando o middleware CORS
-
-// Configuração CORS
-app.use(cors());
-
-
-// Funções para carregar e salvar pacientes
 function carregarPacientes() {
   if (!fs.existsSync('pacientes.json')) {
     return [];
@@ -39,7 +31,7 @@ function salvarPacientes(pacientes) {
 // Lista de pacientes (carregada do arquivo ou vazia)
 let pacientes = carregarPacientes();
 
-
+// Middleware para parsear JSON
 app.use(express.json());
 
 // Funções para gerar dados aleatórios
@@ -74,30 +66,40 @@ function getRandomCPF() {
   return cpf.generate();
 }
 
-function getRandomRG() {
-  return faker.br.rg();
-}
-
 function getRandomPhoneNumber() {
   return faker.phone.phoneNumber('(##) #####-####');
 }
 
-
+// Validação básica de email
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-
+// Rotas
 app.get('/pacientes', (req, res) => {
   res.json(pacientes);
 });
 
 app.post('/cadastro', (req, res) => {
-  const { nome, idade, email, data, cpf, rg, telefone, contatoEmergencia } = req.body;
-  const cpfValue = req.body.cpf; 
+  const { 
+    nome,
+    cpf, 
+    dataNascimento,
+    idade,
+    sexualidade,
+    genero,
+    numero,
+    numeroAux,
+    email,
+    estadoCivil,
+    profissao,
+    etnia,
+    hobby,
+    contatoEmergencia
+  } = req.body;
 
-  if (!nome || !idade || !email || !data || !cpf || !rg || !telefone || !contatoEmergencia) {
+  if (!nome || !cpf || !dataNascimento || !idade || !sexualidade || !genero || !numero || !email || !estadoCivil || !profissao || !etnia || !hobby || !contatoEmergencia) {
     return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
   }
 
@@ -111,20 +113,27 @@ app.post('/cadastro', (req, res) => {
 
   const novoPaciente = {
     id: uuidv4(),
+    idFoto: getRandomInt(1, 11),
     nome,
+    cpf, 
+    dataNascimento,
     idade,
+    sexualidade,
+    genero,
+    numero,
+    numeroAux,
     email,
-    data,
-    cpf,
-    rg,
-    telefone,
+    estadoCivil,
+    profissao,
+    etnia,
+    hobby,
     contatoEmergencia
   };
- 
+
   pacientes.push(novoPaciente);
   salvarPacientes(pacientes);
 
-  res.status(201).json(novoPaciente);
+  res.status(201).json(novoPaciente); 
 });
 
 
@@ -154,6 +163,13 @@ app.post('/ramCreate', (req, res) => {
     email: getRandomEmail(),
     data: getRandomDate(new Date('2023-01-01'), new Date()),
     imagem: getRandomInt(1, 11),
+    cpf: getRandomCPF(),
+    rg: getRandomRG(),
+    telefone: getRandomPhoneNumber(),
+    contatoEmergencia: {
+      nome: getRandomName(),
+      telefone: getRandomPhoneNumber()
+    }
   };
 
   pacientes.push(novoPaciente);
@@ -171,19 +187,26 @@ app.get('/paciente/:id', (req, res) => {
   }
 
   const pacienteInfo = {
+    id: paciente.id,
+    idFoto: paciente.idFoto,
     nome: paciente.nome,
-    dataNascimento: paciente.data,
-    idFoto: paciente.imagem,
-    email: paciente.email,
-    telefone: paciente.telefone,
-    contatoEmergencia: paciente.contatoEmergencia,
     cpf: paciente.cpf,
-    rg: paciente.rg    
+    dataNascimento: paciente.dataNascimento,
+    idade: paciente.idade,
+    sexualidade: paciente.sexualidade,
+    genero: paciente.genero,
+    numero: paciente.numero,
+    numeroAux: paciente.numeroAux,
+    email: paciente.email,
+    estadoCivil: paciente.estadoCivil,
+    profissao: paciente.profissao,
+    etnia: paciente.etnia,
+    hobby: paciente.hobby,
+    contatoEmergencia: paciente.contatoEmergencia
   };
 
   res.json(pacienteInfo);
 });
-
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
