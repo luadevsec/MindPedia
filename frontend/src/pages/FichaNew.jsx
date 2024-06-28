@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 import Campo from '../components/ficha/campo';
 import ButtonHome from '../components/utils/button_home';
 import ToggleMenu from '../components/ficha/toggleMenu';
-import './infernodebandeja.css';
 
-import './Ficha.css';
+
+
 
 function Ficha() {
-
     const nfez = "matheus n fez ainda";
 
 
@@ -60,43 +59,52 @@ function Ficha() {
     }
 
     return (
-        <div className='ficha-body-container-defou'>
-            <header className='ficha-header-container-defou'>
-                <img 
+        <>
+            <header className='ficha-header-container-new'>
+            <img 
                     src={require(`../../public/assets/${dados.idFoto}.jpeg`)}
                     alt="Foto do Paciente" 
                 />
                 <Campo titulo="Nome do Paciente" conteudo={dados.nome} />
                 <ButtonHome />
             </header>
-
-            <main className='ficha-main-container-defou'>
-                <section className='main-section'>
-                    <article>
-                        <Campo titulo="CPF" conteudo={dados.cpf} />
-                        <Campo titulo="RG" conteudo={dados.rg} />
+            <main className='ficha-main-conatiner-new'>
+                <section className='ficha-main-section-new'>
+                    <section className='ficha-mainsection-section-new'>
+                        <h2>informações</h2>
+                        <div className='ficha-mainsection-content-new'>
+                        <Campo titulo="CPF ou RG" conteudo={dados.rg} />
                         <Campo titulo="Data de Nascimento" conteudo={dados.dataNascimento} />
                         <Campo titulo="Idade" conteudo={dados.idade} />
-                    </article>
-
-                    <ToggleMenu />
-                    
+                        <Campo titulo="Sexualidade" conteudo={dados.sexualidade} />
+                        <Campo titulo="Genero" conteudo={dados.genero} />
+                        </div>
+                    </section>
+                    <section className='ficha-mainsection-section-new'>
+                        <h2>contatos</h2>
+                        <div className='ficha-mainsection-content-new'>
+                        <Campo titulo="Numero" conteudo={dados.numero} />
+                        <Campo titulo="Numero auxiliar" conteudo={dados.numeroaux} />
+                        <Campo titulo="Email" conteudo={dados.email} />
+                        </div>
+                    </section>
+                    <section className='ficha-mainsection-section-new'>
+                        <h2>informações adicionais</h2>
+                        <div className='ficha-mainsection-content-new'>
+                        <Campo titulo="estado civil" conteudo={dados.estadocivil} />
+                        <Campo titulo="profissão" conteudo={dados.profissao} />
+                        <Campo titulo="etinia" conteudo={dados.etinia} />
+                        <Campo titulo="hobby" conteudo={dados.hobby} />
+                        </div>
+                    </section>
                 </section>
-                <section className='contato'>
-                    <h2>Contatos</h2>
-                    <div className='container-contato'>
-                        
-                    <Campo titulo="Email" conteudo={dados.email} />
-                    <Campo titulo="Telefone" conteudo={dados.telefone} />
-                    </div>
-                </section>
+                <ToggleMenu className='ficha-main-aside-new'/>
             </main>
-
-            <footer>
+            <footer className='ficha-footer-container-new'>
                 <button>&lt; anterior</button>
                 <button>próximo &gt;</button>
             </footer>
-        </div>
+        </>
     );
 }
 

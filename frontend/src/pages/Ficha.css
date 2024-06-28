@@ -7,13 +7,13 @@
     box-sizing: border-box;
 }
 
-body {
+.ficha-body-container-defou {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
 }
 
-header {
+.ficha-header-container-defou {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -22,19 +22,19 @@ header {
     color: white;
 }
 
-header img {
+.ficha-body-container-defou img {
     border-radius: 50%;
     width: 100px;
     height: 100px;
     object-fit: cover;
 }
 
-header h2 {
+.ficha-body-container-defou h2 {
     margin-left: 20px;
     font-size: 1.5em;
 }
 
-header button {
+.ficha-body-container-defou button {
     background: none;
     border: none;
     color: white;
@@ -42,17 +42,17 @@ header button {
     cursor: pointer;
 }
 
-main {
+.ficha-main-container-defou {
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
-section {
+.ficha-body-container-defou section {
     margin-bottom: 20px;
 }
 
-h2 {
+.ficha-body-container-defou h2 {
     margin-bottom: 10px;
     color: #2980b9;
 }

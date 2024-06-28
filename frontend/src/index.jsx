@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Menu from './pages/Menu';
 import Cadastro from './pages/cadastro';
-import Ficha from './pages/Ficha';
+import Ficha from './pages/FichaNew';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
