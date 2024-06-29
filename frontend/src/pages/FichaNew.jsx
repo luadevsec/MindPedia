@@ -6,9 +6,7 @@ import ToggleMenu from '../components/ficha/toggleMenu';
 import './FichaNew.css';
 
 function Ficha() {
-    const nfez = "matheus n fez ainda";
-
-    const { id } = useParams(); // Obtenha o ID da URL
+    const { id } = useParams(); // Obtém o ID da URL
     const [dados, setDados] = useState(null); // Estado para armazenar os dados do paciente
     const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
     const [error, setError] = useState(null); // Estado para armazenar erros
@@ -22,14 +20,22 @@ function Ficha() {
                 }
                 const data = await response.json();
 
-                // Adicione valores padrão para dados ausentes
+                // Mapeia os dados recebidos para o formato esperado na interface
                 const pacienteComDadosCompletos = {
-                    ...data,
-                    cpf: data.cpf || nfez,
-                    rg: data.rg || nfez,
-                    dataNascimento: data.dataNascimento || nfez,
-                    telefone: data.telefone || nfez,
-                    contatoEmergencia: data.contatoEmergencia || { nome: nfez, telefone: nfez }
+                    id: data.id,
+                    idFoto: data.idFoto,
+                    nome: data.nome,
+                    cpf: data.cpf || 'Não informado',
+                    dataNascimento: data.dataNascimento || 'Não informada',
+                    sexualidade: data.sexualidade || 'Não informada',
+                    genero: data.genero || 'Não informado',
+                    numero: data.numero || 'Não informado',
+                    numeroAux: data.numeroAux || 'Não informado',
+                    email: data.email || 'Não informado',
+                    estadoCivil: data.estadoCivil || 'Não informado',
+                    profissao: data.profissao || 'Não informada',
+                    etnia: data.etnia || 'Não informada',
+                    hobby: data.hobby || 'Não informado'
                 };
 
                 setDados(pacienteComDadosCompletos);
@@ -44,15 +50,15 @@ function Ficha() {
     }, [id]);
 
     if (loading) {
-        return <div>Carregando...</div>;
+        return <div className="loading">Carregando...</div>;
     }
 
     if (error) {
-        return <div>Erro: {error}</div>;
+        return <div className="error">Erro: {error}</div>;
     }
 
     if (!dados) {
-        return <div>Nenhum dado encontrado</div>;
+        return <div className="no-data">Nenhum dado encontrado</div>;
     }
 
     return (
@@ -68,38 +74,37 @@ function Ficha() {
             <main className='ficha-main-container'>
                 <section className='ficha-main-section'>
                     <section className='ficha-mainsection-section'>
-                        <h2>informações</h2>
+                        <h2>Informações</h2>
                         <div className='ficha-mainsection-content'>
-                            <Campo titulo="CPF ou RG" conteudo={dados.rg} />
+                            <Campo titulo="CPF" conteudo={dados.cpf} />
                             <Campo titulo="Data de Nascimento" conteudo={dados.dataNascimento} />
-                            <Campo titulo="Idade" conteudo={dados.idade} />
                             <Campo titulo="Sexualidade" conteudo={dados.sexualidade} />
-                            <Campo titulo="Genero" conteudo={dados.genero} />
+                            <Campo titulo="Gênero" conteudo={dados.genero} />
                         </div>
                     </section>
                     <section className='ficha-mainsection-section'>
-                        <h2>contatos</h2>
+                        <h2>Contatos</h2>
                         <div className='ficha-mainsection-content'>
-                            <Campo titulo="Numero" conteudo={dados.numero} />
-                            <Campo titulo="Numero auxiliar" conteudo={dados.numeroaux} />
+                            <Campo titulo="Número" conteudo={dados.numero} />
+                            <Campo titulo="Número Auxiliar" conteudo={dados.numeroAux} />
                             <Campo titulo="Email" conteudo={dados.email} />
                         </div>
                     </section>
                     <section className='ficha-mainsection-section'>
-                        <h2>informações adicionais</h2>
+                        <h2>Informações Adicionais</h2>
                         <div className='ficha-mainsection-content'>
-                            <Campo titulo="estado civil" conteudo={dados.estadocivil} />
-                            <Campo titulo="profissão" conteudo={dados.profissao} />
-                            <Campo titulo="etinia" conteudo={dados.etinia} />
-                            <Campo titulo="hobby" conteudo={dados.hobby} />
+                            <Campo titulo="Estado Civil" conteudo={dados.estadoCivil} />
+                            <Campo titulo="Profissão" conteudo={dados.profissao} />
+                            <Campo titulo="Etnia" conteudo={dados.etnia} />
+                            <Campo titulo="Hobby" conteudo={dados.hobby} />
                         </div>
                     </section>
                 </section>
                 <ToggleMenu className='ficha-main-aside' />
             </main>
             <footer className='ficha-footer'>
-                <button>&lt; anterior</button>
-                <button>próximo &gt;</button>
+                <button>&lt; Anterior</button>
+                <button>Próximo &gt;</button>
             </footer>
         </>
     );

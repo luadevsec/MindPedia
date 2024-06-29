@@ -1,154 +1,34 @@
 [
   {
-    "id": "869ae5b3-6031-48c7-8c4b-bbb27e94798d",
-    "nome": "Bob",
-    "idade": 46,
-    "email": "diana@examplo.com",
-    "data": "09-05-2024",
-    "imagem": 5
+    "id": "ff99d72f-e1a4-4a64-b11f-8014e4041007",
+    "idFoto": 3,
+    "nome": "sergio cozzetti",
+    "cpf": "33333333333",
+    "dataNascimento": "1967-06-30",
+    "sexualidade": "heterossexual",
+    "genero": "masculino",
+    "numero": "123123231",
+    "numeroAux": "324234423 ",
+    "email": "sergiocozzetti@gmail.co",
+    "estadoCivil": "viuvo",
+    "profissao": "Professor",
+    "etnia": "branca",
+    "hobby": "Esportes"
   },
   {
-    "id": "453b0e09-e401-4cf7-bb16-952f9165f64e",
-    "nome": "Fernanda",
-    "idade": 25,
-    "email": "diana@examplo.com",
-    "data": "26-02-2023",
-    "imagem": 3
-  },
-  {
-    "id": "a526af51-f5b3-44dd-94f5-240cbfcfe21b",
-    "nome": "Helena",
-    "idade": 43,
-    "email": "eduardo@examplo.com",
-    "data": "28-10-2023",
-    "imagem": 9
-  },
-  {
-    "id": "cd21a4f0-9c7e-4235-915c-26bae195f0cb",
-    "nome": "Eduardo",
-    "idade": 25,
-    "email": "fernanda@examplo.com",
-    "data": "14-04-2023",
-    "imagem": 8
-  },
-  {
-    "id": "916aafd8-8fe8-4147-84ec-47427b39abec",
-    "nome": "Alice",
-    "idade": 29,
-    "email": "carlos@examplo.com",
-    "data": "21-08-2023",
-    "imagem": 2
-  },
-  {
-    "id": "5708d02e-0b18-4a5b-b6db-df3b9ee8dff4",
-    "nome": "Bob",
-    "idade": 25,
-    "email": "igor@examplo.com",
-    "data": "19-06-2024",
-    "imagem": 3
-  },
-  {
-    "id": "05927416-6399-42b0-a954-39fadf014c02",
-    "nome": "Carlos",
-    "idade": 28,
-    "email": "gabriel@examplo.com",
-    "data": "09-07-2023",
-    "imagem": 11
-  },
-  {
-    "id": "a000c853-25fb-4b79-becf-1005dd97f6cc",
-    "nome": "Diana",
-    "idade": 47,
-    "email": "fernanda@examplo.com",
-    "data": "09-11-2023",
-    "imagem": 2
-  },
-  {
-    "id": "e35c845c-ccf4-47a8-a94e-a008a48962f8",
-    "nome": "Diana",
-    "idade": 51,
-    "email": "fernanda@examplo.com",
-    "data": "10-11-2023",
-    "imagem": 2
-  },
-  {
-    "id": "5ddc1f46-a4f2-45e7-bb09-c0fdcd0d35f6",
-    "nome": "Fernanda",
-    "idade": 61,
-    "email": "helena@examplo.com",
-    "data": "26-08-2023",
-    "imagem": 5
-  },
-  {
-    "id": "87e0f7af-8edc-459f-a517-fe93d313a26d",
-    "nome": "Julia",
-    "idade": 58,
-    "email": "julia@examplo.com",
-    "data": "17-01-2024",
-    "imagem": 9
-  },
-  {
-    "id": "3fd42c34-0bdf-48c5-9e06-2c01fdbfb7c1",
-    "nome": "Diana",
-    "idade": 55,
-    "email": "eduardo@examplo.com",
-    "data": "06-01-2023",
-    "imagem": 5
-  },
-  {
-    "id": "b1dfc1e8-07b7-4dc1-80c8-3603b2388d11",
-    "nome": "Eduardo",
-    "idade": 38,
-    "email": "diana@examplo.com",
-    "data": "29-08-2023",
-    "imagem": 9
-  },
-  {
-    "id": "d8db2075-38a7-40d9-bf3e-383ff996fe2e",
-    "nome": "Julia",
-    "idade": 51,
-    "email": "helena@examplo.com",
-    "data": "13-05-2023",
-    "imagem": 6
-  },
-  {
-    "id": "d87b6c36-96e5-4c54-86d5-16b35b98e45c",
-    "nome": "Eduardo",
-    "idade": 58,
-    "email": "bob@examplo.com",
-    "data": "27-05-2023",
-    "imagem": 9
-  },
-  {
-    "id": "5484f04a-ba40-4e46-a13f-b9a8fca5bb45",
-    "nome": "Helena",
-    "idade": 40,
-    "email": "gabriel@examplo.com",
-    "data": "13-12-2023",
-    "imagem": 11
-  },
-  {
-    "id": "83216e92-1f5f-4c8a-be86-dd8a6ca5958b",
-    "nome": "Alice",
-    "idade": 64,
-    "email": "helena@examplo.com",
-    "data": "03-07-2023",
-    "imagem": 2
-  },
-  {
-    "id": "3b6e8edf-e870-40f0-bac0-ffcc598ca9e2",
-    "nome": "Fernanda",
-    "idade": 32,
-    "email": "diana@examplo.com",
-    "data": "26-10-2023",
-    "imagem": 5
-  },
-  {
-    "id": "1deed639-fbd8-4adc-8605-4ae8f23bc856",
-    "nome": "Helena",
-    "idade": 55,
-    "email": "diana@examplo.com",
-    "data": "13-07-2023",
-    "imagem": 4
+    "id": "e9434bcc-a624-44fd-8888-9df416827acf",
+    "idFoto": 7,
+    "nome": "sergio cozzetti",
+    "cpf": "33333333333",
+    "dataNascimento": "1967-06-30",
+    "sexualidade": "heterossexual",
+    "genero": "masculino",
+    "numero": "123123231",
+    "numeroAux": "324234423 ",
+    "email": "sergiocozzetti@gmail.co",
+    "estadoCivil": "viuvo",
+    "profissao": "Professor",
+    "etnia": "branca",
+    "hobby": "Esportes"
   }
 ]

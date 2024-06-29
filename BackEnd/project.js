@@ -3,7 +3,11 @@ const app = express();
 const port = 8080;
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
-const { cpf, cnpj } = require('cpf-cnpj-validator');
+const { cpf } = require('cpf-cnpj-validator');
+const cors = require('cors');
+
+// Configuração CORS
+app.use(cors());
 
 function carregarPacientes() {
   if (!fs.existsSync('pacientes.json')) {
@@ -58,8 +62,9 @@ function getRandomName() {
   return nomes[getRandomInt(0, nomes.length - 1)];
 }
 
-function getRandomEmail() {
-  return `${getRandomName().toLowerCase()}@examplo.com`;
+function getRandomEmail(name) {
+  const domains = ['exemplo.com', 'teste.com', 'demo.com'];
+  return `${name.toLowerCase()}@${domains[getRandomInt(0, domains.length)]}`;
 }
 
 function getRandomCPF() {
@@ -67,7 +72,40 @@ function getRandomCPF() {
 }
 
 function getRandomPhoneNumber() {
-  return faker.phone.phoneNumber('(##) #####-####');
+  const prefix = getRandomInt(10, 99);
+  const middle = getRandomInt(10000, 99999);
+  const suffix = getRandomInt(1000, 9999);
+  return `(${prefix}) ${middle}-${suffix}`;
+}
+
+function getRandomSexualidade() {
+  const sexualidadeOptions = ['Heterossexual', 'Homossexual', 'Bissexual', 'Pansexual', 'Assexual', 'Outro'];
+  return sexualidadeOptions[getRandomInt(0, sexualidadeOptions.length - 1)];
+}
+
+function getRandomGenero() {
+  const generoOptions = ['Feminino', 'Masculino', 'Não-Binário', 'Outro'];
+  return generoOptions[getRandomInt(0, generoOptions.length - 1)];
+}
+
+function getRandomEtnia() {
+  const etniaOptions = ['Branca', 'Negra', 'Indígena', 'Parda', 'Amarela', 'Asiática', 'Outra'];
+  return etniaOptions[getRandomInt(0, etniaOptions.length - 1)];
+}
+
+function getRandomEstadoCivil() {
+  const estadoCivilOptions = ['Solteiro', 'Casado', 'Divorciado', 'Viúvo', 'Outro'];
+  return estadoCivilOptions[getRandomInt(0, estadoCivilOptions.length - 1)];
+}
+
+function getRandomProfissao() {
+  const profissoes = ['Engenheiro', 'Médico', 'Professor', 'Artista', 'Desenvolvedor', 'Advogado', 'Músico', 'Jornalista'];
+  return profissoes[getRandomInt(0, profissoes.length - 1)];
+}
+
+function getRandomHobby() {
+  const hobbies = ['Leitura', 'Esportes', 'Música', 'Viagens', 'Fotografia', 'Gastronomia', 'Jogos'];
+  return hobbies[getRandomInt(0, hobbies.length - 1)];
 }
 
 // Validação básica de email
@@ -82,11 +120,10 @@ app.get('/pacientes', (req, res) => {
 });
 
 app.post('/cadastro', (req, res) => {
-  const { 
+  const {
     nome,
-    cpf, 
+    cpf,
     dataNascimento,
-    idade,
     sexualidade,
     genero,
     numero,
@@ -95,29 +132,21 @@ app.post('/cadastro', (req, res) => {
     estadoCivil,
     profissao,
     etnia,
-    hobby,
-    contatoEmergencia
+    hobby
   } = req.body;
 
-  if (!nome || !cpf || !dataNascimento || !idade || !sexualidade || !genero || !numero || !email || !estadoCivil || !profissao || !etnia || !hobby || !contatoEmergencia) {
-    return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
-  }
+ 
 
   if (!isValidEmail(email)) {
     return res.status(400).json({ erro: "Email inválido." });
-  }
-
-  if (!contatoEmergencia.nome || !contatoEmergencia.telefone) {
-    return res.status(400).json({ erro: "Nome e telefone do contato de emergência são obrigatórios." });
   }
 
   const novoPaciente = {
     id: uuidv4(),
     idFoto: getRandomInt(1, 11),
     nome,
-    cpf, 
+    cpf,
     dataNascimento,
-    idade,
     sexualidade,
     genero,
     numero,
@@ -126,16 +155,14 @@ app.post('/cadastro', (req, res) => {
     estadoCivil,
     profissao,
     etnia,
-    hobby,
-    contatoEmergencia
+    hobby
   };
 
   pacientes.push(novoPaciente);
   salvarPacientes(pacientes);
 
-  res.status(201).json(novoPaciente); 
+  res.status(201).json(novoPaciente);
 });
-
 
 app.get('/cardInfo', (req, res) => {
   const cardInfo = pacientes.map(paciente => ({
@@ -156,20 +183,22 @@ app.get('/cardInfo', (req, res) => {
 });
 
 app.post('/ramCreate', (req, res) => {
+  const nome = getRandomName();
   const novoPaciente = {
     id: uuidv4(),
-    nome: getRandomName(),
-    idade: getRandomInt(18, 65),
-    email: getRandomEmail(),
-    data: getRandomDate(new Date('2023-01-01'), new Date()),
-    imagem: getRandomInt(1, 11),
+    idFoto: getRandomInt(1, 11),
+    nome: nome,
     cpf: getRandomCPF(),
-    rg: getRandomRG(),
-    telefone: getRandomPhoneNumber(),
-    contatoEmergencia: {
-      nome: getRandomName(),
-      telefone: getRandomPhoneNumber()
-    }
+    dataNascimento: getRandomDate(new Date('1960-01-01'), new Date('2006-12-31')),
+    sexualidade: getRandomSexualidade(),
+    genero: getRandomGenero(),
+    numero: getRandomPhoneNumber(),
+    numeroAux: getRandomPhoneNumber(),
+    email: getRandomEmail(nome),
+    estadoCivil: getRandomEstadoCivil(),
+    profissao: getRandomProfissao(),
+    etnia: getRandomEtnia(),
+    hobby: getRandomHobby()
   };
 
   pacientes.push(novoPaciente);
@@ -201,8 +230,7 @@ app.get('/paciente/:id', (req, res) => {
     estadoCivil: paciente.estadoCivil,
     profissao: paciente.profissao,
     etnia: paciente.etnia,
-    hobby: paciente.hobby,
-    contatoEmergencia: paciente.contatoEmergencia
+    hobby: paciente.hobby
   };
 
   res.json(pacienteInfo);

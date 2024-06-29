@@ -58,7 +58,7 @@ const Navbar = () => {
     return (
         <nav className="menu-navbar-container-defou">
             <section className="menu-navbar-section-defou">
-                {aaa.map((obj) => { return <Card id={obj.id} img={obj.imagem} name={obj.nome} data= {obj.data} key={obj.nome} /> })}
+                {aaa.map((obj) => { return <Card id={obj.id} img={obj.idFoto} name={obj.nome} data= {obj.data} key={obj.nome} /> })}
             </section>
             <button className="menu-navbar-button-defou" onClick={generate}>+ gerar</button>
             <a className="menu-navbar-button-defou"href="/cadastro">cadastrar</a>

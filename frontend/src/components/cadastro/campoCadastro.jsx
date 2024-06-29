@@ -1,13 +1,19 @@
 import React from 'react';
 import './campoCadastro.css';
 
-const CampoCadastro = ({ label, name, type, required = false }) => {
+const CampoCadastro = ({ label, name, type, required = false , value, onChange}) => {
     return (
         <article className='cadastro-field'>
             <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)}:</label>
-            <input type={type} name={name} id={name} required={required} />
+            <input
+            name={name}
+            type={type}
+            value={value}
+            onChange={onChange}
+        />
         </article>
     );
 };
 
 export default CampoCadastro;
+
