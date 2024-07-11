@@ -4,6 +4,7 @@ import Campo from '../components/ficha/campo';
 import ButtonHome from '../components/utils/button_home';
 import ToggleMenu from '../components/ficha/toggleMenu';
 import './FichaNew.css';
+import getImage from '../model/getImage.ts';
 
 function Ficha() {
     const { id } = useParams(); // Obtém o ID da URL
@@ -65,7 +66,7 @@ function Ficha() {
         <>
             <header className='ficha-header-container'>
                 <img 
-                    src={require(`../../public/assets/${dados.idFoto}.jpeg`)}
+                    src={getImage(dados.idFoto)}
                     alt="Foto do Paciente" 
                 />
                 <Campo titulo="Nome do Paciente" conteudo={dados.nome} />
