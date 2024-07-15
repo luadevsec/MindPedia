@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ES5",
+      "module": "ES6",
+      "jsx": "react",
+      "strict": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "baseUrl": "./src",
+      "paths": {
+        "@assets/*": ["assets/*"],
+        "@components/*": ["components/*"],
+        "@model/*": ["model/*"],
+        "@pages/*": ["pages/*"],
+        "@utils/*": ["utils/*"]
+      }
+    },
+    "include": ["src"]
+  }
+  
