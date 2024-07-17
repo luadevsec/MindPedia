@@ -1,18 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
     rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: 'ts-loader'
-      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -21,12 +16,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.(png|jpeg|gif|svg)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash].[ext]',
+              name: '[name].[ext]',
               outputPath: 'assets',
             }
           }
@@ -35,7 +30,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@components': path.resolve(__dirname, 'src/components'),
@@ -45,8 +40,11 @@ module.exports = {
     }
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
     compress: true,
-    port: 9000
+    port: 9000,
+    open: true,
+    static: {
+      directory: path.join(__dirname, 'public'),
+    }
   }
 };
