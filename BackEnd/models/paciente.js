@@ -36,7 +36,7 @@ class Paciente {
 
   static todos() {
     try {
-      const dados = fs.readFileSync('pacientes.json');
+      const dados = fs.readFileSync('paciente.json');
       return JSON.parse(dados);
     } catch (err) {
       console.error('Erro ao carregar pacientes:', err);
@@ -46,12 +46,12 @@ class Paciente {
 
   static encontrarPorId(id) {
     const paciente = this.todos();
-    return paciente.find(p => p.id === id);
+    return pacientes.find(p => p.id === id);
   }
 
   salvar() {
     const paciente = Paciente.todos();
-    pacientes.push(this);
+    paciente.push(this);
 
     const dados = JSON.stringify(paciente, null, 2);
     try {

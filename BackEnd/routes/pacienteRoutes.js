@@ -6,10 +6,11 @@ router.get('/', pacienteController.listarPacientes);
 
 router.post('/', pacienteController.criarPaciente);
 
-router.post('/ramCreate', pacienteController.criarPacienteAleatorio);
-
 router.get('/cardInfo', pacienteController.obterCardInfo);
 
 router.get('/:id', pacienteController.obterPaciente);
+
+router.post('/ramCreate', pacienteController.ramCreate);
+
 
 module.exports = router;
