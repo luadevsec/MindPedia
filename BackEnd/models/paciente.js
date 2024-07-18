@@ -50,12 +50,12 @@ class Paciente {
   }
 
   salvar() {
-    const paciente = Paciente.todos();
-    paciente.push(this);
+    const paciente = Paciente.todos(); 
+    paciente.push(this); 
 
     const dados = JSON.stringify(paciente, null, 2);
     try {
-      fs.writeFileSync('paciente.json', dados);
+      fs.writeFileSync('pacientes.json', dados);
     } catch (err) {
       console.error('Erro ao salvar paciente:', err);
     }
