@@ -16,6 +16,6 @@
   },
   "scripts": {
     "build": "tsc",
-    "test-db": "node dist/test.js"
+    "test-db": "node db/dist/test.js"
   }
 }

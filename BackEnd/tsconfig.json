@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
+    "outDir": "./db/dist",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "types": ["node"],
