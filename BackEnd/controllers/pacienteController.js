@@ -5,7 +5,9 @@ exports.listarPacientes = (req, res) => {
   const pacientes = Paciente.todos();
   res.json(pacientes);
 };
-
+exports.a = (req, res) => {
+  return res.json({"robs": "iriri"});
+};
 exports.criarPaciente = (req, res) => {
   const {
     nome,
