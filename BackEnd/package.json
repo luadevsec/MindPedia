@@ -9,5 +9,13 @@
     "sqlite3": "^5.1.7",
     "typeorm": "^0.3.20",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test-db": "node dist/test.js"
   }
 }
