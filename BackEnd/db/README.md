@@ -16,11 +16,11 @@ db/
 │       database.sqlite
 │
 ├───lib <-- funções especificas de acesso e registro de dados
-│       dataSource.ts
 │       userLib.ts
 │
 ├───model <-- definição dos tipos de dados e entidades
 │       user.ts
+│       dataSource.ts <-- configura as definições equivalentes entre as classes e as entidades do banco
 │
 └───services <-- facades de acesso contextualizado e simplificado
         userFacade.ts

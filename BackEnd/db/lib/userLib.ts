@@ -1,4 +1,4 @@
-import { AppDataSource } from "./dataSource";
+import { AppDataSource } from "../model/dataSource";
 import { User } from "../model/user";
 
 export const createUser = async (firstName: string, lastName: string, age: number): Promise<User> => {
