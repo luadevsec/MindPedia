@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# MindPedia Reborn
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MindPedia Reborn é um projeto desenvolvido com React e TypeScript. O projeto utiliza o Create React App para configuração inicial e possui uma estrutura organizada para o desenvolvimento de componentes, páginas e utilitários.
 
-## Available Scripts
+## Dependências
 
-In the project directory, you can run:
+Este projeto utiliza as seguintes dependências:
 
-### `npm start`
+- **React**: Biblioteca para construir interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **axios**: Cliente HTTP para fazer requisições.
+- **eslint**: Ferramenta de linting para JavaScript e TypeScript.
+- **prettier**: Formatador de código.
+- **react-router-dom**: Biblioteca para roteamento em aplicativos React.
+- **styled-components**: Biblioteca para estilização de componentes com CSS-in-JS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Configuração do Ambiente
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Instalar Dependências**
 
-### `npm test`
+   Para instalar as dependências do projeto, execute:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   yarn install
+   ```
 
-### `npm run build`
+2. **Iniciar o Servidor de Desenvolvimento**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   Para iniciar o servidor de desenvolvimento, execute:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   yarn start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Compilar o Projeto**
 
-### `npm run eject`
+   Para compilar o projeto para produção, execute:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   yarn build
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estrutura de Diretórios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **`public/`**: Contém arquivos estáticos, como o `index.html` e o favicon.
+- **`src/`**: Contém o código-fonte do aplicativo.
+  - **`assets/`**: Imagens e outros recursos estáticos.
+  - **`components/`**: Componentes React reutilizáveis.
+  - **`model/`**: Modelos e definições de tipos.
+  - **`pages/`**: Páginas do aplicativo.
+  - **`utils/`**: Funções utilitárias e helpers.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Configuração do TypeScript
 
-## Learn More
+O TypeScript está configurado no `tsconfig.json` com as seguintes opções:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **`baseUrl`**: Define o diretório base para caminhos relativos.
+- **`paths`**: Define aliases para caminhos dentro do projeto.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```json
+{
+  "compilerOptions": {
+  "baseUrl": "src",
+  "paths": {
+    "@components/*": ["components/*"],
+    "@model/*": ["model/*"],
+    "@pages/*": ["pages/*"],
+    "@utils/*": ["utils/*"],
+    "@assets/*": ["assets/*"]
+  }
+}
+```
 
-### Code Splitting
+## Contribuindo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Contribuições são bem-vindas! Se você encontrar problemas ou tiver sugestões de melhorias, por favor, abra uma issue ou um pull request.
 
-### Analyzing the Bundle Size
+## Licença
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este projeto está licenciado sob a [MIT License](LICENSE).
