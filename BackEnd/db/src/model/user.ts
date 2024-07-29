@@ -21,7 +21,7 @@ export class User {
   profissao!: string;
 }
 
-/*id: a34f573e-8959-4c52-9592-e66e10b9cf60;
+/*id: a34f573e-8959-4c52-9592-e66e10b9cf60;    //mudar para uuid7 pra melhorar a eficiencia do banco
 nome: Sophia Souza;
 cpf: 345.743.699-72;
 dataNascimento: 1988-4-12;

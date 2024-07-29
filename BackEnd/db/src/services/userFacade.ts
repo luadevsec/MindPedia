@@ -2,7 +2,23 @@
 
 import { UserRepository } from "../repository/userRepository";
 
-export const addUser = async (nome:string, cpf:string, dataNascimento:Date, idFoto:number, email:string, profissao:string) => {
+interface User {
+  nome: string;
+  cpf: string;
+  dataNascimento: Date;
+  idFoto: number;
+  email: string;
+  profissao: string;
+}
+
+export const addUser = async (
+  nome:string, 
+  cpf:string, 
+  dataNascimento:Date, 
+  idFoto:number, 
+  email:string, 
+  profissao:string
+) => {
   return await UserRepository.createUser(nome, cpf, dataNascimento, idFoto, email, profissao);
 };
 

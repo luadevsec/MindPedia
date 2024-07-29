@@ -4,8 +4,17 @@ import { Repository } from "typeorm";
 import AppDataSource from "../dataSource";
 import { User } from "../model/user";
 
+
+
+
 export class UserRepository {
-  static createUser(nome: string, cpf: string, dataNascimento: Date, idFoto: number, email: string, profissao: string) {
+  static createUser(
+    nome: string, 
+    cpf: string, 
+    dataNascimento: Date, 
+    idFoto: number, 
+    email: string, 
+    profissao: string) {
     throw new Error("Method not implemented.");
   }
   private userRepository: Repository<User>;
@@ -14,7 +23,15 @@ export class UserRepository {
     this.userRepository = AppDataSource.getRepository(User);
   }
 
-  async createUser(name:string, cpf:string, dataNascimento:Date, idFoto:number, email:string, profissao:string): Promise<User> {
+  async createUser(
+    name:string, 
+    cpf:string, 
+    dataNascimento:Date, 
+    idFoto:number, 
+    email:string, 
+    profissao:string
+  ): Promise<User> {
+    //credo, aplica um constructor em User
     const user = new User();
     user.nome = name;
     user.cpf = cpf;
