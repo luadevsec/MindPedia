@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { AppDataSource } from "./dataSource";
+import AppDataSource from "./dataSource";
 import app from "./api/routes";
 
 AppDataSource.initialize().then(() => {

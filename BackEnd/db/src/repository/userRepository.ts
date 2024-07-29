@@ -1,7 +1,7 @@
 // repository/userRepository.ts
 
 import { Repository } from "typeorm";
-import { AppDataSource } from "../dataSource";
+import AppDataSource from "../dataSource";
 import { User } from "../model/user";
 
 export class UserRepository {
