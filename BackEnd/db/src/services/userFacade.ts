@@ -1,13 +1,12 @@
 // services/userFacade.ts
 
-import { createUser, getName, getUsers } from "../lib/userLib";
 import { UserRepository } from "../repository/userRepository";
 
-export const addUser = async (firstName: string, lastName: string, age: number) => {
-  return await createUser(firstName, lastName, age);
+export const addUser = async (nome:string, cpf:string, dataNascimento:Date, idFoto:number, email:string, profissao:string) => {
+  return await UserRepository.createUser(nome, cpf, dataNascimento, idFoto, email, profissao);
 };
 
-export const fetchUsers = async () => {
+/*export const fetchUsers = async () => {
   return await getUsers();
 };
 
@@ -19,5 +18,5 @@ export const name = async (id: number) => {
 export const otherwayName = async (id: number) => {
   let user = new UserRepository();
   return await user.getName(id);
-}
+}*/
 

@@ -10,8 +10,13 @@ app.get("/test/generic", (req, res) => {
   res.send("Esta é uma resposta genérica de um endpoint GET");
 });
 
-app.post("/test/generic", (req, res) => {
-  res.send("Esta é uma resposta genérica de um endpoint POST");
+app.post("/test/generic", async (req, res) => {
+  try {
+    const user = await addUser(req.body);
+    return res.status(201).json(user); // Retorna o usuário criado com status 201 (Created)
+  } catch (error) {
+    return res.status(error.status);
+}
 });
 
 app.get("/test/custom/:id", (req, res) => {
