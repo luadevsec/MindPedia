@@ -12,6 +12,7 @@
     "types": ["node"],
     "allowJs": true
   },
-  "include": ["db/**/*"],
+  "include": ["./src/**/*"],
+  
   "exclude": ["node_modules"]
 }

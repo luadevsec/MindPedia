@@ -2,6 +2,10 @@ import { Entity, Column } from "typeorm";
 
 @Entity()
 export class User {
+
+  @Column({ primary: true })
+  id!: string;
+
   @Column()
   nome!: string;
   
