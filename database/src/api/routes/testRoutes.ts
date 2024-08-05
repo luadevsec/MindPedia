@@ -1,6 +1,6 @@
-import { Router } from "express";
+/*import { Router } from "express";
 
-import { custonID } from '../controllers/testControllers';
+//import { custonID } from '../controllers/testControllers.';
 
 // test is in /test /endpoints
 const test = Router();
@@ -14,7 +14,7 @@ test.post("/generic", async (req, res) => {
         const user = await addUser(req.body);
         return res.status(201).json(user); // Retorna o usuário criado com status 201 (Created)
     } catch (error) {
-        return res.status(error.status);
+        return res.status((error as any).status);
     }
 });
 
@@ -26,3 +26,4 @@ test.post("/custom", (req, res) => {
 });
 
 export default test;
+*/
