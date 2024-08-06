@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Campo from '../components/ficha/campo';
-import ButtonHome from '../components/utils/button_home';
-import ToggleMenu from '../components/ficha/toggleMenu';
+import Campo from '../../../components/ficha/campo';
+import ButtonHome from '../../../components/utils/button_home';
+import ToggleMenu from '../../../components/ficha/toggleMenu';
 import './infernodebandeja.css';
 
 import './Ficha.css';
