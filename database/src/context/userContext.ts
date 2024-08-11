@@ -1,24 +1,26 @@
-import { DataSource, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { User } from "../model/userModel";
-import { getRepository } from "typeorm";
 import AppDataSource from "../dataSource";
 
-/**
- * Represents the user context.
- * This class provides methods and properties related to the user context.
- */
-class UserContext {
-    private repo: Repository<User>;
 
-    constructor() {
-        this.repo = AppDataSource.getRepository(User);
-        
+class UserContext {
+    private static repo: Repository<User> =  AppDataSource.getRepository(User);
+
+
+    static createUser(dataUser : User) {
+        const user = this.repo.create(dataUser);
+        return this.repo.save(user);
     }
 
-    /**
-     * Returns the user's name.
-     */
-    getUserbyId(id: string): Promise<User | null> {
+    static updateUser(dataUser : any) {
+        console.log(dataUser);
+        return this.repo.update(dataUser.id, dataUser);
+    }
+
+    static deleteUser(id: string) {
+    
+    }
+    static getUserbyId(id: string){
         return this.repo.findOneBy({id});
     }
 

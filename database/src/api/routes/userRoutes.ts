@@ -1,19 +1,15 @@
 import { Router } from "express";
-import UserContext from "../../context/userContext";
+import userController from "../controllers/userController";
 
 
 const user = Router();
 
 
-user.get("/busca/:id", (req, res) => {
-    try {
-        const user = new UserContext();
-        const id = req.params.id;
-        user.getUserbyId(id).then((user) => res.send(`user ${user}`));
-    } catch (error) {
-        return res.status((error as any).status);
-    }
-});
+user.get("/busca/:id", userController.getUserbyId);
+
+user.post("/add", userController.createUser);
+
+user.patch("/update", userController.updateUser);
 
 
 
