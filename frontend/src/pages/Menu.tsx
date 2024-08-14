@@ -2,6 +2,18 @@ import { useState, useEffect } from 'react';
 import './styles/header.scss';
 import { formatTime } from '../utils/date';
 
+/* uso geral
+
+cardList : lista de cards com nome, id e idFoto
+
+*/
+
+/* uso local
+
+ficha de perfil : lista de usuarios em pacotes
+Header : timer pra ver a data e hora
+
+*/
 const Header = () => {
     const [time, settime] = useState(new Date());
 
