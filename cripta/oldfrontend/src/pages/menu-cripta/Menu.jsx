@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from '../components/menu/navbar';
-import Header from '../components/menu/header';
-import Aside from '../components/menu/aside';
-import Calendar from '../components/menu/calendar';
+import Navbar from '../../../../cripta/frontend/src/components/menu/navbar';
+import Header from '../../../../cripta/frontend/src/components/menu/header';
+import Aside from '../../../../cripta/frontend/src/components/menu/aside';
+import Calendar from '../../../../cripta/frontend/src/components/menu/calendar';
 
 import '../components/menu/styles/menu.scss';
 
