@@ -71,3 +71,14 @@
     );
   };
   ```
+- Ficha
+  - campo com certeza deveria ser um componente e reutilizavel a toda a aplicação
+  ```ts
+  function Campo ({ titulo, conteudo }: { titulo: string, conteudo: string | null }) {
+    return (
+        <h2 className='component-campo' title={titulo}>
+            {conteudo || ''}
+        </h2>
+    );
+  }
+  ```
