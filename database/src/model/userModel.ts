@@ -12,9 +12,6 @@ export class User {
   @Column()
   cpf!: string;
 
-  /*@Column()
-  dataNascimento!: Date;
-
   @Column()
   idFoto!: number;
 
@@ -22,7 +19,10 @@ export class User {
   email!: string;
 
   @Column()
-  profissao!: string;*/
+  profissao!: string;
+
+  @Column()
+  dataNascimento!: Date;
 }
 
 /*id: a34f573e-8959-4c52-9592-e66e10b9cf60;    //mudar para uuid7 pra melhorar a eficiencia do banco

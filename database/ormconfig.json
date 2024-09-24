@@ -1,7 +1,8 @@
 {
     "type": "sqlite",
     "database": "./database.sqlite",
-    "entities": ["./src/modules/**/*.ts"],
+    "entities": ["./src/model/**/*.ts"],
+    "migrations": ["./migrations/*.ts"],
     "synchronize": true
   }
   

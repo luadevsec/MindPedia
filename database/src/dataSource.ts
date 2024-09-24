@@ -4,6 +4,7 @@ const AppDataSource = new DataSource({
   type: "sqlite",
   database: './database.sqlite',
   entities: ['./src/model/*.ts'],
+  migrations: ['./migrations/*.ts'],
   synchronize: true,
 });
 
