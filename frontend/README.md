@@ -1,30 +1,73 @@
-# React + TypeScript + Vite
+# componentes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Cadastro
+  - isolar opções
+  ```ts
+  // Opções
+  const generoOptions = [
+  { value: 'outro', label: 'Outro' },
+  { value: 'naobinario', label: 'Não-Binário' },
+  { value: 'feminino', label: 'Feminino' },
+  { value: 'masculino', label: 'Masculino' }
+  ];
 
-Currently, two official plugins are available:
+  const sexualidadeOptions = [
+  { value: 'outro', label: 'Outro' },
+  { value: 'assexual', label: 'Assexual' },
+  { value: 'heterossexual', label: 'Heterossexual' },
+  { value: 'homossexual', label: 'Homossexual' },
+  { value: 'bissexual', label: 'Bissexual' },
+  { value: 'pansexual', label: 'Pansexual' }
+  ];
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  const etniaOptions = [
+    { value: 'outra', label: 'Outra' },
+    { value: 'branca', label: 'Branca' },
+    { value: 'negra', label: 'Negra' },
+    { value: 'indigena', label: 'Indígena' },
+    { value: 'parda', label: 'Parda' },
+    { value: 'amarela', label: 'Amarela' },
+    { value: 'asiatica', label: 'Asiática' }
+  ];
 
-## Expanding the ESLint configuration
+  const estadoCivilOptions = [
+    { value: 'outro', label: 'Outro' },
+    { value: 'solteiro', label: 'Solteiro' },
+    { value: 'casado', label: 'Casado' },
+    { value: 'divorciado', label: 'Divorciado' },
+    { value: 'viuvo', label: 'Viúvo' }
+  ]; 
+  ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - campos deveriam ser um componente externo
+  ```tsx
+    const CampoSelect: React.FC<CampoSelectProps> = ({ label, name, options, required, value, onChange }) => {
+    return (
+      <article className="cadastro-field">
+        <label htmlFor={name}>{label}:</label>
+        <select name={name} id={name} value={value} required={required} onChange={onChange}>
+          {options.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </article>
+    );
+  };
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+  const CampoCadastro: React.FC<CampoCadastroProps> = ({ label, name, type, required = false, value, onChange }) => {
+    return (
+      <article className="cadastro-field">
+        <label htmlFor={name}>{label}:</label>
+        <input
+          name={name}
+          type={type}
+          value={value}
+          required={required}
+          onChange={onChange}
+        />
+      </article>
+    );
+  };
+  ```
