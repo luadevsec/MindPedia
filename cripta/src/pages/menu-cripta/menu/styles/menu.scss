@@ -1,0 +1,44 @@
+$vwnav: 16vw;
+$vwaside: 20vw;
+$vwspace: 8vw;
+$vwmeio: 100vw - $vwaside - $vwspace - $vwnav; 
+
+$vhheader: 14vh;
+$vhmain: 100vh - $vhheader;
+
+
+
+$hpadding: 6px;
+.menu-header-container-defou {
+    padding: $hpadding;
+    width: 100vw;
+    height: calc($vhheader - 2*$hpadding);
+}
+
+.menu-navbar-container-defou {
+    background-color: blue;
+    width: $vwnav;
+    height: 100%;
+}
+
+.menu-calendar-container-defou {
+    width: $vwmeio;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.menu-aside-container-defou {
+    width: $vwaside;
+    height: 40vh;
+}
+
+.menu-main-container-defou {
+    width: 100vw;
+    height: $vhmain;
+
+    background-color: #fffeff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}	

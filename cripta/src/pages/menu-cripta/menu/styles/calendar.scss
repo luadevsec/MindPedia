@@ -1,0 +1,42 @@
+// Estilos para o componente Calendar
+.menu-calendar-container-defou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
+
+  }
+  
+  .menu-calendar-header-defou {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .menu-calendar-header-defou button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+  }
+  
+  .menu-calendar-grade-defou {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  .menu-calendar-day-defou {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #747373;
+    cursor: pointer;
+  }
+  
+  // Adicione mais estilos conforme necessário para o calendário
+  
