@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './styles/header.scss';
-import { formatTime } from '../utils/date';
+import { formatTime } from '../../utils/date';
 
 /* uso geral
 
@@ -83,7 +83,7 @@ const Calendar = () => {
         return days;
     };
 
-    const handleDayClick = (day : any) => {
+    const handleDayClick = (day: number) => {
         // Lógica para lidar com o clique em um dia específico
         // Aqui você pode implementar a lógica para exibir mais informações
         // sobre o dia clicado ou realizar alguma ação específica
