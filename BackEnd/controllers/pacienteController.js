@@ -1,4 +1,5 @@
 const pacienteModel = require('../models/pacienteModel');
+const userDB = require('../db/user');
 
 const pacienteController = {
   criarPaciente: (req, res) => {
@@ -16,8 +17,8 @@ const pacienteController = {
   buscarPacientePorId: (req, res) => {
     const pacienteId = req.params.id;
 
-    const paciente = pacienteModel.encontrarPacientePorId(pacienteId);
-
+    const paciente = userDB(pacienteId);
+    console.log(paciente)
     if (!paciente) {
       return res.status(404).json({ error: 'Paciente não encontrado' });
     }
@@ -28,7 +29,7 @@ const pacienteController = {
       // ... outros campos para enviar para o card
     };
 
-    res.status(200).json(infoCard); 
+    res.status(200).json(paciente); 
   }
 };
 
