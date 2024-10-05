@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // pages
-import NotFound from './pages/NotFound';
-import Menu from './pages/Menu'
+import NotFound from './pages/NotFound/NotFound';
+import Menu from './pages/Menu/Menu'
 
 
 
@@ -14,6 +14,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<NotFound />} />
           <Route path="/menu" element={<Menu/>}/>
+          <Route path='/not-found' element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
