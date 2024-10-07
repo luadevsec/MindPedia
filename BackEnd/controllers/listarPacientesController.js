@@ -1,4 +1,4 @@
-const pacienteModel = require('../models/pacienteModel');
+const pacienteModel = require('../db/user');
 
 const listarPacientesController = {
   listarPacientes: (req, res) => { 
