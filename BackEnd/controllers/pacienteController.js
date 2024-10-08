@@ -1,5 +1,4 @@
 const pacienteModel = require('../db/user');
-const userDB = require('../db/user');
 
 const pacienteController = {
   criarPaciente: async (req, res) => {
@@ -16,9 +15,7 @@ const pacienteController = {
   },
   buscarPacientePorId: async (req, res) => {
     const pacienteId = req.params.id;
-
     const paciente = await pacienteModel.getUserID(pacienteId);
-    console.log(paciente)
     if (!paciente) {
       return res.status(404).json({ error: 'Paciente não encontrado' });
     }
@@ -29,7 +26,7 @@ const pacienteController = {
       // ... outros campos para enviar para o card
     };
 
-    res.status(200).json(paciente); 
+    res.status(200).send(paciente); 
   }
 };
 

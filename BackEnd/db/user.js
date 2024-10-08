@@ -6,7 +6,6 @@ const pacienteModel = {
     getUserID: async(id) => {
         try {
             const response = await axios.get(`${local}/user/busca/${id}`);
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -15,7 +14,6 @@ const pacienteModel = {
     listarPacientes: async() =>{
         try{
             const response = await axios.get(`${local}/user/all`);
-            console.log(response.data)
             return response.data;
         }catch(error) {
             console.error(error);

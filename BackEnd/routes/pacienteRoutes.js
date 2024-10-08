@@ -10,6 +10,6 @@ router.get('/ramCreate', pacienteAleatorioController.gerarPacienteAleatorio);
 
 router.get('/listar', listarPacientesController.listarPacientes);
 
-router.get('/id/:id', pacienteController.buscarPacientePorId);
+router.get('/:id', pacienteController.buscarPacientePorId);
 
 module.exports = router;

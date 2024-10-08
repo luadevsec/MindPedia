@@ -1,7 +1,5 @@
-import { create } from 'domain';
 import UserContext from '../../context/userContext';
 import { Router, Request, Response } from "express";
-import user from '../routes/userRoutes';
 
 const userController = {
     createUser: async (req: Request, res: Response) => {
