@@ -1,6 +1,5 @@
 const axios = require('axios');
 const local = require('./config');
-const { listarPacientes, criarPaciente } = require('../models/pacienteModel');
 
 // Função para fazer a requisição no endpoint /test e imprimir a resposta
 const pacienteModel = {
@@ -8,7 +7,7 @@ const pacienteModel = {
         try {
             const response = await axios.get(`${local}/user/busca/${id}`);
             console.log(response.data);
-            return response.data.json;
+            return response.data;
         } catch (error) {
             console.error(error);
         }
@@ -16,7 +15,8 @@ const pacienteModel = {
     listarPacientes: async() =>{
         try{
             const response = await axios.get(`${local}/user/all`);
-            return response.data.json;
+            console.log(response.data)
+            return response.data;
         }catch(error) {
             console.error(error);
         }
