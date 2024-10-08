@@ -15,7 +15,7 @@ const pacienteModel = {
     },
     listarPacientes: async() =>{
         try{
-            const response = await axios.get(`${local}/all`);
+            const response = await axios.get(`${local}/user/all`);
             return response.data.json;
         }catch(error) {
             console.error(error);
@@ -23,8 +23,8 @@ const pacienteModel = {
     },
     criarPaciente: async(paciente)=>{
         try{
-            const response = await axios.post(`${local}/add`, paciente);
-            return response.data.json;
+            const response = await axios.post(`${local}/user/add`, paciente);
+            return response.data;
         }catch(error){
             console.error(error);
         }
