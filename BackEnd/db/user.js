@@ -2,21 +2,39 @@ const axios = require('axios');
 const local = require('./config');
 
 // Função para fazer a requisição no endpoint /test e imprimir a resposta
-async function testRequest(id) {
-    try {
-        const response = await axios.get(`${local}/user/busca/${id}`);
-        console.log(response);
-        return response;
-    } catch (error) {
-        console.error(error);
+const pacienteModel = {
+    getUserID: async(id) => {
+        try {
+            const response = await axios.get(`${local}/user/busca/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    listarPacientes: async() =>{
+        try{
+            const response = await axios.get(`${local}/user/all`);
+            return response.data;
+        }catch(error) {
+            console.error(error);
+        }
+    },
+    criarPaciente: async(paciente)=>{
+        try{
+            const response = await axios.post(`${local}/user/add`, paciente);
+            return response.data;
+        }catch(error){
+            console.error(error);
+        }
     }
-}
+    
 
+}
 
 // Chama a função para fazer a requisição e imprimir o resultado
 if (require.main === module) {
-    testRequest().then((txt) => {
+    pacienteModel.getUserID().then((txt) => {
         console.log("iriri");
     });
 }
-module.exports = testRequest;
+module.exports = pacienteModel;
