@@ -1,7 +1,9 @@
 
+import Wellcome from './components/wellcome';
+
 const Secret: React.FC = () => (
   <div>
-    hello world
+    <Wellcome />
   </div>
 );
 
