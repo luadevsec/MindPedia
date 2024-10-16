@@ -7,7 +7,7 @@ import Secret from './pages/Exemple/Secret'; // secret page easteregg
 import Menu from './pages/Menu/Menu'; // Menu page
 import Cadastro from './pages/Cadastro/Cadastro'; // Cadastro page
 import Ficha from './pages/Ficha/Ficha'; // Ficha page
-import Inicio from './pages/Inicio/Inicio'; // Inicio page
+import Inicio from './pages/Inicio/inicio'; // Inicio page
 import Atendimento from './pages/Atendimento/Atendimento'; // Atendimento page
 
 const AppRoutes = () => {
