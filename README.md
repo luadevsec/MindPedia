@@ -167,7 +167,7 @@ Mais detalhes no nosso **Guia de Contribuição**.
 
 ## 7. Contato e Agradecimentos 💌  
 
-Entre em contato pelo nosso email [mindpedia@contato.com](mailto:mindpedia@contato.com).  
+Entre em contato pelo nosso email [mindpedia.projetointegrador@gmail.com](mailto:mindpedia@contato.com).  
 Agradecemos a todos os colaboradores que tornaram este projeto possível! 🎉  
 
 ---
