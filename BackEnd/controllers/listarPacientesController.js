@@ -1,8 +1,8 @@
-const pacienteModel = require('../models/pacienteModel');
+const pacienteModel = require('../db/user');
 
 const listarPacientesController = {
-  listarPacientes: (req, res) => { 
-    const listaDePacientes = pacienteModel.listarPacientes();
+  listarPacientes: async (req, res) => { 
+    const listaDePacientes = await pacienteModel.listarPacientes();
     res.status(200).json(listaDePacientes); 
   }
 };

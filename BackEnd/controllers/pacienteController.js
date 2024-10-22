@@ -1,8 +1,7 @@
-const pacienteModel = require('../models/pacienteModel');
-const userDB = require('../db/user');
+const pacienteModel = require('../db/user');
 
 const pacienteController = {
-  criarPaciente: (req, res) => {
+  criarPaciente: async (req, res) => {
     const novoPaciente = req.body;
     
     // Validações (implementar as necessárias - nome, CPF, etc.):
@@ -11,14 +10,12 @@ const pacienteController = {
     }
     // ... outras validações
 
-    const pacienteCriado = pacienteModel.criarPaciente(novoPaciente);
+    const pacienteCriado = await pacienteModel.criarPaciente(novoPaciente);
     res.status(201).json(pacienteCriado);
   },
-  buscarPacientePorId: (req, res) => {
+  buscarPacientePorId: async (req, res) => {
     const pacienteId = req.params.id;
-
-    const paciente = userDB(pacienteId);
-    console.log(paciente)
+    const paciente = await pacienteModel.getUserID(pacienteId);
     if (!paciente) {
       return res.status(404).json({ error: 'Paciente não encontrado' });
     }
@@ -29,7 +26,7 @@ const pacienteController = {
       // ... outros campos para enviar para o card
     };
 
-    res.status(200).json(paciente); 
+    res.status(200).send(paciente); 
   }
 };
 

@@ -5,7 +5,6 @@ import AppDataSource from "../dataSource";
 class UserContext {
     private static repoUser: Repository<User> =  AppDataSource.getRepository(User);
 
-
     static createUser(dataUser : User) {
         const user = this.repoUser.create(dataUser);
         return this.repoUser.save(user);

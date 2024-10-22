@@ -1,84 +1,177 @@
 # MindPedia
 
-MindPedia é um projeto desenvolvido com React e TypeScript. O projeto utiliza o vite para configuração inicial e possui uma estrutura organizada para o desenvolvimento de componentes, páginas e utilitários.
+*A solução que facilita a gestão e atendimento psicológico 💙*  
 
-## Dependências
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Styled Components](https://img.shields.io/badge/Styled_Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![TypeORM](https://img.shields.io/badge/TypeORM-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)  
 
-Este projeto utiliza as seguintes dependências:
+---
 
-- **React**: Biblioteca para construir interfaces de usuário.
-- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
-- **axios**: Cliente HTTP para fazer requisições.
-- **eslint**: Ferramenta de linting para JavaScript e TypeScript.
-- **prettier**: Formatador de código.
-- **react-router-dom**: Biblioteca para roteamento em aplicativos React.
-- **styled-components**: Biblioteca para estilização de componentes com CSS-in-JS.
+## 📑 Índice  
 
-## Configuração do Ambiente
+- [MindPedia](#mindpedia)
+  - [📑 Índice](#-índice)
+  - [1. Visão Geral 🧠](#1-visão-geral-)
+  - [2. Objetivo 🎯](#2-objetivo-)
+    - [Problemas que o MindPedia resolve 🔧](#problemas-que-o-mindpedia-resolve-)
+  - [3. Instalação Rápida ⚙️](#3-instalação-rápida-️)
+    - [1. Instalação Parcial 🚀](#1-instalação-parcial-)
+    - [2. Instalação Completa 💻](#2-instalação-completa-)
+  - [4. Documentação para desenvolvedor 👩‍💻](#4-documentação-para-desenvolvedor-)
+  - [5. Contribuições 🤝](#5-contribuições-)
+  - [6. Roadmap e Status do Projeto 🛤️](#6-roadmap-e-status-do-projeto-️)
+    - [1. Usuário 👥](#1-usuário-)
+    - [2. Consulta 📝](#2-consulta-)
+    - [3. Gerenciamento 📊](#3-gerenciamento-)
+    - [4. Métricas 📈](#4-métricas-)
+    - [5. Facilidades 🎁](#5-facilidades-)
+  - [7. Contato e Agradecimentos 💌](#7-contato-e-agradecimentos-)
+  - [8. Licença 📜](#8-licença-)
 
-1. **Instalar Dependências**
+---
 
-   Para instalar as dependências do projeto, execute:
+## 1. Visão Geral 🧠  
 
-   ```bash
-   yarn install
-   ```
+O **MindPedia** é uma plataforma inovadora que oferece **gestão integrada de atendimentos psicológicos**. 📋 Ao unificar ferramentas essenciais como agendamentos, notas e gráficos de evolução, trazemos praticidade e organização para o cotidiano dos psicólogos.  
 
-2. **Iniciar o Servidor de Desenvolvimento**
+---
 
-   Para iniciar o servidor de desenvolvimento, execute:
+## 2. Objetivo 🎯  
 
-   ```bash
-   yarn start
-   ```
+O objetivo do MindPedia é **centralizar e otimizar** a rotina de psicólogos, empoderando-os com uma plataforma que apoia o atendimento em tempo real e oferece análises gráficas de progresso.  
 
-3. **Compilar o Projeto**
+### Problemas que o MindPedia resolve 🔧  
 
-   Para compilar o projeto para produção, execute:
+- **Fragmentação de ferramentas**: Substitui várias ferramentas por uma solução unificada.  
+- **Facilidade durante consultas**: Interface intuitiva e livre de distrações.  
+- **Insights automatizados**: Prontuários e gráficos atualizados com base nas consultas.  
+- **Tarefas pendentes visíveis**: Acompanhamento contínuo e estruturado dos pacientes.  
 
-   ```bash
-   yarn build
-   ```
+---
 
-## Estrutura de Diretórios
+## 3. Instalação Rápida ⚙️  
 
-- **`public/`**: Contém arquivos estáticos, como o `index.html` e o favicon.
-- **`src/`**: Contém o código-fonte do aplicativo.
-  - **`assets/`**: Imagens e outros recursos estáticos.
-  - **`components/`**: Componentes React reutilizáveis.
-  - **`model/`**: Modelos e definições de tipos.
-  - **`pages/`**: Páginas do aplicativo.
-  - **`utils/`**: Funções utilitárias e helpers.
+Certifique-se de ter **Node.js** e **Yarn** instalados. Depois, siga uma das opções abaixo:  
 
-## Configuração do TypeScript
+### 1. Instalação Parcial 🚀  
 
-O TypeScript está configurado no `tsconfig.json` com as seguintes opções:
+- Frontend
 
-- **`baseUrl`**: Define o diretório base para caminhos relativos.
-- **`paths`**: Define aliases para caminhos dentro do projeto.
+  ```bash
+  cd frontend  
+  yarn install  
+  yarn vite  
+  ```  
 
-```json
-{
-  "compilerOptions": {
-  "baseUrl": "src",
-  "paths": {
-    "@components/*": ["components/*"],
-    "@model/*": ["model/*"],
-    "@pages/*": ["pages/*"],
-    "@utils/*": ["utils/*"],
-    "@assets/*": ["assets/*"]
-  }
-}
-```
+- Backend  
 
-## Contribuindo
+  ```bash
+  cd backend  
+  npm install  
+  node project.js  
+  ```  
 
-Contribuições são bem-vindas! Se você encontrar problemas ou tiver sugestões de melhorias, por favor, abra uma issue ou um pull request.
+- Banco de Dados  
 
-## Licença
+  ```bash
+  cd db  
+  npm install  
+  npm run start  
+  ```  
 
-Este projeto está licenciado sob a [MIT License](LICENSE).
+### 2. Instalação Completa 💻  
 
-[docs do frontend](./frontend/README.md)
+Na raiz do projeto
 
-[docs do banco de dados](./BackEnd/db/READEME.md)
+```bash
+yarn install  
+yarn start  
+```  
+
+---
+
+## 4. Documentação para desenvolvedor 👩‍💻  
+
+- [Documentação do Frontend](frontend/README.md)  
+- [Documentação do Backend](BackEnd/README.md)  
+- [Documentação do Banco de Dados](database/README.md)  
+
+---
+
+## 5. Contribuições 🤝  
+
+Sinta-se à vontade para contribuir! 💡  
+Siga os passos abaixo:  
+
+1. **Fork** o repositório.  
+2. Crie uma **branch** para sua alteração.  
+3. **Commit** suas mudanças.  
+4. Envie para o repositório remoto.  
+5. Abra um **Pull Request**.  
+
+Mais detalhes no nosso **Guia de Contribuição**.  
+
+---
+
+## 6. Roadmap e Status do Projeto 🛤️  
+
+### 1. Usuário 👥  
+
+- [ ] **Cadastro de Paciente:** Formulário de registro com dados essenciais.  
+- [ ] **Ficha de Paciente (Perfil):** Exibe informações detalhadas e foto de perfil anônima.  
+- [ ] **Painel de Contatos:** Lista pacientes e permite acessar perfis.  
+- [ ] **Tags Groups:** Agrupa pacientes por categorias específicas para fácil gerenciamento.  
+
+### 2. Consulta 📝  
+
+- [ ] **Dashboard de Atendimento:** Interface principal para uso durante a consulta.  
+- [ ] **Resumo da Consulta:** Registro das principais informações discutidas.  
+- [ ] **Sistema de Notas:** Anotações rápidas que são salvas automaticamente.  
+- [ ] **Upload de Arquivos:** Permite anexar fotos e documentos.  
+- [ ] **Evolução (Melhoras e Pioras):** Acompanhamento do progresso do paciente.  
+- [ ] **Sistema de Atividades:** Gerenciamento de tarefas e exercícios sugeridos.  
+- [ ] **Campo de Anotações Temporárias:** Registro não salvo, para observações rápidas.  
+- [ ] **Acesso Rápido à Ficha Resumida:** Exibe informações essenciais do paciente.  
+
+### 3. Gerenciamento 📊  
+
+- [ ] **Calendário Integrado:** Visualização de compromissos e agenda.  
+- [ ] **Agendamento Automático:** Configura consultas recorrentes ou em horários livres.  
+- [ ] **Alertas via Google Calendar:** Notificações automáticas sobre compromissos.  
+- [ ] **Integração com Meet:** Criação automática de salas para consultas online.
+
+### 4. Métricas 📈  
+
+- [ ] **Gráficos de Melhora e Piora:** Visualização clara do progresso.  
+- [ ] **Gráficos de Duração das Sessões:** Análise do tempo médio por consulta.  
+- [ ] **Gráficos de Tag Groups:** Visualização de métricas específicas por grupo (ex: sintomas em gestantes).
+
+### 5. Facilidades 🎁  
+
+- [ ] **Atendimento Online:** Consultas diretamente na plataforma.  
+- [ ] **Bot de WhatsApp:** Notifica pacientes e psicólogos sobre consultas agendadas.  
+- [ ] **Envio de Links pelo Bot:** Compartilha automaticamente o link da reunião online.  
+- [ ] **Criação de Compromissos no Google Calendar:** Automatiza agendamentos.  
+- [ ] **Exportação e Importação de Fichas:** Facilita a transferência de pacientes entre psicólogos.  
+- [ ] **Download de Anexos:** Gera um arquivo ZIP com todos os anexos do paciente.  
+
+---
+
+## 7. Contato e Agradecimentos 💌  
+
+Entre em contato pelo nosso email [mindpedia.projetointegrador@gmail.com](mailto:mindpedia@contato.com).  
+Agradecemos a todos os colaboradores que tornaram este projeto possível! 🎉  
+
+---
+
+## 8. Licença 📜  
+
+Este projeto está licenciado sob a **MIT License**. Consulte o arquivo [LICENSE](LICENSE) para mais informações.  

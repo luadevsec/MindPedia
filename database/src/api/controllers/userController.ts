@@ -1,7 +1,5 @@
-import { create } from 'domain';
 import UserContext from '../../context/userContext';
 import { Router, Request, Response } from "express";
-import user from '../routes/userRoutes';
 
 const userController = {
     createUser: async (req: Request, res: Response) => {
@@ -48,7 +46,7 @@ const userController = {
     getUsers: async(req: Request, res: Response) => {
         try{
             const users = await UserContext.getAllUsers();
-            return res.send(`${JSON.stringify(users)}`);
+            return res.json(users);
         }
         catch (error) {
             console.log(error); 
