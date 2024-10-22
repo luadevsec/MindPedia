@@ -57,7 +57,7 @@ const spanAnimation4 = keyframes`
 const Button = styled.button`
   width: 200px;
   height: 70px;
-  background: linear-gradient(to left top, #5c5156 50%, #ebd9e1 50%);
+  background: linear-gradient(to left top, #c9762f 50%, #070d44 50%);
   border: none;
   color: #fff;
   font-size: 23px;
