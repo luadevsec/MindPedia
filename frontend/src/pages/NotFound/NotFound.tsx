@@ -1,14 +1,22 @@
-import Imagem from '../../components/imagem'
-
+import Logoo from "./hooks/14.png";
+import BotaoBack from "./components/botao";
+import TextNotFound from "./components/textos";
 const NotFound = () => {
-    return (
-        <div>
-            <h1>404 - Page Not Found</h1>
-            <p>The page you are looking for does not exist.</p>
-            <Imagem  name='lua' id='fuck' style={{}}/>
-            
-        </div>
-    );
+  return (
+    <div>
+      <BotaoBack />
+      <TextNotFound />
+      <img
+        src={Logoo}
+        style={{
+          width: "900px",
+          height: "1200px",
+          left: "405px",
+          top: "10px",
+          position: "absolute",
+        }}
+      />
+    </div>
+  );
 };
-
 export default NotFound;
