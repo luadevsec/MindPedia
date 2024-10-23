@@ -1,4 +1,5 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToMany } from "typeorm";
+import { Consulta } from "./consultaModel";
 
 @Entity()
 export class User {
@@ -39,4 +40,6 @@ export class User {
   @Column({nullable: true})
   estadoCivil!: number;
 
+  @OneToMany(() => Consulta, consulta => consulta.id_paciente)
+  consultas!: Consulta[];
 }

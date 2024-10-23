@@ -1,11 +1,11 @@
 import express from "express";
-//import test from "./routes/testRoutes";
 import user from "./routes/userRoutes";
+import consulta from "./routes/consultaRoutes"
 
 const app = express();
 app.use(express.json());
 
-//app.use('/test', test);
 app.use('/user', user);
+app.use('/consulta', consulta);
 
 export default app;
