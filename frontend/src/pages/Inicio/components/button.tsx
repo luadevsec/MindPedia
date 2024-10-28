@@ -1,22 +1,18 @@
 import styled, { keyframes } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const BotaoInicio: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/atendimento");
+  };
   return (
     <div>
-      <Wrapper />
-      <Button>Iniciar</Button>
+      <Button onClick={handleClick}>Iniciar</Button>
     </div>
   );
 };
-
-const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: auto;
-`;
 
 const spanAnimation1 = keyframes`
   0% {
