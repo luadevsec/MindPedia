@@ -19,9 +19,10 @@ const Title = styled.h2`
 
 const Label = styled.label`
   display: block;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   font-weight: bold;
   color: red;
+  padding: 2px;
 `;
 
 const InputField = styled.input`
@@ -37,7 +38,7 @@ const InputField = styled.input`
 const SelectField = styled.select`
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
@@ -73,6 +74,28 @@ const FormContainer = () => {
         </SelectField>
         <Label>Data de Nascimento</Label>
         <DateInput type="date" />
+        <Label>Gênero</Label>
+        <SelectField>
+        <option value="">Selecione</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
+        <option value="Neutro">Neutro</option>
+      </SelectField>
+      <Label>Sexualidade</Label>
+      <SelectField>
+        <option value="">Selecione</option>
+        <option value="Heterosexual">Heterosexual</option>
+          <option value="Bisexual">Bisexual</option>
+          <option value="Não Binário">Não Binário</option>
+      </SelectField>
+      <Label>Etnia</Label>
+      <SelectField>
+        <option value="">Selecione</option>
+        <option value="Branco">Petro</option>
+          <option value="Preto">Preto</option>
+          <option value="Pardo">Pardo</option>
+          <option value="Amarelo">Amarelo</option>
+      </SelectField>
       </Container>
     </div>
   );
