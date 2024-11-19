@@ -1,8 +1,10 @@
-import Working from "./components/working";
+import Main from "./components/main";
 
 const Cadastro = () => {
     return (
-        <Working name="Cadastro" />
+        <>
+        <Main />
+        </>
     );
 }
 
