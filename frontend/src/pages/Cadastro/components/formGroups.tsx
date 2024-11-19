@@ -1,6 +1,11 @@
 import { Form } from "react-bootstrap";
 
-
+const TextForm = ({ name }: { name: string }) => (
+    <Form.Group controlId={`form${name}`} className="mb-3">
+        <Form.Label>{name}</Form.Label>
+        <Form.Control type="text" name={name} placeholder={`Digite seu ${name}`} />
+    </Form.Group>
+    );
 
 const SelectForm = ({ name, options }: { name: string; options: string[] }) => (
     <Form.Select name={name}>
@@ -36,4 +41,4 @@ const RadioForm = ({ name, options }: { name: string; options: string[] }) => (
     ))
     );
 
-export { SelectForm, CheckboxForm, RadioForm };
+export { SelectForm, CheckboxForm, RadioForm, TextForm };

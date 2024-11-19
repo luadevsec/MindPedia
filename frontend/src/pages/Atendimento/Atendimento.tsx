@@ -1,9 +1,11 @@
-import Working from "./components/working";
+import Header from "./components/Header";
+import Main from "./components/main";
 
 const Atendimento = () => {
   return (
     <div>
-      <Working name="Atendimento" />
+      <Header />
+      <Main />
     </div>
   );
 };
