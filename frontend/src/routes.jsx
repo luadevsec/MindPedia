@@ -9,6 +9,7 @@ import Cadastro from "./pages/Cadastro/Cadastro"; // Cadastro page
 import Ficha from "./pages/Ficha/Ficha"; // Ficha page
 import Inicio from "./pages/Inicio/inicio"; // Inicio page
 import Atendimento from "./pages/Atendimento/Atendimento"; // Atendimento page
+import TestScreen from "./pages/Jest/jest"; // Jest page
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path="/ficha" element={<Ficha />} />
         <Route path="/atendimento" element={<Atendimento />} />
         <Route path="/quack" element={<Secret />} />
+        <Route path="/jest" element={<TestScreen />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
