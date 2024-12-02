@@ -1,52 +1,14 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import Painel from './painel';
+import { Historico, Paciente, Agendamento } from '../hooks/typeMock';
 
-type MockType = {
-    nome: string;
-    genero: string;
-    sexualidade: string;
-    etnia: string;
-    estadoCivil: string;
-    dataNascimento: string;
-    naturalidade: string;
-    nacionalidade: string;
-    rg: string;
-    cpf: string;
-    profissao: string;
-    email: string;
-    telefone: string;
-    hobby: string[];
-    contatoEmergencia: {
-        nome: string;
-        parentesco: string;
-        telefone: string;
-    };
-};
+interface MainProps {
+    paciente: Paciente;
+    historico: Historico;
+    agendamento: Agendamento;
+}
 
-const Mock: MockType = {
-    nome: 'Lunna Cipher Oliveira',
-    genero: 'Feminino',
-    sexualidade: 'Pansexual',
-    etnia: 'Não especificada',
-    estadoCivil: 'Solteira',
-    dataNascimento: '17/11/2002',
-    naturalidade: 'Não especificada',
-    nacionalidade: 'Brasileira',
-    rg: '123456789',
-    cpf: '123.456.789-00',
-    profissao: 'Programadora',
-    email: 'lunna.cipher@exemplo.com',
-    telefone: '(11) 91234-5678',
-    hobby: ['Jogos', 'Programação', 'Tecnologia'],
-    contatoEmergencia: {
-        nome: 'Dany PLS',
-        parentesco: 'Namorada',
-        telefone: '(11) 98765-4321'
-    }
-};
-
-
-const Main = () => {
+const Main = ( { paciente, historico, agendamento }: MainProps ) => {
     const sobre = ['nome', 'genero', 'etnia', 'estadoCivil', 'dataNascimento', 'email', 'telefone'] as const;
     const mais = ['profissao', 'hobby', 'sexualidade', 'nacionalidade', 'rg', 'cpf', 'naturalidade'] as const;
     const contato = ['nome', 'parentesco', 'telefone'] as const;
@@ -59,7 +21,7 @@ const Main = () => {
                     <h1>Sobre mim</h1>
                     {sobre.map((item) => (
                         <p key={item}>
-                            {item}: {Mock[item as keyof MockType]}
+                            {item}: {paciente[item] as keyof Paciente}
                         </p>
                     ))}
                 </Col>
@@ -70,7 +32,7 @@ const Main = () => {
                         <h1>Mais</h1>
                         {mais.map((item) => (
                             <p key={item}>
-                                {item}: {Mock[item as keyof MockType]}
+                                {item}: {paciente[item] as keyof Paciente}
                             </p>
                         ))}
                     </Row>
@@ -81,7 +43,7 @@ const Main = () => {
                             if (item === 'nome' || item === 'parentesco' || item === 'telefone') {
                                 return (
                                     <p key={item}>
-                                        {item}: {Mock.contatoEmergencia[item as keyof typeof Mock.contatoEmergencia]}
+                                        {item}: {paciente.contatoEmergencia[item] as keyof Paciente['contatoEmergencia']}
                                     </p>
                                 );
                             } else {
@@ -93,7 +55,7 @@ const Main = () => {
 
                 {/* Terceira coluna (altura 3) */}
                 <Col md={6} className="bg-success p-3" style={{ minHeight: '30vh' }}>
-                    <Painel />
+                    <Painel historico={historico} agendamento= {agendamento} />
                 </Col>
             </Row>
         </Container>
