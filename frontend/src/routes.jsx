@@ -17,7 +17,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Inicio />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/ficha" element={<Ficha />} />
+        <Route path="/ficha/:id" element={<Ficha />} />
         <Route path="/atendimento" element={<Atendimento />} />
         <Route path="/quack" element={<Secret />} />
         <Route path="*" element={<NotFound />} />

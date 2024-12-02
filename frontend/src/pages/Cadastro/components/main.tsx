@@ -1,26 +1,17 @@
 import { Form, Button, Image, Container, Col, Row } from "react-bootstrap";
-
-interface CampoProps {
-  name: string;
-  type: string;
-  options?: string[];
-}
+import { useState } from "react";
+import { useSendSignal } from "../../../hooks/useFeach";
 
 type MockType = {
   nome: string;
   genero: string;
-  sexualidade: string;
+  dataNascimento: string;
   etnia: string;
   estadoCivil: string;
-  dataNascimento: string;
-  naturalidade: string;
-  nacionalidade: string;
-  rg: string;
   cpf: string;
   profissao: string;
   email: string;
   telefone: string;
-  hobby: string[];
   contatoEmergencia: {
     nome: string;
     parentesco: string;
@@ -31,18 +22,13 @@ type MockType = {
 const Mock: MockType = {
   nome: "Lunna Cipher Oliveira",
   genero: "Feminino",
-  sexualidade: "Pansexual",
+  dataNascimento: "2002-11-17",
   etnia: "Não especificada",
   estadoCivil: "Solteira",
-  dataNascimento: "17/11/2002",
-  naturalidade: "Não especificada",
-  nacionalidade: "Brasileira",
-  rg: "12.345.678-X",
   cpf: "123.456.789-00",
   profissao: "Programadora",
   email: "lunna.cipher@exemplo.com",
   telefone: "(11) 91234-5678",
-  hobby: ["Jogos", "Programação", "Tecnologia"],
   contatoEmergencia: {
     nome: "Dany PLS",
     parentesco: "Namorada",
@@ -51,11 +37,48 @@ const Mock: MockType = {
 };
 
 const Main = () => {
+  const { sendSignal, loading, error } = useSendSignal<MockType>("/cadastro");
+  const [formData, setFormData] = useState<MockType>(Mock);
+
+  // Atualizar os dados do formulário
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+
+    // Verificar campos aninhados (ex.: contatoEmergencia)
+    if (name.startsWith("contatoEmergencia")) {
+      const key = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        contatoEmergencia: {
+          ...prev.contatoEmergencia,
+          [key]: value,
+        },
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
+  // Submissão do formulário
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await sendSignal(formData);
+      alert("Cadastro realizado com sucesso!");
+      console.log("Cadastro realizado com sucesso!", formData);
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao cadastrar. Tente novamente.");
+    }
+  };
+
   return (
     <Container className="p-4 bg-secondary text-white rounded">
-        <h1 className="text-center">Ficha de Cadastro</h1>
-      <Form>
-        {/* Informações Básicas */}
+      <h1 className="text-center">Ficha de Cadastro</h1>
+      <Form onSubmit={handleSubmit}>
         <Row className="mb-4">
           <h2>Informações Básicas</h2>
           <Col md={4}>
@@ -67,13 +90,14 @@ const Main = () => {
               <Form.Control
                 type="text"
                 name="nome"
-                defaultValue={Mock.nome}
+                value={formData.nome}
+                onChange={handleChange}
                 placeholder="Digite seu nome"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Gênero</Form.Label>
-              <Form.Select name="genero" defaultValue={Mock.genero}>
+              <Form.Select name="genero" value={formData.genero} onChange={handleChange}>
                 {["Masculino", "Feminino", "Outro"].map((option, index) => (
                   <option value={option} key={index}>
                     {option}
@@ -86,13 +110,13 @@ const Main = () => {
               <Form.Control
                 type="date"
                 name="dataNascimento"
-                defaultValue={Mock.dataNascimento}
+                value={formData.dataNascimento}
+                onChange={handleChange}
               />
             </Form.Group>
           </Col>
         </Row>
 
-        {/* Informações Adicionais */}
         <Row className="mb-4">
           <h2>Informações Adicionais</h2>
           <Col>
@@ -101,20 +125,19 @@ const Main = () => {
               <Form.Control
                 type="text"
                 name="etnia"
-                defaultValue={Mock.etnia}
+                value={formData.etnia}
+                onChange={handleChange}
                 placeholder="Digite sua etnia"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Estado Civil</Form.Label>
-              <Form.Select name="estadoCivil" defaultValue={Mock.estadoCivil}>
-                {["Solteiro", "Casado", "Divorciado", "Viúvo"].map(
-                  (option, index) => (
-                    <option value={option} key={index}>
-                      {option}
-                    </option>
-                  )
-                )}
+              <Form.Select name="estadoCivil" value={formData.estadoCivil} onChange={handleChange}>
+                {["Solteiro", "Casado", "Divorciado", "Viúvo"].map((option, index) => (
+                  <option value={option} key={index}>
+                    {option}
+                  </option>
+                ))}
               </Form.Select>
             </Form.Group>
           </Col>
@@ -124,7 +147,8 @@ const Main = () => {
               <Form.Control
                 type="text"
                 name="cpf"
-                defaultValue={Mock.cpf}
+                value={formData.cpf}
+                onChange={handleChange}
                 placeholder="Digite seu CPF"
               />
             </Form.Group>
@@ -133,14 +157,14 @@ const Main = () => {
               <Form.Control
                 type="text"
                 name="profissao"
-                defaultValue={Mock.profissao}
+                value={formData.profissao}
+                onChange={handleChange}
                 placeholder="Digite sua profissão"
               />
             </Form.Group>
           </Col>
         </Row>
 
-        {/* Informações de Contato */}
         <Row>
           <h2>Informações de Contato</h2>
           <Col>
@@ -149,7 +173,8 @@ const Main = () => {
               <Form.Control
                 type="email"
                 name="email"
-                defaultValue={Mock.email}
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Digite seu email"
               />
             </Form.Group>
@@ -158,7 +183,8 @@ const Main = () => {
               <Form.Control
                 type="text"
                 name="telefone"
-                defaultValue={Mock.telefone}
+                value={formData.telefone}
+                onChange={handleChange}
                 placeholder="Digite seu telefone"
               />
             </Form.Group>
@@ -169,8 +195,9 @@ const Main = () => {
               <Form.Label>Nome</Form.Label>
               <Form.Control
                 type="text"
-                name="nomeEmergencia"
-                defaultValue={Mock.contatoEmergencia.nome}
+                name="contatoEmergencia.nome"
+                value={formData.contatoEmergencia.nome}
+                onChange={handleChange}
                 placeholder="Nome do contato"
               />
             </Form.Group>
@@ -178,8 +205,9 @@ const Main = () => {
               <Form.Label>Parentesco</Form.Label>
               <Form.Control
                 type="text"
-                name="parentescoEmergencia"
-                defaultValue={Mock.contatoEmergencia.parentesco}
+                name="contatoEmergencia.parentesco"
+                value={formData.contatoEmergencia.parentesco}
+                onChange={handleChange}
                 placeholder="Parentesco"
               />
             </Form.Group>
@@ -187,17 +215,19 @@ const Main = () => {
               <Form.Label>Telefone</Form.Label>
               <Form.Control
                 type="text"
-                name="telefoneEmergencia"
-                defaultValue={Mock.contatoEmergencia.telefone}
+                name="contatoEmergencia.telefone"
+                value={formData.contatoEmergencia.telefone}
+                onChange={handleChange}
                 placeholder="Telefone de emergência"
               />
             </Form.Group>
           </Col>
         </Row>
 
-        <Button variant="primary" type="submit">
-          Salvar
+        <Button variant="primary" type="submit" disabled={loading}>
+          {loading ? "Salvando..." : "Salvar"}
         </Button>
+        {error && <p className="text-danger mt-2">{error}</p>}
       </Form>
     </Container>
   );

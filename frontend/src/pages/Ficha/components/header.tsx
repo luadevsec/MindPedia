@@ -1,17 +1,24 @@
 import { Container, Image, Button } from 'react-bootstrap';
+import { Paciente } from '../hooks/typeMock';
 
-const Header = () => {
+
+interface HeaderProps {
+    foto: Paciente['foto'];
+    nome: Paciente['nome'];
+}
+
+const Header = ({ foto, nome } : HeaderProps) => {
     return (
         <Container fluid className="bg-primary text-white p-3 d-flex align-items-center justify-content-between">
             
             {/* Foto à esquerda */}
-            <Image src="https://via.placeholder.com/120" alt="Exemplo" className="img-fluid" />
+            <Image src={`/assets/${foto}.jpeg`} alt="foto de perfil falhado" className="img-fluid rounded-circle" style={{ width: '120px', height: '120px' }} />
 
             {/* Nome centralizado */}
-            <h1 className="m-0">Lunna Cipher Oliveira</h1>
+            <h1 className="m-0">{nome}</h1>
 
             {/* Botão à direita */}
-            <Button variant="light">Home</Button>
+            <Button variant="light" href="/menu">Home</Button>
 
         </Container>
     );
