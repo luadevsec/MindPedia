@@ -1,5 +1,6 @@
-import { Entity, Column, OneToMany } from "typeorm";
+import { Entity, Column, OneToMany, OneToOne, JoinColumn } from "typeorm";
 import { Consulta } from "./consultaModel";
+import { ContatoEmergencia } from "./contatoEmergenciaModel";
 
 @Entity()
 export class User {
@@ -7,39 +8,49 @@ export class User {
   @Column({ primary: true })
   id!: string;
 
-  @Column({nullable: true})
+  @Column({nullable: false})
   nome!: string;
   
+  @Column({nullable: false})
+  genero!: string;
+  
   @Column({nullable: true})
-  cpf!: string;
+  sexualidade!: string;
 
   @Column({nullable: true})
+  etnia!: string;
+  
+  @Column({nullable: false})
+  estadoCivil!: string;
+  
+  @Column({nullable: false})
   dataNascimento!: Date;
 
   @Column({nullable: true})
-  idFoto!: number;
+  naturalidade!: string;
 
   @Column({nullable: true})
-  email!: string;
+  nacionalidade!: string;
 
+  @Column({nullable: true})
+  idFoto!: string;
+
+  @Column({nullable: true})
+  cpf!: string;
+  
   @Column({nullable: true})
   profissao!: string;
   
-  @Column({nullable: true})
-  sexualidade!: number;
-
-  @Column({nullable: true})
-  genero!: number;
-
-  @Column({nullable: true})
-  numero!: string;
-
-  @Column({nullable: true})
-  numeroAux!: string;
-
-  @Column({nullable: true})
-  estadoCivil!: number;
-
+  @Column({nullable: false})
+  email!: string;
+  
+  @Column({nullable: false})
+  telefone!: string;
+  
   @OneToMany(() => Consulta, consulta => consulta.id_paciente)
-  consultas!: Consulta[];
+  consulta!: Consulta[];
+
+  @OneToOne(() => ContatoEmergencia, (contatoEmergencia) => contatoEmergencia.user, { cascade: true })
+  @JoinColumn()
+  contatoEmergencia!: ContatoEmergencia;
 }

@@ -7,7 +7,7 @@ export class Consulta{
     @Column({primary: true})
     id_consulta!: string;
 
-    @ManyToOne(() => User, user => user.consultas)
+    @ManyToOne(() => User, user => user.consulta)
     @Column({nullable: false})
     id_paciente!: string;
     
