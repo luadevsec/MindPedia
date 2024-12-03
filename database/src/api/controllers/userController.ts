@@ -1,5 +1,5 @@
 import UserContext from '../../context/userContext';
-import { Router, Request, Response } from "express";
+import {Request, Response} from "express";
 
 const userController = {
     createUser: async (req: Request, res: Response) => {

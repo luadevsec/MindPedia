@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { User } from "./userModel";
 
 @Entity()
 export class Consulta {
@@ -13,4 +14,8 @@ export class Consulta {
 
     @Column({ type: 'text', nullable: true })
     notas!: string | null;
+
+    @ManyToOne(() => User, user => user.consulta)
+    @Column({nullable: false})
+    id_paciente!: string;
 }

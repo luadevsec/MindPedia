@@ -3,13 +3,13 @@ type Paciente = {
     nome: string;
     genero: string;
     sexualidade: string;
+    pronome: string;
     etnia: string;
     estadoCivil: string;
     dataNascimento: string;
     naturalidade: string;
     nacionalidade: string;
     foto: string;
-    rg: string;
     cpf: string;
     profissao: string;
     email: string;

@@ -1,6 +1,7 @@
 const axios = require('axios');
-const local = require('./config');
+const global = require('./config');
 
+const local = 'http://127.0.0.1:6990/user';
 // Função para fazer a requisição no endpoint /test e imprimir a resposta
 const pacienteModel = {
     getUserID: async(id) => {

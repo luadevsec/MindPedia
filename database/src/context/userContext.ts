@@ -6,18 +6,26 @@ class UserContext {
     private static repoUser: Repository<User> =  AppDataSource.getRepository(User);
 
     static createUser(dataUser : User) {
+        if (dataUser.contatoEmergencia) {
+            const contatoEmergencia = dataUser.contatoEmergencia;
+            contatoEmergencia.userId = dataUser.id;
+        }
         const user = this.repoUser.create(dataUser);
         return this.repoUser.save(user);
     }
+
     static updateUser(dataUser : User) {
         return this.repoUser.update(dataUser.id, dataUser);
     }
+
     static deleteUser(id: string) {
         return this.repoUser.delete({id});
     }
+
     static getUserbyId(id: string){
         return this.repoUser.findOneBy({id});
     }
+    
     static getAllUsers(){
         return this.repoUser.find();
     }
