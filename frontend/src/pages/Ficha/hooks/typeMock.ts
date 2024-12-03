@@ -1,4 +1,5 @@
 type Paciente = {
+    id: string;
     nome: string;
     genero: string;
     sexualidade: string;
@@ -53,7 +54,7 @@ type Agendamento = {
 type Carga = {
     paciente : Paciente;
     historico: Historico;
-    agendamento: Agendamento;
+    agendamento: Agendamento | null;
 }
 
 

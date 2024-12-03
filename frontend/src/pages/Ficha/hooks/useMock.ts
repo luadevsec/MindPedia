@@ -2,6 +2,7 @@ import { Paciente, Resumo, Consulta, Nota, Carga, Agendamento } from './typeMock
 
 
 const Pmock: Paciente = {
+    id: 'mock',
     nome: 'Dany PLS',
     genero: 'Feminino',
     sexualidade: 'Pansexual',
