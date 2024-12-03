@@ -1,4 +1,6 @@
-type cargaCadastro = {
+
+
+type PacienteCadastral = {
     nome: string;
     genero: string;
     sexualidade: string;
@@ -19,5 +21,7 @@ type cargaCadastro = {
         telefone: string;
     };
 };
-
+type cargaCadastro = {
+    paciente: PacienteCadastral;
+};
 export type { cargaCadastro };

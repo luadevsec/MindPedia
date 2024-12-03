@@ -135,7 +135,7 @@ const Main = () => {
   const { sendSignal, loading, error } = useSendSignal<cargaCadastro>("/cadastrar");
   const navigate = useNavigate(); // Inicializando o hook de navegação
 
-  const [formData, setFormData] = useState<cargaCadastro>({
+  const [formData, setFormData] = useState({
     nome: "",
     genero: "",
     sexualidade: "",
@@ -183,7 +183,7 @@ const Main = () => {
     e.preventDefault();
     try {
       // Enviar os dados e receber a resposta
-      const response = await sendSignal(formData);
+      const response = await sendSignal({ paciente: formData });
 
       // A partir do ID retornado (supondo que o servidor retorne o ID do cadastro), redirecionar
       const id = response?.id; // Certifique-se de que o retorno tem o ID
