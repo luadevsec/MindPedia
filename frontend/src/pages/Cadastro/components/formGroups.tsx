@@ -1,44 +1,49 @@
 import { Form } from "react-bootstrap";
 
-const TextForm = ({ name }: { name: string }) => (
-    <Form.Group controlId={`form${name}`} className="mb-3">
-        <Form.Label>{name}</Form.Label>
-        <Form.Control type="text" name={name} placeholder={`Digite seu ${name}`} />
-    </Form.Group>
-    );
+const TextForm = ({
+  name,
+  value,
+  onChange,
+  placeholder,
+}: {
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+}) => (
+  <Form.Group controlId={`form${name}`} className="mb-3">
+    <Form.Label>{name}</Form.Label>
+    <Form.Control
+      type="text"
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+    />
+  </Form.Group>
+);
 
-const SelectForm = ({ name, options }: { name: string; options: string[] }) => (
-    <Form.Select name={name}>
-        {options.map((option, index) => (
+const SelectForm = ({
+  name,
+  value,
+  onChange,
+  options,
+}: {
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: string[];
+}) => (
+  <Form.Group controlId={`form${name}`} className="mb-3">
+    <Form.Label>{name}</Form.Label>
+    <Form.Select name={name} value={value} onChange={onChange}>
+      {options.map((option, index) => (
         <option value={option} key={index}>
-            {option}
+          {option}
         </option>
-        ))}
+      ))}
     </Form.Select>
-    );
+  </Form.Group>
+);
 
-const CheckboxForm = ({ name, options }: { name: string; options: string[] }) => (
-    options.map((option, index) => (
-        <Form.Check
-        type="checkbox"
-        name={name}
-        label={option}
-        value={option}
-        key={index}
-        />
-    ))
-    );
-
-const RadioForm = ({ name, options }: { name: string; options: string[] }) => (
-    options.map((option, index) => (
-        <Form.Check
-        type="radio"
-        name={name}
-        label={option}
-        value={option}
-        key={index}
-        />
-    ))
-    );
-
-export { SelectForm, CheckboxForm, RadioForm, TextForm };
+export { TextForm, SelectForm };

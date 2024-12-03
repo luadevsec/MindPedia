@@ -1,76 +1,200 @@
-import { Form, Button, Image, Container, Col, Row } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import { useSendSignal } from "../../../hooks/useFeach";
+import { cargaCadastro } from "../../../contexts/cargaCadastro";
+import { TextForm, SelectForm } from "./formGroups";
+import FotoSelect from "./fotoSelect";
+import { useNavigate } from "react-router-dom";
 
-type MockType = {
-  nome: string;
-  genero: string;
-  dataNascimento: string;
-  etnia: string;
-  estadoCivil: string;
-  cpf: string;
-  profissao: string;
-  email: string;
-  telefone: string;
-  contatoEmergencia: {
-    nome: string;
-    parentesco: string;
-    telefone: string;
-  };
-};
+const BasicInfoSection = ({ formData, handleChange, setFoto }: any) => (
+  <Row className="mb-4">
+    <h2>Informações Básicas</h2>
+    <Col md={4}>
+      <FotoSelect
+        initialFoto={formData.foto ? `${formData.foto}.jpeg` : undefined}
+        onSelect={(fotoId: string) => setFoto(fotoId.split(".")[0])}
+      />
+    </Col>
+    <Col>
+      <TextForm
+        name="nome"
+        value={formData.nome}
+        onChange={handleChange}
+        placeholder="Digite seu nome"
+      />
+      <SelectForm
+        name="genero"
+        value={formData.genero}
+        onChange={handleChange}
+        options={["Masculino", "Feminino", "Outro"]}
+      />
+      <TextForm
+        name="dataNascimento"
+        value={formData.dataNascimento}
+        onChange={handleChange}
+        placeholder="Digite sua data de nascimento"
+      />
+      <TextForm
+        name="cpf"
+        value={formData.cpf}
+        onChange={handleChange}
+        placeholder="Digite seu CPF"
+      />
+    </Col>
+  </Row>
+);
 
-const Mock: MockType = {
-  nome: "Lunna Cipher Oliveira",
-  genero: "Feminino",
-  dataNascimento: "2002-11-17",
-  etnia: "Não especificada",
-  estadoCivil: "Solteira",
-  cpf: "123.456.789-00",
-  profissao: "Programadora",
-  email: "lunna.cipher@exemplo.com",
-  telefone: "(11) 91234-5678",
-  contatoEmergencia: {
-    nome: "Dany PLS",
-    parentesco: "Namorada",
-    telefone: "(11) 98765-4321",
-  },
-};
+const AdditionalInfoSection = ({ formData, handleChange }: any) => (
+  <Row className="mb-4">
+    <h2>Informações Adicionais</h2>
+    <Col>
+      <TextForm
+        name="sexualidade"
+        value={formData.sexualidade}
+        onChange={handleChange}
+        placeholder="Digite sua sexualidade"
+      />
+      <TextForm
+        name="etnia"
+        value={formData.etnia}
+        onChange={handleChange}
+        placeholder="Digite sua etnia"
+      />
+      <TextForm
+        name="estadoCivil"
+        value={formData.estadoCivil}
+        onChange={handleChange}
+        placeholder="Digite seu estado civil"
+      />
+    </Col>
+    <Col>
+      <TextForm
+        name="naturalidade"
+        value={formData.naturalidade}
+        onChange={handleChange}
+        placeholder="Digite sua naturalidade"
+      />
+      <TextForm
+        name="nacionalidade"
+        value={formData.nacionalidade}
+        onChange={handleChange}
+        placeholder="Digite sua nacionalidade"
+      />
+      <TextForm
+        name="hobby"
+        value={formData.hobby.join(", ")}
+        onChange={handleChange}
+        placeholder="Digite seus hobbies separados por vírgulas"
+      />
+    </Col>
+  </Row>
+);
+
+const ContactInfoSection = ({ formData, handleChange }: any) => (
+  <Row className="mb-4">
+    <h2>Informações de Contato</h2>
+    <Col>
+      <TextForm
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Digite seu email"
+      />
+      <TextForm
+        name="telefone"
+        value={formData.telefone}
+        onChange={handleChange}
+        placeholder="Digite seu telefone"
+      />
+    </Col>
+    <Col>
+      <h5>Contato de Emergência</h5>
+      <TextForm
+        name="contatoEmergencia.nome"
+        value={formData.contatoEmergencia.nome}
+        onChange={handleChange}
+        placeholder="Nome do contato"
+      />
+      <TextForm
+        name="contatoEmergencia.parentesco"
+        value={formData.contatoEmergencia.parentesco}
+        onChange={handleChange}
+        placeholder="Parentesco"
+      />
+      <TextForm
+        name="contatoEmergencia.telefone"
+        value={formData.contatoEmergencia.telefone}
+        onChange={handleChange}
+        placeholder="Telefone de emergência"
+      />
+    </Col>
+  </Row>
+);
 
 const Main = () => {
-  const { sendSignal, loading, error } = useSendSignal<MockType>("/cadastro");
-  const [formData, setFormData] = useState<MockType>(Mock);
+  const { sendSignal, loading, error } = useSendSignal<cargaCadastro>("/cadastrar");
+  const navigate = useNavigate(); // Inicializando o hook de navegação
 
-  // Atualizar os dados do formulário
+  const [formData, setFormData] = useState<cargaCadastro>({
+    nome: "",
+    genero: "",
+    sexualidade: "",
+    etnia: "",
+    estadoCivil: "",
+    dataNascimento: "",
+    naturalidade: "",
+    nacionalidade: "",
+    foto: "",
+    cpf: "",
+    profissao: "",
+    email: "",
+    telefone: "",
+    hobby: [],
+    contatoEmergencia: {
+      nome: "",
+      parentesco: "",
+      telefone: "",
+    },
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-
-    // Verificar campos aninhados (ex.: contatoEmergencia)
     if (name.startsWith("contatoEmergencia")) {
       const key = name.split(".")[1];
       setFormData((prev) => ({
         ...prev,
-        contatoEmergencia: {
-          ...prev.contatoEmergencia,
-          [key]: value,
-        },
+        contatoEmergencia: { ...prev.contatoEmergencia, [key]: value },
       }));
-    } else {
+    } else if (name === "hobby") {
       setFormData((prev) => ({
         ...prev,
-        [name]: value,
+        hobby: value.split(",").map((hobby) => hobby.trim()),
       }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  // Submissão do formulário
+  const setFoto = (foto: string) => {
+    setFormData((prev) => ({ ...prev, foto }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await sendSignal(formData);
+      // Enviar os dados e receber a resposta
+      const response = await sendSignal(formData);
+
+      // A partir do ID retornado (supondo que o servidor retorne o ID do cadastro), redirecionar
+      const id = response?.id; // Certifique-se de que o retorno tem o ID
+      if (id) {
+        navigate(`/ficha/${id}`); // Redireciona para a página da ficha com o ID
+      }
+      else {
+        navigate("/ficha/mock"); // Redireciona para o menu
+      }
       alert("Cadastro realizado com sucesso!");
-      console.log("Cadastro realizado com sucesso!", formData);
     } catch (err) {
-      console.error(err);
       alert("Erro ao cadastrar. Tente novamente.");
     }
   };
@@ -79,151 +203,9 @@ const Main = () => {
     <Container className="p-4 bg-secondary text-white rounded">
       <h1 className="text-center">Ficha de Cadastro</h1>
       <Form onSubmit={handleSubmit}>
-        <Row className="mb-4">
-          <h2>Informações Básicas</h2>
-          <Col md={4}>
-            <Image src="https://via.placeholder.com/460" rounded fluid />
-          </Col>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control
-                type="text"
-                name="nome"
-                value={formData.nome}
-                onChange={handleChange}
-                placeholder="Digite seu nome"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Gênero</Form.Label>
-              <Form.Select name="genero" value={formData.genero} onChange={handleChange}>
-                {["Masculino", "Feminino", "Outro"].map((option, index) => (
-                  <option value={option} key={index}>
-                    {option}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Data de Nascimento</Form.Label>
-              <Form.Control
-                type="date"
-                name="dataNascimento"
-                value={formData.dataNascimento}
-                onChange={handleChange}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
-        <Row className="mb-4">
-          <h2>Informações Adicionais</h2>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label>Etnia</Form.Label>
-              <Form.Control
-                type="text"
-                name="etnia"
-                value={formData.etnia}
-                onChange={handleChange}
-                placeholder="Digite sua etnia"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Estado Civil</Form.Label>
-              <Form.Select name="estadoCivil" value={formData.estadoCivil} onChange={handleChange}>
-                {["Solteiro", "Casado", "Divorciado", "Viúvo"].map((option, index) => (
-                  <option value={option} key={index}>
-                    {option}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label>CPF</Form.Label>
-              <Form.Control
-                type="text"
-                name="cpf"
-                value={formData.cpf}
-                onChange={handleChange}
-                placeholder="Digite seu CPF"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Profissão</Form.Label>
-              <Form.Control
-                type="text"
-                name="profissao"
-                value={formData.profissao}
-                onChange={handleChange}
-                placeholder="Digite sua profissão"
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
-        <Row>
-          <h2>Informações de Contato</h2>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Digite seu email"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Telefone</Form.Label>
-              <Form.Control
-                type="text"
-                name="telefone"
-                value={formData.telefone}
-                onChange={handleChange}
-                placeholder="Digite seu telefone"
-              />
-            </Form.Group>
-          </Col>
-          <Col>
-            <h5>Contato de Emergência</h5>
-            <Form.Group className="mb-3">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control
-                type="text"
-                name="contatoEmergencia.nome"
-                value={formData.contatoEmergencia.nome}
-                onChange={handleChange}
-                placeholder="Nome do contato"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Parentesco</Form.Label>
-              <Form.Control
-                type="text"
-                name="contatoEmergencia.parentesco"
-                value={formData.contatoEmergencia.parentesco}
-                onChange={handleChange}
-                placeholder="Parentesco"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Telefone</Form.Label>
-              <Form.Control
-                type="text"
-                name="contatoEmergencia.telefone"
-                value={formData.contatoEmergencia.telefone}
-                onChange={handleChange}
-                placeholder="Telefone de emergência"
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
+        <BasicInfoSection formData={formData} handleChange={handleChange} setFoto={setFoto} />
+        <AdditionalInfoSection formData={formData} handleChange={handleChange} />
+        <ContactInfoSection formData={formData} handleChange={handleChange} />
         <Button variant="primary" type="submit" disabled={loading}>
           {loading ? "Salvando..." : "Salvar"}
         </Button>
