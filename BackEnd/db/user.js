@@ -6,7 +6,7 @@ const local = 'http://127.0.0.1:6990/user';
 const pacienteModel = {
     getUserID: async(id) => {
         try {
-            const response = await axios.get(`${local}/user/busca/${id}`);
+            const response = await axios.get(`${local}/busca/${id}`);
             return response.data;
         } catch (error) {
             console.error(error);
@@ -14,7 +14,7 @@ const pacienteModel = {
     },
     listarPacientes: async() =>{
         try{
-            const response = await axios.get(`${local}/user/all`);
+            const response = await axios.get(`${local}/all`);
             return response.data;
         }catch(error) {
             console.error(error);
@@ -22,7 +22,7 @@ const pacienteModel = {
     },
     criarPaciente: async(paciente)=>{
         try{
-            const response = await axios.post(`${local}/user/add`, paciente);
+            const response = await axios.post(`${local}/add`, paciente);
             return response.data;
         }catch(error){
             console.error(error);
