@@ -1,5 +1,5 @@
 import { Router } from "express";
-import verifyController from "../controllers/verifyReq";
+import verifyController from "../controllers/verifyController";
 
 const example = Router();
 
