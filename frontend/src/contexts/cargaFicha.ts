@@ -1,4 +1,4 @@
-import { Paciente } from "./pacienteTypes";
+import { Paciente } from "./paciente";
 
 type Resumo = {
     data: string;

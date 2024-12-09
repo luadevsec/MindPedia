@@ -1,5 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { Paciente } from '../../../contexts/pacienteTypes';
+import { Paciente } from '../../../contexts/paciente';
 
 interface cardProps {
     paciente: Paciente;

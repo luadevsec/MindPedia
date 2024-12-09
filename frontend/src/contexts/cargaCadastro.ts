@@ -3,21 +3,21 @@
 type PacienteCadastral = {
     nome: string;
     genero: string;
-    sexualidade: string;
-    etnia: string;
-    estadoCivil: string;
+    sexualidade: string | null;
+    etnia: string | null;
+    estadoCivil: string | null;
     dataNascimento: string;
-    naturalidade: string;
-    nacionalidade: string;
+    naturalidade: string | null;
+    nacionalidade: string | null;
     foto: string;
     cpf: string;
-    profissao: string;
+    profissao: string | null;
     email: string;
     telefone: string;
-    hobby: string[];
+    hobby: string[] | null;
     contatoEmergencia: {
         nome: string;
-        parentesco: string;
+        parentesco: string | null;
         telefone: string;
     };
 };

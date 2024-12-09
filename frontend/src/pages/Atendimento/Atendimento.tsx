@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
+// pages/Atendimento/Atendimento.tsx
 import { useParams } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/main";
-import { Pmock } from "../../contexts/pacienteMock";
-import { useFetchWithParams } from "../../hooks/useFeach";
-import { Paciente } from "../../contexts/pacienteTypes";
+import { useAtendimento } from "./hooks/useAtendimento";
 
 const Atendimento = () => {
   const { id } = useParams<{ id: string }>(); // Obtém o ID da URL
-  const [paciente, setPaciente] = useState<Paciente>(Pmock); // Estado para armazenar os dados do paciente
+  const { paciente, error, loading, refetch } = useAtendimento(id); // Busca os dados do paciente
 
-  const { data, error, loading, refetch } = useFetchWithParams<Paciente, { id: string }>(
-    "/paciente",
-    id ? { id } : undefined // Passa o ID como parâmetro
-  );
+  if (!id) {
+    return <p>ID não informado.</p>; // Caso o ID não seja informado
+  }
 
-  useEffect(() => {
-    document.title = "Atendimento do Paciente";
-
-    if (id === "mock") {
-      setPaciente(Pmock); // Utiliza dados mock caso o ID seja "mock"
-    } else if (data) {
-      setPaciente(data); // Atualiza os dados da API quando disponíveis
-    }
-  }, [id, data]);
+  if (!paciente) {
+    return <p>Nenhum dado disponível.</p>; // Caso nenhum dado esteja disponível
+  }
 
   if (id !== "mock") {
     if (loading) {
@@ -48,7 +39,7 @@ const Atendimento = () => {
     <div>
       {/* Passa os dados para os componentes */}
       <Header paciente={paciente} />
-      <Main idPaciente={paciente.id} />
+      <Main idPaciente={id} />
     </div>
   );
 };

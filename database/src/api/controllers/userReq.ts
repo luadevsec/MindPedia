@@ -1,7 +1,7 @@
-import UserContext from '../../context/userContext';
+import UserContext from '../../db/context/userContext';
 import {Request, Response} from "express";
 
-const userController = {
+const userReq = {
     createUser: async (req: Request, res: Response) => {
         try{
             const user = await UserContext.createUser(req.body);
@@ -55,4 +55,4 @@ const userController = {
     }
 }
 
-export default userController;
+export default userReq;

@@ -1,8 +1,8 @@
 import { create } from "domain";
-import ConsultaContext from "../../context/consultaContext";
+import ConsultaContext from "../../db/context/consultaContext";
 import e, {Request, Response} from "express";
 
-const consultaController = {
+const consultaReq = {
     createConsulta: async (req: Request, res: Response) => {
         try{
             const consulta = await ConsultaContext.createConsulta(req.body);
@@ -35,4 +35,4 @@ const consultaController = {
         }
     }
 }
-export default consultaController;
+export default consultaReq;

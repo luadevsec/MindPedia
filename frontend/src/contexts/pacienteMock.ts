@@ -1,4 +1,4 @@
-import { Paciente, Resumo, Consulta, Nota, Agendamento } from '../contexts/pacienteTypes';
+import { Paciente, Resumo, Consulta, Nota, Agendamento } from './paciente';
 
 const Rmock: Resumo[] = [
     {

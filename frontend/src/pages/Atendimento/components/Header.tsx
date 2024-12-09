@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Col, Container, Row, Image, Button } from "react-bootstrap";
 import FullCard from "./fullcard";
-import { Paciente } from "../../../contexts/pacienteTypes";
+import { Paciente } from "../../../contexts/paciente";
 
 
 interface HeaderProps {

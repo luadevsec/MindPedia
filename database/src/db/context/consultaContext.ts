@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { Consulta } from "../model/consultaModel";
-import AppDataSource from "../dataSource";
+import AppDataSource from "../../dataSource";
 
 class consultaContext {
     private static repoConsulta: Repository<Consulta> =  AppDataSource.getRepository(Consulta);
@@ -15,7 +15,7 @@ class consultaContext {
     static getConsultaById(id: string){
         return this.repoConsulta.findOne({
             where: {
-                id_consulta: id,  // Use o nome correto do campo da sua entidade que está associado ao ID.
+                id_paciente: id,  // Use o nome correto do campo da sua entidade que está associado ao ID.
             },
         });
     }

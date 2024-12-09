@@ -1,5 +1,5 @@
 import { Router } from "express";
-import consultaController from "../controllers/consultaController";
+import consultaController from "../controllers/consultaReq";
 
 const consulta = Router();
 

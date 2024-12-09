@@ -18,6 +18,7 @@ function Ficha() {
 
   useEffect(() => {
     document.title = "Ficha do Paciente";
+    console.log('estamos na ficha')
 
     if (id == "mock") {
       setCarga(Mock); // Utiliza dados mock caso o ID

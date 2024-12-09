@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { User } from "../model/userModel";
-import AppDataSource from "../dataSource";
+import AppDataSource from "../../dataSource";
 
 class UserContext {
     private static repoUser: Repository<User> =  AppDataSource.getRepository(User);

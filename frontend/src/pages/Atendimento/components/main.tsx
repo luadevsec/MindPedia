@@ -1,44 +1,20 @@
-import { useState } from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Hook para navegação
-import { CargaConsultar } from "../../../contexts/cargaConsultar";
-import { useSendSignal } from "../../../hooks/useFeach";
+import { useMain } from "../hooks/useMain";
 
 interface MainProps {
   idPaciente: string;
 }
 
 const Main = ({ idPaciente }: MainProps) => {
-  const [resumo, setResumo] = useState<string>("");
-  const [notas, setNotas] = useState<string>("");
-  const navigate = useNavigate(); // Para navegação entre rotas
-  const { sendSignal, loading, error } = useSendSignal<CargaConsultar>(
-    "/consultar"
-  );
-
-  const handleFinalizar = async () => {
-    const payload: CargaConsultar = {
-      id: idPaciente,
-      consulta: {
-        data: new Date().toISOString(), // Coloca a data atual
-        resumo,
-        notas,
-      },
-    };
-
-    try {
-      await sendSignal(payload);
-      if (!error) {
-        navigate(`/ficha/${idPaciente}`); // Vai para a página da ficha
-      }
-    } catch (err) {
-      console.error("Erro ao finalizar:", err);
-    }
-  };
-
-  const handleCancelar = () => {
-    navigate("/menu"); // Vai para o menu
-  };
+  const {
+    resumo,
+    setResumo,
+    notas,
+    setNotas,
+    loading,
+    handleFinalizar,
+    handleCancelar,
+  } = useMain({ idPaciente });
 
   return (
     <Container fluid className="p-4">

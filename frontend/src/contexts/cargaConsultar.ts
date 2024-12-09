@@ -1,4 +1,4 @@
-import { Consulta } from "./pacienteTypes";
+import { Consulta } from "./paciente";
 
 interface CargaConsultar {
     id: string;
