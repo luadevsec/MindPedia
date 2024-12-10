@@ -1,65 +1,94 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { FaUser, FaEnvelope, FaPhone, FaBriefcase, FaGlobe, FaMapMarkerAlt, FaCalendarAlt, FaHeart } from 'react-icons/fa';
+import { AiOutlineHeart } from 'react-icons/ai';
 import Painel from './painel';
 import { Historico, Paciente, Agendamento } from '../hooks/typeMock';
 
 interface MainProps {
-    paciente: Paciente;
-    historico: Historico;
-    agendamento: Agendamento;
+  paciente: Paciente;
+  historico: Historico;
+  agendamento: Agendamento | null;
 }
 
-const Main = ( { paciente, historico, agendamento }: MainProps ) => {
-    const sobre = ['nome', 'genero', 'etnia', 'estadoCivil', 'dataNascimento', 'email', 'telefone'] as const;
-    const mais = ['profissao', 'hobby', 'sexualidade', 'nacionalidade', 'rg', 'cpf', 'naturalidade'] as const;
-    const contato = ['nome', 'parentesco', 'telefone'] as const;
+const Main = ({ paciente, historico, agendamento }: MainProps) => {
+  const sobre = [
+    { label: 'Nome', value: paciente.nome, icon: <FaUser /> },
+    { label: 'Gênero', value: paciente.genero, icon: <AiOutlineHeart /> },
+    { label: 'Etnia', value: paciente.etnia, icon: <FaMapMarkerAlt /> },
+    { label: 'Estado Civil', value: paciente.estadoCivil, icon: <FaHeart /> },
+    { label: 'Data de Nascimento', value: paciente.dataNascimento, icon: <FaCalendarAlt /> },
+    { label: 'Email', value: paciente.email, icon: <FaEnvelope /> },
+    { label: 'Telefone', value: paciente.telefone, icon: <FaPhone /> },
+  ];
 
-    return (
-        <Container fluid className="p-4">
-            <Row className="gx-3 gy-4">
-                {/* Primeira coluna (altura 3) */}
-                <Col md={3} className="bg-info p-3" style={{ minHeight: '30vh' }}>
-                    <h1>Sobre mim</h1>
-                    {sobre.map((item) => (
-                        <p key={item}>
-                            {item}: {paciente[item] as keyof Paciente}
-                        </p>
-                    ))}
-                </Col>
+  const mais = [
+    { label: 'Profissão', value: paciente.profissao, icon: <FaBriefcase /> },
+    { label: 'Sexualidade', value: paciente.sexualidade, icon: <FaHeart /> },
+    { label: 'Nacionalidade', value: paciente.nacionalidade, icon: <FaGlobe /> },
+    { label: 'Naturalidade', value: paciente.naturalidade, icon: <FaMapMarkerAlt /> },
+  ];
 
-                {/* Segunda coluna (altura 2) com sub-coluna (altura 1) */}
-                <Col md={3}>
-                    <Row className="bg-warning p-3" style={{ minHeight: '20vh' }}>
-                        <h1>Mais</h1>
-                        {mais.map((item) => (
-                            <p key={item}>
-                                {item}: {paciente[item] as keyof Paciente}
-                            </p>
-                        ))}
-                    </Row>
-                    <Row className="bg-danger p-3 mt-3" style={{ minHeight: '10vh' }}>
-                        <h1>Contato</h1>
-                        {contato.map((item) => {
-                            // Verificando se estamos lidando com o contatoEmergencia
-                            if (item === 'nome' || item === 'parentesco' || item === 'telefone') {
-                                return (
-                                    <p key={item}>
-                                        {item}: {paciente.contatoEmergencia[item] as keyof Paciente['contatoEmergencia']}
-                                    </p>
-                                );
-                            } else {
-                                return null; // Isso garante que outros itens não sejam acessados no contexto errado
-                            }
-                        })}
-                    </Row>
-                </Col>
+  const contato = [
+    { label: 'Nome', value: paciente.contatoEmergencia.nome, icon: <FaUser /> },
+    { label: 'Parentesco', value: paciente.contatoEmergencia.parentesco, icon: <FaHeart /> },
+    { label: 'Telefone', value: paciente.contatoEmergencia.telefone, icon: <FaPhone /> },
+  ];
 
-                {/* Terceira coluna (altura 3) */}
-                <Col md={6} className="bg-success p-3" style={{ minHeight: '30vh' }}>
-                    <Painel historico={historico} agendamento= {agendamento} />
-                </Col>
-            </Row>
-        </Container>
-    );
+  return (
+    <Container fluid className="p-4" style={{ backgroundColor: '#070D44', color: '#AFEFFD' }}>
+      <Row className="gx-3 gy-4">
+        {/* Primeira coluna */}
+        <Col md={3}>
+          <h2 style={{ color: '#024CAA' }}>Sobre Mim</h2>
+          {sobre.map((item, index) => (
+            <Card key={index} className="mb-3" style={{ backgroundColor: '#024CAA', color: '#AFEFFD' }}>
+              <Card.Body className="d-flex align-items-center">
+                <div style={{ fontSize: '1.5rem', marginRight: '10px' }}>{item.icon}</div>
+                <div>
+                  <Card.Title style={{ marginBottom: 0 }}>{item.label}</Card.Title>
+                  <Card.Text>{item.value}</Card.Text>
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
+        </Col>
+
+        {/* Segunda coluna */}
+        <Col md={3}>
+          <h2 style={{ color: '#024CAA' }}>Mais</h2>
+          {mais.map((item, index) => (
+            <Card key={index} className="mb-3" style={{ backgroundColor: '#EC7105', color: '#070D44' }}>
+              <Card.Body className="d-flex align-items-center">
+                <div style={{ fontSize: '1.5rem', marginRight: '10px' }}>{item.icon}</div>
+                <div>
+                  <Card.Title style={{ marginBottom: 0 }}>{item.label}</Card.Title>
+                  <Card.Text>{item.value}</Card.Text>
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
+
+          <h2 style={{ color: '#024CAA' }}>Contato</h2>
+          {contato.map((item, index) => (
+            <Card key={index} className="mb-3" style={{ backgroundColor: '#024CAA', color: '#AFEFFD' }}>
+              <Card.Body className="d-flex align-items-center">
+                <div style={{ fontSize: '1.5rem', marginRight: '10px' }}>{item.icon}</div>
+                <div>
+                  <Card.Title style={{ marginBottom: 0 }}>{item.label}</Card.Title>
+                  <Card.Text>{item.value}</Card.Text>
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
+        </Col>
+
+        {/* Terceira coluna */}
+        <Col md={6}>
+          <Painel historico={historico} agendamento={agendamento} />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Main;

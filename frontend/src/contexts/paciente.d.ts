@@ -9,12 +9,9 @@ type Paciente = {
     naturalidade: string;
     nacionalidade: string;
     foto: string;
-    rg: string;
-    cpf: string;
     profissao: string;
     email: string;
     telefone: string;
-    hobby: string[];
     contatoEmergencia: {
         nome: string;
         parentesco: string;
@@ -44,4 +41,38 @@ type Agendamento = {
     hora: string;
 }
 
-export type { Paciente, Resumo, Consulta, Nota, Agendamento };
+type CargaModel = {
+    paciente :{
+        id: string;
+        nome: string;
+        genero: string;
+        sexualidade: string;
+        etnia: string;
+        estadoCivil: string;
+        dataNascimento: string;
+        naturalidade: string;
+        nacionalidade: string;
+        foto: string;
+        profissao: string;
+        email: string;
+        telefone: string;
+        contatoEmergencia: {
+            nome: string;
+            parentesco: string;
+            telefone: string;
+        };
+    },
+    historico: {
+        resumos: string[]
+        notas: string[]
+        consultas: {
+            data: string;
+            resumo: string | null;
+            notas: string | null;
+        }[]
+    },
+    agendamento: string | null;
+}
+
+
+export type { Paciente, Resumo, Consulta, Nota, Agendamento, CargaModel };
