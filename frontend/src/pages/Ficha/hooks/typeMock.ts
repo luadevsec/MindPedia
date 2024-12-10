@@ -1,26 +1,4 @@
-type Paciente = {
-    id: string;
-    nome: string;
-    genero: string;
-    sexualidade: string;
-    pronome: string;
-    etnia: string;
-    estadoCivil: string;
-    dataNascimento: string;
-    naturalidade: string;
-    nacionalidade: string;
-    foto: string;
-    cpf: string;
-    profissao: string;
-    email: string;
-    telefone: string;
-    hobby: string[];
-    contatoEmergencia: {
-        nome: string;
-        parentesco: string;
-        telefone: string;
-    };
-};
+import { Paciente } from "../../../contexts/paciente";
 
 type Resumo = {
     data: string;
@@ -56,6 +34,7 @@ type Carga = {
     historico: Historico;
     agendamento: Agendamento | null;
 }
+
 
 
 export type { Paciente, Resumo, Consulta, Nota, Carga, Historico, Agendamento };

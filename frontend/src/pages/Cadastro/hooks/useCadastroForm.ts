@@ -29,6 +29,9 @@ export const useCadastroForm = () => {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
+      if (formData.foto === "") {
+        formData.foto = (Math.floor(Math.random() * 11) + 1).toString();
+      }
       console.log(formData);
       try {
         await fetchData();

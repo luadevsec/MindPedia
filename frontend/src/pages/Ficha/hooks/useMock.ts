@@ -1,4 +1,5 @@
-import { Paciente, Resumo, Consulta, Nota, Carga, Agendamento } from './typeMock';
+import { Resumo, Consulta, Nota, Carga, Agendamento } from './typeMock';
+import { Paciente } from '../../../contexts/paciente';
 
 
 const Pmock: Paciente = {
@@ -6,18 +7,15 @@ const Pmock: Paciente = {
     nome: 'Dany PLS',
     genero: 'Feminino',
     sexualidade: 'Pansexual',
-    pronome: 'Ela/Dela',
     etnia: 'Não especificada',
     estadoCivil: 'Casada',
     dataNascimento: '22/10/2003',
     naturalidade: 'peoence',
     nacionalidade: 'Brasileira',
     foto: '7',
-    cpf: '123.456.789-00',
     profissao: 'Ajudante de tudo um pouco',
     email: 'lunna.cipher@exemplo.com',
     telefone: '(11) 4002-8922',
-    hobby: ['Jogos', 'Programação', 'Tecnologia'],
     contatoEmergencia: {
         nome: 'Luazinha',
         parentesco: 'Muie',
