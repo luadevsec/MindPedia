@@ -45,8 +45,9 @@ export class User {
   @Column({nullable: false})
   telefone!: string;
   
-  @OneToMany(() => Consulta, (consulta: Consulta) => consulta.id_paciente)
+  @OneToMany(() => Consulta, (consulta: Consulta) => consulta.paciente)
   consulta!: Consulta[];
+  
 
   @OneToOne(() => ContatoEmergencia, (contatoEmergencia) => contatoEmergencia.user, { cascade: true, eager: true })
   @JoinColumn()

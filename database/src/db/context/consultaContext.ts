@@ -9,15 +9,15 @@ class consultaContext {
         const consulta = this.repoConsulta.create(dataConsulta);
         return this.repoConsulta.save(consulta);
     }
-    static updateConsulta(dataConsulta: Consulta){
-        return this.repoConsulta.update(dataConsulta.id_paciente, dataConsulta)
-    }
-    static getConsultaById(id: string){
-        return this.repoConsulta.findOne({
+
+    static async getConsultaById(id: string){
+        const consulta = await this.repoConsulta.find({
             where: {
-                id_paciente: id,  // Use o nome correto do campo da sua entidade que está associado ao ID.
+                paciente: { id: id },  // Use o nome correto do campo da sua entidade que está associado ao ID.
             },
         });
+        console.log(consulta);
+        return consulta;
     }
 }
 

@@ -4,9 +4,7 @@ import consultaController from "../controllers/consultaReq";
 const consulta = Router();
 
 
-consulta.post("/inicio", consultaController.createConsulta);
-
-consulta.patch("/final", consultaController.finalizarConsulta);
+consulta.post("/add", consultaController.createConsulta);
 
 consulta.get("/busca/:id", consultaController.getConsultaById);
 

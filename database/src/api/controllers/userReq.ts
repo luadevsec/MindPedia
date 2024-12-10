@@ -5,13 +5,11 @@ import id from '../utils/idGenerator';
 const userReq = {
     createUser: async (req: Request, res: Response) => {
         try{
-            console.log(req.body);
-            const existente = await UserContext.getUserByEmail(req.body.paciente.email);
-            console.log(existente);
+            const existente = await UserContext.getUserByEmail(req.body.email);
             if (existente) {
                 return res.status(200).json("Usuário já existe.");
             }
-            const newUser = req.body.paciente;
+            const newUser = req.body;
             newUser.id = id();
             const user = await UserContext.createUser(newUser);
             return res.status(201).json(user.id);
