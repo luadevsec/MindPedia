@@ -15,8 +15,8 @@ interface Req {
 
 const usePacienteService = (req: Req) => {
     const config = {
-        endpoint: "/paciente",
-        method: "GET" as Method,
+        endpoint: "example/ficha",
+        method: "POST" as Method,
         
     };
 

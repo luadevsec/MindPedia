@@ -43,7 +43,7 @@ const userReq = {
     },
     deleteUser: async(req: Request, res: Response) => {
         try{
-            const id = req.params.id;
+            const id = req.body.id;
             await UserContext.deleteUser(id);
             return res.status(204);
         }
