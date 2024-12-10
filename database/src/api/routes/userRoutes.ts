@@ -5,9 +5,7 @@ import userController from "../controllers/userReq";
 const user = Router();
 
 
-user.get("/busca/:id", userController.getUserbyId);
-
-user.get("/all", userController.getUsers);
+user.post("/busca", userController.getUserbyId);
 
 user.post("/add", userController.createUser);
 
