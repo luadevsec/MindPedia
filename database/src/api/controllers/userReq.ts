@@ -20,7 +20,7 @@ const userReq = {
     },
     getUserbyId: async (req: Request, res: Response) => {
         try {
-            const id = req.params.id;
+            const id = req.body.id;
             const user = await UserContext.getUserbyId(id);
             if (user) {
                 delete user.contatoEmergencia.userId;

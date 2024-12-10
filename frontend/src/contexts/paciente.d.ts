@@ -25,6 +25,7 @@ type Resumo = {
 }
 
 type Consulta = {
+    id: string;
     data: string;
     resumo: string | Resumo | null;
     notas: string | Nota | null;
