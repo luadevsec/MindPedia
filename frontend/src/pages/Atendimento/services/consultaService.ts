@@ -12,7 +12,7 @@ interface Res {
 
 const useConsultaService  = (req : Req) => {
     const config = {
-        endpoint: "/consulta",
+        endpoint: "/consulta/add",
         method: "POST" as Method,
     };
     return useFetch<Req, Res>({ config, req });

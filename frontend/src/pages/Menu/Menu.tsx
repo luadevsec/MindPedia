@@ -8,7 +8,7 @@ import { useMenu } from "./hooks/useMenu";
 
 const Menu = () => {
   // Usando o hook personalizado
-  const { contatogeralmock, contatoAtual, handleContatoClick } = useMenu();
+  const { contatos, contatoAtual, handleContatoClick } = useMenu();
 
   return (
     <>
@@ -29,7 +29,7 @@ const Menu = () => {
           <Col md={3} className="justify-content-center align-items-center bg-info">
             <div style={{ height: "83vh", overflowY: "auto" }}>
               {/* Mapeia os contatos para permitir seleção */}
-              {contatogeralmock.map((contato) => (
+              {contatos.map((contato) => (
                 <ContatoCard
                   contato={contato}
                   key={contato.id}
