@@ -28,7 +28,6 @@ class UserContext {
             relations: ["contatoEmergencia"]
         })
     }
-    
     static getAllUsers(){
         return this.repoUser.find();
     }
@@ -38,6 +37,10 @@ class UserContext {
             select:{ id: true },
             where: { email: emailUser}
         });
+    }
+
+    static updateAgendamento(id: string, agendamento: string){
+        return this.repoUser.update(id, {agendamento});
     }
 }
 export default UserContext;

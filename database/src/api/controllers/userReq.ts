@@ -5,9 +5,7 @@ import id from '../utils/idGenerator';
 const userReq = {
     createUser: async (req: Request, res: Response) => {
         try{
-            console.log(req.body);
             const existente = await UserContext.getUserByEmail(req.body.paciente.email);
-            console.log(existente);
             if (existente) {
                 return res.status(200).json("Usuário já existe.");
             }

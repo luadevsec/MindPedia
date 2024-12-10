@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { User } from "./userModel";
+import { join } from "path";
 
 @Entity()
 export class Consulta {
@@ -13,9 +14,9 @@ export class Consulta {
     resumo!: string | null;
 
     @Column({ type: 'text', nullable: true })
-    notas!: string | null;
+    nota!: string | null;
 
     @ManyToOne(() => User, user => user.consulta)
-    @Column({nullable: false})
-    id_paciente!: string;
+    @JoinColumn({ name: "id_paciente" })
+    paciente!: User;
 }

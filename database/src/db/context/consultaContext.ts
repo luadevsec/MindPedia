@@ -1,24 +1,42 @@
-import { Repository } from "typeorm";
+import { Repository, FindOperator, IsNull, Not } from "typeorm";
 import { Consulta } from "../model/consultaModel";
 import AppDataSource from "../../dataSource";
 
-class consultaContext {
+class ConsultaContext {
     private static repoConsulta: Repository<Consulta> =  AppDataSource.getRepository(Consulta);
 
     static createConsulta(dataConsulta: Consulta){
         const consulta = this.repoConsulta.create(dataConsulta);
         return this.repoConsulta.save(consulta);
     }
-    static updateConsulta(dataConsulta: Consulta){
-        return this.repoConsulta.update(dataConsulta.id_paciente, dataConsulta)
-    }
+
     static getConsultaById(id: string){
-        return this.repoConsulta.findOne({
+        return this.repoConsulta.find({
             where: {
-                id_paciente: id,  // Use o nome correto do campo da sua entidade que está associado ao ID.
+                paciente: { id: id },
             },
+        });
+    }
+
+    static getNotasById(id: string){
+        return this.repoConsulta.find({
+            where: {
+                paciente: { id: id },
+                nota: Not(IsNull()),
+            },
+            select: ["nota"]
+        });
+    }
+
+    static getResumoById(id: string){
+        return this.repoConsulta.find({
+            where: {
+                paciente: { id: id },
+                resumo: Not(IsNull()),
+            },
+            select: ["resumo"]
         });
     }
 }
 
-export default consultaContext;
+export default ConsultaContext;

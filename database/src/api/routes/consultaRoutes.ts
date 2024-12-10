@@ -4,11 +4,9 @@ import consultaController from "../controllers/consultaReq";
 const consulta = Router();
 
 
-consulta.post("/inicio", consultaController.createConsulta);
+consulta.post("/add", consultaController.createConsulta);
 
-consulta.patch("/final", consultaController.finalizarConsulta);
-
-consulta.get("/busca/:id", consultaController.getConsultaById);
+consulta.get("/busca/:id", consultaController.getHistoricoByPacienteId);
 
 
 export default consulta;
