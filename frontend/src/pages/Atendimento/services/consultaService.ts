@@ -3,7 +3,6 @@ import { Method } from "axios";
 import { Consulta } from "../../../contexts/paciente";
 
 interface Req {
-    id: string;
     consulta: Consulta;
 }
 interface Res {
