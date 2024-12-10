@@ -4,7 +4,7 @@ import { User } from './userModel';
 @Entity()
 export class ContatoEmergencia {
     @PrimaryColumn()
-    userId!: string;
+    userId?: string;
 
     @Column()
     nome!: string;

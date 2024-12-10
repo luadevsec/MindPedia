@@ -4,10 +4,13 @@ import {Request, Response} from "express";
 const userReq = {
     createUser: async (req: Request, res: Response) => {
         try{
+            const existente = await UserContext.getUserByEmail(req.body.email);
+            if (existente){
+                return res.status(401).json("Usuário já existe.");
+            }
             const user = await UserContext.createUser(req.body);
-            return res.status(201).json(user);
-        }
-        catch (error) {
+            return res.status(201).json(user.id);
+        }catch (error) {
             console.log(error); 
             return res.status((error as any).status);
         }
@@ -16,7 +19,10 @@ const userReq = {
         try {
             const id = req.params.id;
             const user = await UserContext.getUserbyId(id);
-            return res.send(`user ${JSON.stringify(user)}`);
+            if (user) {
+                delete user.contatoEmergencia.userId;
+            }
+            return res.send(user);
         } 
         catch (error) {
             return res.status((error as any).status);

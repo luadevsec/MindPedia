@@ -35,9 +35,6 @@ export class User {
 
   @Column({nullable: true})
   idFoto!: string;
-
-  @Column({nullable: true})
-  cpf!: string;
   
   @Column({nullable: true})
   profissao!: string;
@@ -51,7 +48,7 @@ export class User {
   @OneToMany(() => Consulta, (consulta: Consulta) => consulta.id_paciente)
   consulta!: Consulta[];
 
-  @OneToOne(() => ContatoEmergencia, (contatoEmergencia) => contatoEmergencia.user, { cascade: true })
+  @OneToOne(() => ContatoEmergencia, (contatoEmergencia) => contatoEmergencia.user, { cascade: true, eager: true })
   @JoinColumn()
   contatoEmergencia!: ContatoEmergencia;
 

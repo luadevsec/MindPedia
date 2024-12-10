@@ -1,11 +1,13 @@
 import { Repository } from "typeorm";
 import { User } from "../model/userModel";
 import AppDataSource from "../../dataSource";
+import id from "../../api/utils/idGenerator";
 
 class UserContext {
     private static repoUser: Repository<User> =  AppDataSource.getRepository(User);
 
     static createUser(dataUser : User) {
+        dataUser.id = id;
         if (dataUser.contatoEmergencia) {
             const contatoEmergencia = dataUser.contatoEmergencia;
             contatoEmergencia.userId = dataUser.id;
@@ -23,12 +25,21 @@ class UserContext {
     }
 
     static getUserbyId(id: string){
-        return this.repoUser.findOneBy({id});
+        return this.repoUser.findOne({
+            where: {id: id},
+            relations: ["contatoEmergencia"]
+        })
     }
     
     static getAllUsers(){
         return this.repoUser.find();
     }
-}
 
+    static getUserByEmail(emailUser: string){
+        return this.repoUser.findOne({ 
+            select:{ id: true },
+            where: { email: emailUser}
+        });
+    }
+}
 export default UserContext;

@@ -13,36 +13,34 @@ interface UseFetchProps<Req> {
 
 const useFetch = <Req, Res>({ config, req }: UseFetchProps<Req>) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Res | null>(null);  // Dados da resposta tipados
+  const [data, setData] = useState<Res | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Função que faz a requisição
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
+    setData(null); // Limpa os dados anteriores antes de iniciar a requisição
 
     try {
       const axiosConfig: AxiosRequestConfig = {
         method: config.method,
         url: `${backendUrl}${config.endpoint}`,
-        data: req, // Envia o corpo da requisição (para POST ou PUT)
+        data: req,
       };
 
       const response = await axios(axiosConfig);
-      setData(response.data as Res); // Atualiza os dados com a resposta tipada
+      setData(response.data as Res);
     } catch (err: unknown) {
-      // Verifica se o erro tem uma estrutura esperada
       if (axios.isAxiosError(err) && err.response) {
-        setError(err.response?.data?.message || "Erro desconhecido");
+        setError(err.response?.data?.message || "Erro desconhecido no servidor.");
       } else {
-        setError("Erro desconhecido");
+        setError("Erro desconhecido. Verifique sua conexão.");
       }
     } finally {
       setLoading(false);
     }
-  }, [config, req]);
+  }, [config.endpoint, config.method, req]);
 
-  // Retorna o estado e a função refetch
   return { loading, data, error, fetchData };
 };
 

@@ -1,6 +1,5 @@
-const idGenerator = () => { 
-    return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-};
+import { v4 as uuidv4 } from 'uuid';
 
+const id = uuidv4();
 
-export default idGenerator;
+export default id;

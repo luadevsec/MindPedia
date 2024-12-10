@@ -10,11 +10,9 @@ type PacienteCadastral = {
     naturalidade: string | null;
     nacionalidade: string | null;
     foto: string;
-    cpf: string;
     profissao: string | null;
     email: string;
     telefone: string;
-    hobby: string[] | null;
     contatoEmergencia: {
         nome: string;
         parentesco: string | null;
@@ -24,4 +22,4 @@ type PacienteCadastral = {
 type cargaCadastro = {
     paciente: PacienteCadastral;
 };
-export type { cargaCadastro };
+export type { cargaCadastro, PacienteCadastral };
