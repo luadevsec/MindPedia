@@ -1,13 +1,11 @@
 import { Repository } from "typeorm";
 import { User } from "../model/userModel";
 import AppDataSource from "../../dataSource";
-import id from "../../api/utils/idGenerator";
 
 class UserContext {
     private static repoUser: Repository<User> =  AppDataSource.getRepository(User);
 
     static createUser(dataUser : User) {
-        dataUser.id = id;
         if (dataUser.contatoEmergencia) {
             const contatoEmergencia = dataUser.contatoEmergencia;
             contatoEmergencia.userId = dataUser.id;

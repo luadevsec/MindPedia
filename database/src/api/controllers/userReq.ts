@@ -1,14 +1,19 @@
 import UserContext from '../../db/context/userContext';
 import {Request, Response} from "express";
+import id from '../utils/idGenerator';
 
 const userReq = {
     createUser: async (req: Request, res: Response) => {
         try{
-            const existente = await UserContext.getUserByEmail(req.body.email);
-            if (existente){
-                return res.status(401).json("Usuário já existe.");
+            console.log(req.body);
+            const existente = await UserContext.getUserByEmail(req.body.paciente.email);
+            console.log(existente);
+            if (existente) {
+                return res.status(200).json("Usuário já existe.");
             }
-            const user = await UserContext.createUser(req.body);
+            const newUser = req.body.paciente;
+            newUser.id = id();
+            const user = await UserContext.createUser(newUser);
             return res.status(201).json(user.id);
         }catch (error) {
             console.log(error); 
