@@ -23,13 +23,6 @@ const Header = () => {
         </h2>
         <h3>
           {consultas} consultas para hoje.{" "}
-          <Button 
-            onClick={() => setConsultas(consultas + 1)} 
-            aria-label="Adicionar consulta"
-            variant="light"
-          >
-            +
-          </Button>
         </h3>
       </Container>
     </Container>

@@ -1,93 +1,50 @@
-import { Col, Container, Row } from "react-bootstrap";
+// components/Menu.tsx
+import { Button, Col, Container, Row } from "react-bootstrap";
 import Header from "./components/header";
-import Cardme from "./components/card";
 import ContatoCard from "./components/contatoCard";
-import { Contato } from "./components/contatoCard";
-
+import Calendario from "./components/calendario";
+import CardAtual from "./components/cardAtual";
+import { useMenu } from "./hooks/useMenu";
 
 const Menu = () => {
+  // Usando o hook personalizado
+  const { contatogeralmock, contatoAtual, handleContatoClick } = useMenu();
 
-    const contatomok = {
-        nome: "Fulano",
-        email: "kakdakskW@ksakks.com",
-        telefone: "999999999"
-    }
+  return (
+    <>
+      <Header />
+      <Container fluid style={{ height: "87vh" }}>
+        <Row className="h-100">
+          {/* Coluna para o Card */}
+          <Col md={3} className="d-flex justify-content-center align-items-center bg-danger-subtle">
+            <CardAtual contato={contatoAtual} />
+          </Col>
 
-    const contatomok2 : Contato = {
-        foto: "https://via.placeholder.com/60",
-        nome: "Fulano",
-        consulta: "25/09 - 8:00",
-        id: "1",
-        today: true
-    }
+          {/* Coluna para o Calendário */}
+          <Col md={6} className="d-flex justify-content-center align-items-center bg-black">
+            <Calendario />
+          </Col>
 
-    const contatogeralmock : Contato[] = [
-        {
-            foto: "https://via.placeholder.com/60",
-            nome: "Fulano",
-            consulta: "25/09 - 10:00",
-            id: "1",
-            today: true
-        },
-        {
-            foto: "https://via.placeholder.com/60",
-            nome: "Fulano",
-            consulta: "25/09 - 14:00",
-            id: "2",
-            today: true
-        },
-        {
-            foto: "https://via.placeholder.com/60",
-            nome: "Fulano",
-            consulta: "26/09 - 15:00",
-            id: "3",
-            today: false
-        },
-        {
-            foto: "https://via.placeholder.com/60",
-            nome: "Fulano",
-            consulta: "26/09 - 17:00",
-            id: "4",
-            today: false
-        },
-        {
-            foto: "https://via.placeholder.com/60",
-            nome: "Fulano",
-            consulta: "27/09 - 14:00",
-            id: "5",
-            today: false
-        }]
-    
-    return (
-        <>
-            <Header />
-
-            <Container fluid>
-                <Row>
-                    <Col className="bg-primary" md={9}>
-                        <Row>
-                            <Col>
-                                <h1>Atual</h1>
-                            </Col>
-                            <Col>
-                                <h1>calendario</h1>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col className="bg-info" md={3}>
-                        <ContatoCard contato = {contatomok2}/>
-                        {contatogeralmock.map((contato) => (
-                            <ContatoCard contato={contato} key={contato.id} />
-                        ))}
-                    </Col>
-                </Row>
-            </Container>
-
-            
-
-            
-        </>
-    );
-}
+          {/* Coluna para os Contatos */}
+          <Col md={3} className="justify-content-center align-items-center bg-info">
+            <div style={{ height: "83vh", overflowY: "auto" }}>
+              {/* Mapeia os contatos para permitir seleção */}
+              {contatogeralmock.map((contato) => (
+                <ContatoCard
+                  contato={contato}
+                  key={contato.id}
+                  onClick={() => handleContatoClick(contato)} // Chama a função ao clicar no contato
+                />
+              ))}
+            </div>
+            <Button href="/cadastro" variant="primary" className="w-100">
+              Cadastrar
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
 
 export default Menu;

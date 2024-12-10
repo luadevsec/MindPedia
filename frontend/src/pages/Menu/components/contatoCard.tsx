@@ -8,19 +8,25 @@ export interface Contato {
   today?: boolean;
 }
 
-const ContatoCard = ({ contato }: { contato: Contato }) => {
+const ContatoCard = ({
+  contato,
+  onClick
+}: {
+  contato: Contato;
+  onClick: () => void;  // Função que será chamada quando o card for clicado
+}) => {
   return (
-    <Card 
-  className="mb-3 shadow-sm"
-  style={contato.today ? { backgroundColor: "#d4edda" } : {}}
->
-
+    <Card
+      className="mb-3 shadow-sm"
+      style={contato.today ? { backgroundColor: "#d4edda" } : {}}
+      onClick={onClick} // Chama a função onClick ao clicar no card
+    >
       <Card.Body className="d-flex align-items-center">
         {/* Imagem */}
-        <Card.Img 
-          src={contato.foto} 
-          className="rounded-circle me-3" 
-          style={{ width: "60px", height: "60px", objectFit: "cover" }} 
+        <Card.Img
+          src={`/assets/${contato.foto}.jpeg`}
+          className="rounded-circle me-3"
+          style={{ width: "60px", height: "60px", objectFit: "cover" }}
         />
         {/* Detalhes */}
         <div>
