@@ -1,5 +1,4 @@
-import { Entity, Column, OneToOne, JoinColumn, OneToMany } from "typeorm"; // Importando os decoradores do TypeORM
-import { Agendamento } from "./agendamentoModel"; // Importando o modelo Agendamento
+import { Entity, Column, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { Consulta } from "./consultaModel";
 import { ContatoEmergencia } from "./contatoEmergenciaModel";
 
@@ -44,6 +43,9 @@ export class User {
   
   @Column({nullable: false})
   telefone!: string;
+
+  @Column({nullable: true})
+  agendamento!: string;
   
   @OneToMany(() => Consulta, (consulta: Consulta) => consulta.paciente)
   consulta!: Consulta[];
@@ -52,9 +54,5 @@ export class User {
   @OneToOne(() => ContatoEmergencia, (contatoEmergencia) => contatoEmergencia.user, { cascade: true, eager: true })
   @JoinColumn()
   contatoEmergencia!: ContatoEmergencia;
-
-  @OneToOne(() => Agendamento, { nullable: true })
-  @JoinColumn()
-  agendamento?: Agendamento; // Relacionamento 1 para 1 com Agendamento
 
 }

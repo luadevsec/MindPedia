@@ -1,8 +1,8 @@
-import { Repository } from "typeorm";
+import { Repository, FindOperator, IsNull, Not } from "typeorm";
 import { Consulta } from "../model/consultaModel";
 import AppDataSource from "../../dataSource";
 
-class consultaContext {
+class ConsultaContext {
     private static repoConsulta: Repository<Consulta> =  AppDataSource.getRepository(Consulta);
 
     static createConsulta(dataConsulta: Consulta){
@@ -10,15 +10,33 @@ class consultaContext {
         return this.repoConsulta.save(consulta);
     }
 
-    static async getConsultaById(id: string){
-        const consulta = await this.repoConsulta.find({
+    static getConsultaById(id: string){
+        return this.repoConsulta.find({
             where: {
-                paciente: { id: id },  // Use o nome correto do campo da sua entidade que está associado ao ID.
+                paciente: { id: id },
             },
         });
-        console.log(consulta);
-        return consulta;
+    }
+
+    static getNotasById(id: string){
+        return this.repoConsulta.find({
+            where: {
+                paciente: { id: id },
+                nota: Not(IsNull()),
+            },
+            select: ["nota"]
+        });
+    }
+
+    static getResumoById(id: string){
+        return this.repoConsulta.find({
+            where: {
+                paciente: { id: id },
+                resumo: Not(IsNull()),
+            },
+            select: ["resumo"]
+        });
     }
 }
 
-export default consultaContext;
+export default ConsultaContext;

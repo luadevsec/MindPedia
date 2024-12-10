@@ -6,7 +6,7 @@ const consulta = Router();
 
 consulta.post("/add", consultaController.createConsulta);
 
-consulta.get("/busca/:id", consultaController.getConsultaById);
+consulta.get("/busca/:id", consultaController.getHistoricoByPacienteId);
 
 
 export default consulta;
