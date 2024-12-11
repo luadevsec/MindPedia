@@ -30,7 +30,13 @@ class UserContext {
     }
     static getAllUsers(){
         return this.repoUser.find({
-            select: ["id", "nome", "idFoto", "agendamento"]
+            select: ["id", "nome", "idFoto", "agendamento"],
+            order: {
+                agendamento: {
+                    direction: "ASC",
+                    nulls: "LAST"
+                }
+            }
         });
     }
 
@@ -43,6 +49,13 @@ class UserContext {
 
     static updateAgendamento(id: string, agendamento: string){
         return this.repoUser.update(id, {agendamento});
+    }
+
+    static agendamentosDia(dia: string){
+        return this.repoUser.find({
+            select: ["id", "nome", "agendamento"],
+            where: {agendamento: dia}
+        });
     }
 }
 export default UserContext;
