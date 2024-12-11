@@ -9,8 +9,8 @@ const Main = ({ idPaciente }: MainProps) => {
   const {
     resumo,
     setResumo,
-    notas,
-    setNotas,
+    nota,
+    setNota,
     loading,
     handleFinalizar,
     handleCancelar,
@@ -49,8 +49,8 @@ const Main = ({ idPaciente }: MainProps) => {
                   rows={5}
                   maxLength={500}
                   placeholder="Adicione notas aqui (máximo de 5 linhas)..."
-                  value={notas}
-                  onChange={(e) => setNotas(e.target.value)}
+                  value={nota}
+                  onChange={(e) => setNota(e.target.value)}
                 />
               </Form.Group>
             </Col>

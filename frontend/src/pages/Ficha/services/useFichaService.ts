@@ -1,12 +1,11 @@
 import { Method } from "axios";
 import useFetch from "../../../hooks/useFetch";
-import { Agendamento, Historico } from "../hooks/typeMock";
-import { Paciente } from "../../../contexts/paciente";
+import {  Historico } from "../hooks/typeMock";
+import {  PacienteFichado } from "../../../contexts/paciente";
 
 interface Res {
-    paciente: Paciente;
+    paciente: PacienteFichado;
     historico: Historico;
-    agendamento: Agendamento;
 }
 
 interface Req {
@@ -19,8 +18,13 @@ const usePacienteService = (req: Req) => {
         method: "POST" as Method,
         
     };
+    console.log('chegou aqui')
 
-    return useFetch<Req, Res>({ config, req });
+    const {data , error, sendData, loading, fetchData} = useFetch<Req, Res>({ config, req })
+    console.log(loading)
+    console.log(data)
+    console.log(error)
+    return {data, error, sendData, loading, fetchData};
 }
 
 export default usePacienteService;

@@ -13,6 +13,8 @@ const AgendarController = {
         }
     },
     ficha : async (req: Request, res: Response) => {
+        console.log('sua requisição chegou')
+        console.log(req.body);
         try{
             const id = req.body.id;
             const user = await UserContext.getUserbyId(id);
@@ -34,6 +36,7 @@ const AgendarController = {
                 paciente: user,
                 historico: historico
             }
+            console.log(ficha);
 
             return res.status(200).json(ficha);
 

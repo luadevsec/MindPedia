@@ -29,7 +29,9 @@ class UserContext {
         })
     }
     static getAllUsers(){
-        return this.repoUser.find();
+        return this.repoUser.find({
+            select: ["id", "nome", "idFoto", "agendamento"]
+        });
     }
 
     static getUserByEmail(emailUser: string){

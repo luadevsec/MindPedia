@@ -4,12 +4,12 @@ import Header from "./components/header";
 import ContatoCard from "./components/contatoCard";
 import Calendario from "./components/calendario";
 import CardAtual from "./components/cardAtual";
-import { useMenu } from "./hooks/useMenu";
+import useMenuAxios from "./hooks/useMenuAxios";
 
 const Menu = () => {
   // Usando o hook personalizado
-  const { contatos, contatoAtual, handleContatoClick } = useMenu();
-
+  const { contatos, contatoAtual, handleContatoClick } = useMenuAxios();
+  
   return (
     <>
       <Header />
@@ -29,13 +29,17 @@ const Menu = () => {
           <Col md={3} className="justify-content-center align-items-center bg-info">
             <div style={{ height: "83vh", overflowY: "auto" }}>
               {/* Mapeia os contatos para permitir seleção */}
-              {contatos.map((contato) => (
-                <ContatoCard
-                  contato={contato}
-                  key={contato.id}
-                  onClick={() => handleContatoClick(contato)} // Chama a função ao clicar no contato
-                />
-              ))}
+              {Array.isArray(contatos) ? (
+                contatos.map((contato) => (
+                  <ContatoCard
+                    contato={contato}
+                    key={contato.id}
+                    onClick={() => handleContatoClick(contato)}
+                  />
+                ))
+              ) : (
+                <p>Nenhum contato cadastrado</p>
+              )}
             </div>
             <Button href="/cadastro" variant="primary" className="w-100">
               Cadastrar

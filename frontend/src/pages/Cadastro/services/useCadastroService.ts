@@ -11,11 +11,14 @@ interface Res {
 }
 
 export const useCadastroService = (req: Req) => {
-  return useFetch<Req, Res>({
+  const {data, error, sendData, loading, fetchData} = useFetch<Req, Res>({
     config: {
       method: "POST" as Method,
       endpoint: "/user/add",
     },
     req,
   });
+
+  console.log(error);
+  return {data, error, sendData, loading, fetchData};
 };

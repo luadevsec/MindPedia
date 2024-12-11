@@ -14,7 +14,7 @@ interface Res {
 // Função para buscar dados do paciente
 export const FetchPaciente = (id: string) => {
     const config = {
-        endpoint: "/consulta/busca",
+        endpoint: "/user/busca",
         method: "POST" as Method,
     };
     return useFetch<Req, Res>({ config, req: {  id } });

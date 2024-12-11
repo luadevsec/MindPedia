@@ -11,6 +11,8 @@ user.post("/add", userController.createUser);
 
 user.patch("/update", userController.updateUser);
 
+user.post("/all", userController.getUsers);
+
 user.delete("/delete/:id", userController.deleteUser);
 
 

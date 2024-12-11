@@ -4,6 +4,7 @@ import id from '../utils/idGenerator';
 
 const userReq = {
     createUser: async (req: Request, res: Response) => {
+        console.log('sua requisição chegou no cadastro')
         try{
             const existente = await UserContext.getUserByEmail(req.body.paciente.email);
             if (existente) {
@@ -25,7 +26,11 @@ const userReq = {
             if (user) {
                 delete user.contatoEmergencia.userId;
             }
-            return res.send(user);
+            return res.json(
+                {
+                    paciente: user,
+                }
+            );
         } 
         catch (error) {
             return res.status((error as any).status);
@@ -52,16 +57,25 @@ const userReq = {
             return res.status((error as any).status);
         }
     },
-    getUsers: async(req: Request, res: Response) => {
-        try{
+    getUsers: async (req: Request, res: Response) => {
+        try {
             const users = await UserContext.getAllUsers();
-            return res.json(users);
-        }
-        catch (error) {
-            console.log(error); 
-            return res.status((error as any).status);
+    
+            const pacientes = users.map(user => ({
+                id: user.id,
+                nome: user.nome,
+                foto: user.idFoto,
+                consulta: user.agendamento,
+                today: user.agendamento === new Date().toISOString().split('T')[0],
+            }));
+    
+            return res.json({ pacientes });
+        } catch (error) {
+            console.log(error);
+            return res.status((error as any).status || 500).json({ error: "Erro ao buscar usuários" });
         }
     }
+    
 }
 
 export default userReq;

@@ -1,3 +1,6 @@
+import { Historico } from "../pages/Ficha/hooks/typeMock";
+
+
 type Paciente = {
     id: string;
     nome: string;
@@ -17,6 +20,7 @@ type Paciente = {
         parentesco: string;
         telefone: string;
     };
+    agendamento : string | null;
 };
 
 type Resumo = {
@@ -24,11 +28,12 @@ type Resumo = {
     conteudo: string;
 }
 
+
 type Consulta = {
-    id: string;
+    id_paciente: string;
     data: string;
     resumo: string | Resumo | null;
-    notas: string | Nota | null;
+    nota: string | Nota | null;
 }
 
 type Nota = {
@@ -76,4 +81,31 @@ type CargaModel = {
 }
 
 
-export type { Paciente, Resumo, Consulta, Nota, Agendamento, CargaModel };
+interface PacienteFichado {
+    id: string;
+    nome: string;
+    genero: string;
+    sexualidade: string;
+    etnia: string;
+    estadoCivil: string;
+    dataNascimento: string;
+    naturalidade: string;
+    nacionalidade: string;
+    foto: string;
+    profissao: string;
+    email: string;
+    telefone: string;
+    contatoEmergencia: {
+        nome: string;
+        parentesco: string;
+        telefone: string;
+    };
+    agendamento : string | null;
+}
+
+interface cargaFicha {
+    paciente : PacienteFichado;
+    historico : Historico;
+    }
+
+export type { Paciente, Resumo, Consulta, Nota, Agendamento, CargaModel, PacienteFichado, cargaFicha };

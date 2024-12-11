@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import axios, { AxiosRequestConfig} from "axios";
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { backendUrl } from "./env";
 import UseFetchProps from "./fetchProps";
 
@@ -23,8 +23,17 @@ const useFetch = <Req, Res>({ config, req }: UseFetchProps<Req>) => {
       const response = await axios(axiosConfig);
       setData(response.data as Res);
     } catch (err: unknown) {
-      if (axios.isAxiosError(err) && err.response) {
-        setError(err.response?.data?.message || "Erro desconhecido no servidor.");
+      if (axios.isAxiosError(err)) {
+        const axiosError = err as AxiosError;
+
+        if (axiosError.response) {
+          const { status, data } = axiosError.response;
+          // Verificando se a resposta contém uma mensagem de erro
+          const errorMessage = data && typeof data === 'object' && 'message' in data ? (data as { message: string }).message : "Erro desconhecido no servidor.";
+          setError(`Erro ${status}: ${errorMessage}`);
+        } else {
+          setError(`Erro de rede: ${axiosError.message}`);
+        }
       } else {
         setError("Erro desconhecido. Verifique sua conexão.");
       }
@@ -33,7 +42,7 @@ const useFetch = <Req, Res>({ config, req }: UseFetchProps<Req>) => {
     }
   }, [config, req]);
 
-  // Nova função para enviar dados dinâmicos
+  // Função para enviar dados dinâmicos
   const sendData = useCallback(
     async (newConfig: UseFetchProps<Req>) => {
       setLoading(true);
@@ -50,8 +59,16 @@ const useFetch = <Req, Res>({ config, req }: UseFetchProps<Req>) => {
         const response = await axios(axiosConfig);
         setData(response.data as Res);
       } catch (err: unknown) {
-        if (axios.isAxiosError(err) && err.response) {
-          setError(err.response?.data?.message || "Erro desconhecido no servidor.");
+        if (axios.isAxiosError(err)) {
+          const axiosError = err as AxiosError;
+
+          if (axiosError.response) {
+            const { status, data } = axiosError.response;
+            const errorMessage = data && typeof data === 'object' && 'message' in data ? (data as { message: string }).message : "Erro desconhecido no servidor.";
+            setError(`Erro ${status}: ${errorMessage}`);
+          } else {
+            setError(`Erro de rede: ${axiosError.message}`);
+          }
         } else {
           setError("Erro desconhecido. Verifique sua conexão.");
         }
@@ -64,6 +81,5 @@ const useFetch = <Req, Res>({ config, req }: UseFetchProps<Req>) => {
 
   return { loading, data, error, fetchData, sendData };
 };
-
 
 export default useFetch;

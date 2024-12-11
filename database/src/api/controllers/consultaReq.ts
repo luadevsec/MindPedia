@@ -15,7 +15,7 @@ const consultaReq = {
 
     getHistoricoByPacienteId: async (req: Request, res: Response) => {
         try{
-            const id = req.params.id;
+            const id = req.body.id;
             const resumos = await ConsultaContext.getResumoById(id);
             const notas = await ConsultaContext.getNotasById(id);
             const consultas = await ConsultaContext.getConsultaById(id);

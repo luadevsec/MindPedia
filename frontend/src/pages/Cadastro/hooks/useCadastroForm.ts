@@ -34,9 +34,9 @@ export const useCadastroForm = () => {
       }
       console.log(formData);
       try {
-        await fetchData();
+        await fetchData(); 
         if (data) {
-          navigate(`/ficha/${data.id}`);
+          navigate(`/menu`);
         }
       } catch {
         alert("Erro ao cadastrar. Verifique os dados e tente novamente.");

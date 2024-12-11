@@ -1,4 +1,4 @@
-import { Paciente } from "../../../contexts/paciente";
+import { Paciente, PacienteFichado } from "../../../contexts/paciente";
 
 type Resumo = {
     data: string;
@@ -30,9 +30,8 @@ type Agendamento = {
 
 
 type Carga = {
-    paciente : Paciente;
+    paciente : PacienteFichado;
     historico: Historico;
-    agendamento: Agendamento | null;
 }
 
 

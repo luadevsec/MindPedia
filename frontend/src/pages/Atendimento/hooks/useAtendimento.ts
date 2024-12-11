@@ -24,9 +24,11 @@ export const useAtendimento = (id: string | undefined) => {
     } 
     // Caso contrário, executa o fetch para buscar os dados reais
     else {
+      if (!data && !loading) {
       fetchData(); // Chama a função para disparar a requisição
+      }
     }
-  }, [id, fetchData]);
+  }, [id, fetchData, data, loading]);
 
   // Atualiza o estado do paciente quando os dados forem carregados
   useEffect(() => {

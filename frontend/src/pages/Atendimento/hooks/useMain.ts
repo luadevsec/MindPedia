@@ -10,10 +10,10 @@ interface useMainProps {
 
 const useMain = ({ idPaciente }: useMainProps) => {
   const [resumo, setResumo] = useState<string>("");
-  const [notas, setNotas] = useState<string>("");
+  const [nota, setNota] = useState<string>("");
 
   const [req, setReq] = useState<CargaConsultar>({
-    consulta: {id: "", data: "", resumo: null, notas: null },
+    consulta: {id_paciente: "", data: "", resumo: null, nota: null },
   });
 
   const { getCurrentDate } = useDate(); // Hook de data
@@ -23,7 +23,7 @@ const useMain = ({ idPaciente }: useMainProps) => {
   const { loading, data, error, fetchData } = useConsultaService(req);
 
   useEffect(() => {
-    if (req.consulta.id && idPaciente !== "mock") {
+    if (req.consulta.id_paciente && idPaciente !== "mock") {
       console.log("Fetching data...");
       try {
         fetchData();
@@ -36,7 +36,7 @@ const useMain = ({ idPaciente }: useMainProps) => {
         console.log(`Data fetched: ${data?.message}`);
       }
     }
-    if (req.consulta.id) {
+    if (req.consulta.id_paciente) {
       navigate(`/ficha/${idPaciente}`); // Vai para a ficha
     }
   }, [req, error, idPaciente, data, navigate, fetchData]); // Só executa quando 'req' for atualizado
@@ -48,10 +48,10 @@ const useMain = ({ idPaciente }: useMainProps) => {
     // Atualiza o 'req' com os dados completos
     const payload: CargaConsultar = {
       consulta: {
-        id: idPaciente,
+        id_paciente: idPaciente,
         data: currentDate.date.raw, // Usa o raw Date formatado para string ISO
         resumo,
-        notas,
+        nota,
       },
     };
 
@@ -66,8 +66,8 @@ const useMain = ({ idPaciente }: useMainProps) => {
   return {
     resumo,
     setResumo,
-    notas,
-    setNotas,
+    nota,
+    setNota,
     loading,
     handleFinalizar,
     handleCancelar,
