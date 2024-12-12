@@ -17,9 +17,9 @@ type Nota = {
 }
 
 type Historico = {
-    resumo: Resumo[];
+    resumos: string[];
     consultas: Consulta[];
-    notas: Nota[];
+    notas: string[];
 }
 
 

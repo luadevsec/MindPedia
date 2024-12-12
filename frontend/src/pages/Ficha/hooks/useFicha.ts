@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Historico, Paciente } from "../../Ficha/hooks/typeMock";
+import { Historico } from "../../Ficha/hooks/typeMock";
 
 
 interface PacienteInterno {

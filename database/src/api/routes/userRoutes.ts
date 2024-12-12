@@ -15,6 +15,9 @@ user.post("/all", userController.getUsers);
 
 user.delete("/delete/:id", userController.deleteUser);
 
+user.get("/uniqueDays", userController.getUniqueAgendamentoDays);
+
+
 
 
 export default user;

@@ -6,36 +6,12 @@ import { Contato } from "../components/contatoCard";
 const useMenuAxios = () => {
     const [contact, setContact] = useState([]);
     const [contatoAtual, setContatoAtual] = useState(null);
+    const [unicDays, setUnicDays] = useState([]);
 
     const handleContatoClick = (contato: Contato) => {
         setContatoAtual(contato);
       };
 
-    const handleMock = () => {
-        setContact([
-            {
-                id: 1,
-                nome: "João",
-                agendamento: "2021-09-01T13:00:00",
-                today: false,
-                foto: "joao",
-            },
-            {
-                id: 2,
-                nome: "Maria",
-                agendamento: "2021-09-02T13:00:00",
-                today: true,
-                foto: "maria",
-            },
-            {
-                id: 3,
-                nome: "José",
-                agendamento: "2021-09-03T13:00:00",
-                today: false,
-                foto: "jose",
-            },
-        ]);
-    }
 
     const handleFetch = async () => {
         try {
@@ -57,15 +33,33 @@ const useMenuAxios = () => {
         }
     };
 
+    const handleUnicDays = async () => {
+        try {
+            const response = await axios.get("http://localhost:6990/user/uniqueDays");
+            
+            if (response.data && Array.isArray(response.data.dias)) {
+                setUnicDays(response.data.dias);
+            } else {
+                console.error("Formato inesperado de resposta:", response.data);
+                setUnicDays([]);
+            }
+        } catch (error) {
+            console.error("Erro ao buscar dados:", error);
+            setUnicDays([]);
+        }
+    }
+
+
     useEffect(() => {
         handleFetch();
+        handleUnicDays();
     }, []);
 
     return {
         contatos :contact,
-        handleMock,
         handleFetch,
         handleContatoClick,
+        unicDays,
         contatoAtual,
     };
 }

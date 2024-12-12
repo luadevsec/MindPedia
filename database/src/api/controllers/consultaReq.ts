@@ -5,6 +5,8 @@ const consultaReq = {
     createConsulta: async (req: Request, res: Response) => {
         try{
             const consulta = await ConsultaContext.createConsulta(req.body.consulta);
+            console.log(consulta);
+            console.log(req.body.consulta);
             return res.status(201).json(consulta);
         }
         catch (error) {

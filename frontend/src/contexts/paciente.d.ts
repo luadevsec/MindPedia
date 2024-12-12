@@ -11,7 +11,7 @@ type Paciente = {
     dataNascimento: string;
     naturalidade: string;
     nacionalidade: string;
-    foto: string;
+    idFoto: string;
     profissao: string;
     email: string;
     telefone: string;

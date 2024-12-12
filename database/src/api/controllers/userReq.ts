@@ -74,7 +74,18 @@ const userReq = {
             console.log(error);
             return res.status((error as any).status || 500).json({ error: "Erro ao buscar usuários" });
         }
-    }
+    },
+
+    getUniqueAgendamentoDays: async (req: Request, res: Response) => {
+        try {
+            const dias = await UserContext.getUniqueAgendamentoDays();
+            return res.json({ dias });
+        } catch (error) {
+            console.error(error);
+            return res.status((error as any).status || 500).json({ error: "Erro ao buscar os dias de agendamento" });
+        }
+    },
+    
     
 }
 

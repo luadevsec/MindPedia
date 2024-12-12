@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 import { User } from "../model/userModel";
 import AppDataSource from "../../dataSource";
 
@@ -44,5 +44,21 @@ class UserContext {
     static updateAgendamento(id: string, agendamento: string){
         return this.repoUser.update(id, {agendamento});
     }
+
+
+    static async getUniqueAgendamentoDays(): Promise<string[]> {
+        const users = await this.repoUser.find({
+            select: ["agendamento"],
+            where: { agendamento: In([null, undefined]) },
+        });
+
+        const uniqueDays = [...new Set(users
+            .filter(user => user.agendamento) // Remove agendamentos nulos ou indefinidos
+            .map(user => new Date(user.agendamento).toISOString().split("T")[0]) // Extrai apenas a data
+        )];
+
+        return uniqueDays;
+    }
+
 }
 export default UserContext;
