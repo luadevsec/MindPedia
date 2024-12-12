@@ -66,7 +66,7 @@ const userReq = {
                 nome: user.nome,
                 foto: user.idFoto,
                 consulta: user.agendamento,
-                today: user.agendamento === new Date().toISOString().split('T')[0],
+                today: user.agendamento.split('T')[0] === new Date().toISOString().split('T')[0],
             }));
     
             return res.json({ pacientes });
@@ -79,6 +79,7 @@ const userReq = {
     getUniqueAgendamentoDays: async (req: Request, res: Response) => {
         try {
             const dias = await UserContext.getUniqueAgendamentoDays();
+            console.log(dias);
             return res.json({ dias });
         } catch (error) {
             console.error(error);

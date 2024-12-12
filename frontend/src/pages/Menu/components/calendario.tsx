@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
 const getDaysInMonth = (year, month) => {
@@ -11,7 +11,10 @@ const getDaysInMonth = (year, month) => {
   return days;
 };
 
-const Calendario = () => {
+interface CalendarioProps {
+  days: string[];
+}
+const Calendario = ({ days }: CalendarioProps) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
 
@@ -56,6 +59,17 @@ const Calendario = () => {
     { length: 6 - lastDayOfWeek },
     (_, i) => new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, i + 1)
   );
+
+  // Função para verificar se o dia está no array "days"
+  const isSpecialDay = (date: Date) => {
+    console.log(date);
+    const dateString = date.toISOString().split('T')[0]; // Formato 'aaaa-mm-dd'
+    console.log(dateString);
+    return days.includes(dateString);
+  };
+
+  console.log(isSpecialDay(daysInMonth[12]));
+  console.log(daysInMonth);
 
   return (
     <div
@@ -155,8 +169,17 @@ const Calendario = () => {
                 padding: "10px",
                 margin: "5px auto",
                 backgroundColor:
-                  selectedDay === day.getDate() ? "#EC7105" : "#024CAA",
-                color: selectedDay === day.getDate() ? "#070D44" : "#AFEFFD",
+                  selectedDay === day.getDate()
+                    ? "#EC7105"
+                    : isSpecialDay(day)
+                    ? "#FF5733" // Cor para os dias especiais
+                    : "#024CAA",
+                color:
+                  selectedDay === day.getDate()
+                    ? "#070D44"
+                    : isSpecialDay(day)
+                    ? "#070D44"
+                    : "#AFEFFD",
                 borderRadius: "50%",
                 cursor: "pointer",
                 width: "40px",

@@ -46,6 +46,8 @@ const useMenuAxios = () => {
         } catch (error) {
             console.error("Erro ao buscar dados:", error);
             setUnicDays([]);
+        } finally {
+            console.log('Dias unicos:', unicDays);
         }
     }
 

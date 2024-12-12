@@ -6,7 +6,7 @@ import CardAtual from "./components/cardAtual";
 import useMenuAxios from "./hooks/useMenuAxios";
 
 const Menu = () => {
-  const { contatos, contatoAtual, handleContatoClick } = useMenuAxios();
+  const { contatos, contatoAtual, handleContatoClick, unicDays } = useMenuAxios();
   
   return (
     <>
@@ -28,7 +28,7 @@ const Menu = () => {
             className="d-flex justify-content-center align-items-center"
             style={{ backgroundColor: '#070D44' }}
           >
-            <Calendario />
+            <Calendario days={unicDays} />
           </Col>
 
           {/* Lista de Contatos */}
