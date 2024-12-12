@@ -4,7 +4,7 @@ import { Historico, Resumo, Consulta, Nota, Agendamento } from "../hooks/typeMoc
 interface PainelConteudoProps {
   conteudo: string;
   historico: Historico;
-  agendamentoAtual: Agendamento | null;
+  agendamentoAtual: string | null;
   novaData: string;
   novaHora: string;
   onAgendar: () => void;
@@ -22,6 +22,28 @@ export const PainelConteudo = ({
   setNovaData,
   setNovaHora,
 }: PainelConteudoProps) => {
+  // Função utilitária para converter ISOString para uma data formatada
+  const formatDate = (isoString: string): Agendamento | null => {
+    try {
+      const date = new Date(isoString);
+      if (isNaN(date.getTime())) {
+        return null; // Retorna null se a data for inválida
+      }
+      return {
+        data: `${date.getDate().toString().padStart(2, "0")}/${
+          (date.getMonth() + 1).toString().padStart(2, "0")
+        }/${date.getFullYear()}`,
+        hora: `${date.getHours().toString().padStart(2, "0")}:${date.getMinutes()
+          .toString()
+          .padStart(2, "0")}`,
+      };
+    } catch {
+      return null;
+    }
+  };
+
+  const agendamentobonito = agendamentoAtual ? formatDate(agendamentoAtual) : null;
+
   switch (conteudo) {
     case "Agendar":
       return (
@@ -52,18 +74,24 @@ export const PainelConteudo = ({
       return (
         <>
           <p>
-            Próxima consulta: {agendamentoAtual?.data || "ainda não agendado"}{" "}
-            {agendamentoAtual?.hora ? `às ${agendamentoAtual.hora}` : ""}
-          </p>
-          <p>Última consulta: {historico.consultas[0]?.data || "N/A"}</p>
-          <p>Última nota: {historico.notas[0]?.conteudo || "N/A"}</p>
-          <p>Último resumo: {historico.resumo[0]?.conteudo || "N/A"}</p>
+  Próxima consulta: {agendamentobonito?.data || "ainda não agendado"}{" "}
+  {agendamentobonito?.hora ? `às ${agendamentobonito.hora}` : ""}
+</p>
+<p>
+  Última consulta: {historico.consultas?.[0]?.data || "N/A"}
+</p>
+<p>
+  Última nota: {historico.notas?.[0]?.conteudo || "N/A"}
+</p>
+<p>
+  Último resumo: {historico.resumo?.[0]?.conteudo || "N/A"}
+</p>
+
         </>
       );
 
-    // Casos para Resumos, Consultas e Notas seguem o mesmo padrão
     case "Resumos":
-      return historico.resumo.length > 0 ? (
+      return historico.resumo?.length > 0 ? (
         historico.resumo.map((item: Resumo, index: number) => (
           <div key={index}>
             <p>
@@ -78,40 +106,54 @@ export const PainelConteudo = ({
       ) : (
         <p>Nenhum resumo disponível.</p>
       );
-      
-      case "Consultas":
-        return historico.consultas.length > 0 ? (
-          historico.consultas.map((item: Consulta, index: number) => (
-            <div key={index}>
-              <p><strong>Data:</strong> {item.data}</p>
-              <p><strong>Resumo:</strong> {typeof item.resumo === "object" && item.resumo ? item.resumo.conteudo : item.resumo || "N/A"}</p>
-              <p><strong>Notas:</strong> {typeof item.notas === "object" && item.notas ? item.notas.conteudo : item.notas || "N/A"}</p>
-              <hr />
-            </div>
-          ))
-        ) : (
-          <p>Nenhuma consulta disponível.</p>
-        );
 
-        case "Notas":
-        return historico.notas.length > 0 ? (
-            historico.notas.map((item: Nota, index: number) => (
-            <div key={index}>
-                <p>
-                <strong>Data:</strong> {item.data}
-                </p>
-                <p>
-                <strong>Conteúdo:</strong> {item.conteudo}
-                </p>
-                <hr />
-            </div>
-            ))
-        ) : (
-            <p>Nenhuma nota disponível.</p>
-        );
+    case "Consultas":
+      return historico.consultas?.length > 0 ? (
+        historico.consultas.map((item: Consulta, index: number) => (
+          <div key={index}>
+            <p>
+              <strong>Data:</strong> {item.data}
+            </p>
+            <p>
+              <strong>Resumo:</strong>{" "}
+              {typeof item.resumo === "object" && item.resumo
+                ? item.resumo.conteudo
+                : item.resumo || "N/A"}
+            </p>
+            <p>
+              <strong>Notas:</strong>{" "}
+              {typeof item.notas === "object" && item.notas
+                ? item.notas.conteudo
+                : item.notas || "N/A"}
+            </p>
+            <hr />
+          </div>
+        ))
+      ) : (
+        <p>Nenhuma consulta disponível.</p>
+      );
 
-    // Repetição do mesmo padrão para Consultas e Notas
+    case "Notas":
+      return historico.notas?.length > 0 ? (
+        historico.notas.map((item: Nota, index: number) => (
+          <div key={index}>
+            <p>
+              <strong>Data:</strong> {item.data}
+            </p>
+            <p>
+              <strong>Conteúdo:</strong> {item.conteudo}
+            </p>
+            <hr />
+          </div>
+        ))
+      ) : (
+        <p>Nenhuma nota disponível.</p>
+      );
+
     default:
       return <p>Selecione uma seção para visualizar os dados.</p>;
   }
 };
+
+
+export default PainelConteudo;

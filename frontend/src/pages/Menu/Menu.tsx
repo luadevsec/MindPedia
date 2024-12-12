@@ -1,4 +1,3 @@
-// components/Menu.tsx
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Header from "./components/header";
 import ContatoCard from "./components/contatoCard";
@@ -7,28 +6,38 @@ import CardAtual from "./components/cardAtual";
 import useMenuAxios from "./hooks/useMenuAxios";
 
 const Menu = () => {
-  // Usando o hook personalizado
   const { contatos, contatoAtual, handleContatoClick } = useMenuAxios();
   
   return (
     <>
       <Header />
-      <Container fluid style={{ height: "87vh" }}>
+      <Container fluid style={{ height: "87vh", backgroundColor: '#070D44' }}>
         <Row className="h-100">
-          {/* Coluna para o Card */}
-          <Col md={3} className="d-flex justify-content-center align-items-center bg-danger-subtle">
+          {/* Card Atual */}
+          <Col
+            md={3}
+            className="d-flex justify-content-center align-items-center"
+            style={{ backgroundColor: '#070D44' }}
+          >
             <CardAtual contato={contatoAtual} />
           </Col>
 
-          {/* Coluna para o Calendário */}
-          <Col md={6} className="d-flex justify-content-center align-items-center bg-black">
+          {/* Calendário */}
+          <Col
+            md={6}
+            className="d-flex justify-content-center align-items-center"
+            style={{ backgroundColor: '#070D44' }}
+          >
             <Calendario />
           </Col>
 
-          {/* Coluna para os Contatos */}
-          <Col md={3} className="justify-content-center align-items-center bg-info">
+          {/* Lista de Contatos */}
+          <Col
+            md={3}
+            className="justify-content-center align-items-center"
+            style={{ backgroundColor: '  #024CAA' }}
+          >
             <div style={{ height: "83vh", overflowY: "auto" }}>
-              {/* Mapeia os contatos para permitir seleção */}
               {Array.isArray(contatos) ? (
                 contatos.map((contato) => (
                   <ContatoCard
@@ -38,10 +47,18 @@ const Menu = () => {
                   />
                 ))
               ) : (
-                <p>Nenhum contato cadastrado</p>
+                <p style={{ color: '#AFEFFD' }}>Nenhum contato cadastrado</p>
               )}
             </div>
-            <Button href="/cadastro" variant="primary" className="w-100">
+            <Button
+              href="/cadastro"
+              style={{
+                backgroundColor: '#EC7105',
+                borderColor: ' #AFEFFD',
+                color: '#070D44',
+              }}
+              className="w-100"
+            >
               Cadastrar
             </Button>
           </Col>

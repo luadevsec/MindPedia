@@ -2,15 +2,16 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaUser, FaEnvelope, FaPhone, FaBriefcase, FaGlobe, FaMapMarkerAlt, FaCalendarAlt, FaHeart } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
 import Painel from './painel';
-import { Historico, Paciente, Agendamento } from '../hooks/typeMock';
+import { Historico, Paciente } from '../hooks/typeMock';
 
 interface MainProps {
   paciente: Paciente;
   historico: Historico;
-  agendamento: Agendamento | null;
+  agendamento: string | null;
+  id: string;
 }
 
-const Main = ({ paciente, historico, agendamento }: MainProps) => {
+const Main = ({ paciente, historico, agendamento, id }: MainProps) => {
   const sobre = [
     { label: 'Nome', value: paciente.nome, icon: <FaUser /> },
     { label: 'Gênero', value: paciente.genero, icon: <AiOutlineHeart /> },
@@ -84,7 +85,7 @@ const Main = ({ paciente, historico, agendamento }: MainProps) => {
 
         {/* Terceira coluna */}
         <Col md={6}>
-          <Painel historico={historico} agendamento={agendamento} />
+        <Painel historico={historico} agendamento={agendamento} id={id}/>
         </Col>
       </Row>
     </Container>

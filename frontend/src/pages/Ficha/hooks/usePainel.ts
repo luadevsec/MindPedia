@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { Historico, Agendamento } from "../hooks/typeMock";
-import useAgendarService from "../services/useAgendarService";
 import useDate from "../../../utils/useDate";
-import { useParams } from "react-router-dom";
+import axios from "axios";
 
-const usePainel = (historico: Historico, agendamento: Agendamento | null) => {
+const usePainel = (agendamento: string | null, id : string) => {
   const [conteudo, setConteudo] = useState<string>("Geral");
   const [novaData, setNovaData] = useState<string>("");
   const [novaHora, setNovaHora] = useState<string>("");
-  const { id } = useParams<{ id: string }>();
-  const [agendamentoAtual, setAgendamentoAtual] = useState<Agendamento | null>(agendamento);
-  const { error: errorFetch , sendData } = useAgendarService({ agendamento: "", id : id });
   const { convertCustomToISO } = useDate();
+  const [agendamentoAtual, setAgendamentoAtual] = useState<string | null>(agendamento);
 
   const handleNavClick = (link: string) => {
     setConteudo(link);
@@ -20,24 +16,20 @@ const usePainel = (historico: Historico, agendamento: Agendamento | null) => {
   const handleAgendar = async () => {
     if (novaData && novaHora) {
       const novoAgendamentoISO = convertCustomToISO(novaData, novaHora).date.raw;
-  
-      try {
-        if (id)
-        await sendData({
-          config: {
-            endpoint: "/example/agendar",
-            method: "POST",
-          },
-          req: { agendamento: novoAgendamentoISO, id: id },
+
+      try{
+        await axios.post(`/example/agendar`, {
+          id: id,
+          agendamento: novoAgendamentoISO,
         });
-        
-        if (errorFetch) console.error(errorFetch);
-        setAgendamentoAtual({ data: novaData, hora: novaHora });
+        setAgendamentoAtual(novoAgendamentoISO);
         alert(`Consulta agendada para ${novaData} às ${novaHora}`);
         setConteudo("Geral");
       } catch (error) {
-        if (errorFetch) console.error(errorFetch);
         console.error(error);
+      
+
+     
       } finally {
         setNovaData("");
         setNovaHora("");

@@ -1,36 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Historico, Paciente } from "../../Ficha/hooks/typeMock";
-
-
-interface PacienteInterno {
-    id: string;
-    nome: string;
-    genero: string;
-    sexualidade: string;
-    etnia: string;
-    estadoCivil: string;
-    dataNascimento: string;
-    naturalidade: string;
-    nacionalidade: string;
-    idFoto: string;
-    profissao: string;
-    email: string;
-    telefone: string;
-    agendamento : string | null;
-    contatoEmergencia: {
-        nome: string;
-        parentesco: string;
-        telefone: string;
-    };
-}
+import { useState, useEffect } from "react";
+import { Paciente } from "../../Ficha/hooks/typeMock";
 
 const useFichaTesta = () => {
     
-    const [paciente, setPaciente] = useState<PacienteInterno | null>(null);
-    const [id] = useState<string>(useParams<{ id: string }>().id || "Mock"); // Estado para armazenar o ID
-    const [historico, setHistorico] = useState<Historico>({ resumo: [], consultas: [], notas: [] });
+    const [paciente, setPaciente] = useState<Paciente | null>(null);
+    const [id, setId] = useState<string>("");
+    const [historico, setHistorico] = useState<string>("");
     const [agendamento, setAgendamento] = useState<string>("");
 
     const handleMock = () => {
@@ -44,7 +20,7 @@ const useFichaTesta = () => {
             dataNascimento: "01/01/2000",
             naturalidade: "Brasileiro",
             nacionalidade: "Brasil",
-            idFoto: "https://via.placeholder.com/150",
+            foto: "https://via.placeholder.com/150",
             profissao: "Desenvolvedor",
             email: "askk@meme.com",
             telefone: "123456789",
@@ -80,15 +56,14 @@ const useFichaTesta = () => {
 
 
 useEffect(() => {
-  document.title = "Ficha do Paciente";
-    handleFetch(id);
-}, [id]);
+    handleFetch("87d51803-2f69-4067-9ae3-234e45f46d0b");
+}, []);
 
 return {
     paciente,
     handleMock,
     handleFetch,
-    id,
+    id, setId,
     agendamento, setAgendamento, 
     historico
 };

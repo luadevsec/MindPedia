@@ -9,7 +9,7 @@ type PacienteCadastral = {
     dataNascimento: string;
     naturalidade: string | null;
     nacionalidade: string | null;
-    foto: string;
+    idFoto: string;
     profissao: string | null;
     email: string;
     telefone: string;
