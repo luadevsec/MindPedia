@@ -18,7 +18,7 @@ const usePainel = (agendamento: string | null, id : string) => {
       const novoAgendamentoISO = convertCustomToISO(novaData, novaHora).date.raw;
 
       try{
-        await axios.post(`/example/agendar`, {
+        await axios.post(`http://localhost:6990/example/agendar`, {
           id: id,
           agendamento: novoAgendamentoISO,
         });
