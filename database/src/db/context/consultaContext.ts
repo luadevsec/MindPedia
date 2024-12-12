@@ -6,7 +6,9 @@ class ConsultaContext {
     private static repoConsulta: Repository<Consulta> =  AppDataSource.getRepository(Consulta);
 
     static createConsulta(dataConsulta: Consulta){
+        console.log(dataConsulta);
         const consulta = this.repoConsulta.create(dataConsulta);
+        console.log(consulta);
         return this.repoConsulta.save(consulta);
     }
 

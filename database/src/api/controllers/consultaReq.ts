@@ -4,7 +4,14 @@ import e, {Request, Response} from "express";
 const consultaReq = {
     createConsulta: async (req: Request, res: Response) => {
         try{
-            const consulta = await ConsultaContext.createConsulta(req.body.consulta);
+            const dataConsulta = req.body.consulta;
+            const data = dataConsulta.data.split('T')[0] + ' ' + dataConsulta.data.split('T')[1].split('.')[0];
+            dataConsulta.data = data;
+            dataConsulta.idPaciente = req.body.consulta.id_paciente;
+            delete dataConsulta.id_paciente;
+            
+            const consulta = await ConsultaContext.createConsulta(dataConsulta);
+            
             return res.status(201).json(consulta);
         }
         catch (error) {
