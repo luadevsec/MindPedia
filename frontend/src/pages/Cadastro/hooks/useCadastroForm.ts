@@ -14,7 +14,7 @@ export const useCadastroForm = () => {
       dataNascimento: "",
       naturalidade: "",
       nacionalidade: "",
-      foto: "",
+      idFoto: "",
       profissao: "",
       email: "",
       telefone: "",
@@ -29,8 +29,8 @@ export const useCadastroForm = () => {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      if (formData.foto === "") {
-        formData.foto = (Math.floor(Math.random() * 11) + 1).toString();
+      if (formData.idFoto === "") {
+        formData.idFoto = (Math.floor(Math.random() * 11) + 1).toString();
       }
       console.log(formData);
       try {

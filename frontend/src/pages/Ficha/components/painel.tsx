@@ -2,14 +2,15 @@ import { Container } from "react-bootstrap";
 import { PainelNavbar } from "./navbarPainel";
 import { PainelConteudo } from "./painelConteudo";
 import usePainel from "../hooks/usePainel";
-import { Historico, Agendamento } from "../hooks/typeMock";
+import { Historico } from "../hooks/typeMock";
 
 interface PainelProps {
+  id: string;
+  agendamento: string | null;
   historico: Historico;
-  agendamento: Agendamento | null;
 }
 
-const Painel = ({ historico, agendamento }: PainelProps) => {
+const Painel = ({ id, agendamento, historico }: PainelProps) => {
   const {
     conteudo,
     novaData,
@@ -19,7 +20,7 @@ const Painel = ({ historico, agendamento }: PainelProps) => {
     handleAgendar,
     setNovaData,
     setNovaHora,
-  } = usePainel(historico, agendamento);
+  } = usePainel(agendamento, id);
 
   return (
     <Container fluid>

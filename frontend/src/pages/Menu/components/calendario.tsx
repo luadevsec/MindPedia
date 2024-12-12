@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
-// Função para calcular os dias do mês com base no ano e mês
 const getDaysInMonth = (year, month) => {
   const date = new Date(year, month, 1);
   const days = [];
@@ -16,19 +15,15 @@ const Calendario = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
 
-  // Calcula os dias do mês atual
   const daysInMonth = getDaysInMonth(
     currentDate.getFullYear(),
     currentDate.getMonth()
   );
 
-  // Calcula os dias do mês anterior
   const prevMonthDays = currentDate.getMonth() === 0
-  ? getDaysInMonth(currentDate.getFullYear() - 1, 11)
-  : getDaysInMonth(currentDate.getFullYear(), currentDate.getMonth() - 1);
+    ? getDaysInMonth(currentDate.getFullYear() - 1, 11)
+    : getDaysInMonth(currentDate.getFullYear(), currentDate.getMonth() - 1);
 
-
-  // Navegar entre os meses
   const handlePrevMonth = () => {
     const newDate = new Date(
       currentDate.getFullYear(),
@@ -36,7 +31,7 @@ const Calendario = () => {
       1
     );
     setCurrentDate(newDate);
-    setSelectedDay(null); // Resetar o dia selecionado
+    setSelectedDay(null);
   };
 
   const handleNextMonth = () => {
@@ -46,10 +41,9 @@ const Calendario = () => {
       1
     );
     setCurrentDate(newDate);
-    setSelectedDay(null); // Resetar o dia selecionado
+    setSelectedDay(null);
   };
 
-  // Manter a semana alinhada
   const firstDayOfWeek = daysInMonth[0].getDay();
   const lastDayOfWeek = daysInMonth[daysInMonth.length - 1].getDay();
 
@@ -62,18 +56,19 @@ const Calendario = () => {
     { length: 6 - lastDayOfWeek },
     (_, i) => new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, i + 1)
   );
-  
+
   return (
     <div
       style={{
         maxWidth: "500px",
         margin: "30px auto",
         padding: "20px",
-        backgroundColor: "#f9f9f9",
-        border: "1px solid #ddd",
+        backgroundColor: "#070D44",
+        border: "1px solid #024CAA",
         borderRadius: "8px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
         textAlign: "center",
+        color: "#AFEFFD",
       }}
     >
       <div
@@ -86,9 +81,9 @@ const Calendario = () => {
       >
         <Button
           style={{
-            backgroundColor: "#024CAA",
+            backgroundColor: "#EC7105",
             border: "none",
-            color: "#fff",
+            color: "#AFEFFD",
             width: "40px",
             height: "40px",
             borderRadius: "50%",
@@ -110,9 +105,9 @@ const Calendario = () => {
         </span>
         <Button
           style={{
-            backgroundColor: "#024CAA",
+            backgroundColor: "#EC7105",
             border: "none",
-            color: "#fff",
+            color: "#AFEFFD",
             width: "40px",
             height: "40px",
             borderRadius: "50%",
@@ -133,29 +128,26 @@ const Calendario = () => {
         ))}
       </Row>
       <Row>
-        {/* Dias vazios antes do primeiro dia */}
         {emptyDaysBefore.map((day, index) => (
-  <Col key={`prev-${index}`} style={{ textAlign: "center" }}>
-    <div
-      style={{
-        padding: "10px",
-        margin: "5px auto",
-        backgroundColor: "#eee",
-        color: "#888",
-        border: "1px solid #ccc",
-        borderRadius: "50%",
-        width: "40px",
-        height: "40px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {day instanceof Date ? day.getDate() : ""}
-    </div>
-  </Col>
-))}
-        {/* Dias do mês atual */}
+          <Col key={`prev-${index}`} style={{ textAlign: "center" }}>
+            <div
+              style={{
+                padding: "10px",
+                margin: "5px auto",
+                backgroundColor: "#070D44",
+                color: "#FFEBCD",
+                borderRadius: "50%",
+                width: "40px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {day instanceof Date ? day.getDate() : ""}
+            </div>
+          </Col>
+        ))}
         {daysInMonth.map((day) => (
           <Col key={day.getDate()} style={{ textAlign: "center" }}>
             <div
@@ -163,9 +155,8 @@ const Calendario = () => {
                 padding: "10px",
                 margin: "5px auto",
                 backgroundColor:
-                  selectedDay === day.getDate() ? "#024CAA" : "#fff",
-                color: selectedDay === day.getDate() ? "#fff" : "#333",
-                border: "1px solid #ccc",
+                  selectedDay === day.getDate() ? "#EC7105" : "#024CAA",
+                color: selectedDay === day.getDate() ? "#070D44" : "#AFEFFD",
                 borderRadius: "50%",
                 cursor: "pointer",
                 width: "40px",
@@ -180,16 +171,14 @@ const Calendario = () => {
             </div>
           </Col>
         ))}
-        {/* Dias do próximo mês */}
         {nextMonthDays.map((day, index) => (
           <Col key={`next-${index}`} style={{ textAlign: "center" }}>
             <div
               style={{
                 padding: "10px",
                 margin: "5px auto",
-                backgroundColor: "#eee",
-                color: "#888",
-                border: "1px solid #ccc",
+                backgroundColor: "#070D44",
+                color: "#FFEBCD",
                 borderRadius: "50%",
                 width: "40px",
                 height: "40px",
@@ -208,9 +197,9 @@ const Calendario = () => {
           style={{
             marginTop: "20px",
             padding: "10px",
-            backgroundColor: "#e3f2fd",
+            backgroundColor: "#024CAA",
+            color: "#AFEFFD",
             borderRadius: "6px",
-            border: "1px solid #ddd",
           }}
         >
           <strong>Dia {selectedDay} selecionado!</strong>
