@@ -1,15 +1,12 @@
 import { Router } from "express";
-import AgendarController from "../controllers/exampleReq";
+import exampleController from "../controllers/exampleReq";
 import Ficha from "../controllers/exampleReq";
 
 const example = Router();
 
-example.post("/agendar", AgendarController.agendar);
-example.post("/ficha", Ficha.ficha);
-example.get("/fila",)/*recebe dia, mes e ano e retorna objeto{ 
-                                         nConsultas: number,
-                                         fila:{
-                                            id: string, 
-                                            nome: string, 
-                                            hora: string}[]}*/
+example.post("/agendar", exampleController.agendar);
+example.post("/ficha", exampleController.ficha);
+example.get("/fila", exampleController.fila);
+example.get("/dia", exampleController.agendadamentosDia);
+
 export default example;
