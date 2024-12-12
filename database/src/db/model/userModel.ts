@@ -11,7 +11,7 @@ export class User {
   @Column({nullable: false})
   nome!: string;
   
-  @Column({nullable: false})
+  @Column({nullable: true})
   genero!: string;
   
   @Column({nullable: true})
@@ -20,11 +20,11 @@ export class User {
   @Column({nullable: true})
   etnia!: string;
   
-  @Column({nullable: false})
+  @Column({nullable: true})
   estadoCivil!: string;
   
-  @Column({nullable: false})
-  dataNascimento!: Date;
+  @Column({nullable: true})
+  dataNascimento!: string;
 
   @Column({nullable: true})
   naturalidade!: string;
@@ -41,7 +41,7 @@ export class User {
   @Column({nullable: false})
   email!: string;
   
-  @Column({nullable: false})
+  @Column({nullable: true})
   telefone!: string;
 
   @Column({nullable: true})

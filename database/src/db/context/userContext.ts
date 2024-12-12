@@ -30,7 +30,13 @@ class UserContext {
     }
     static getAllUsers(){
         return this.repoUser.find({
-            select: ["id", "nome", "idFoto", "agendamento"]
+            select: ["id", "nome", "idFoto", "agendamento"],
+            order: {
+                agendamento: {
+                    direction: "ASC",
+                    nulls: "LAST"
+                }
+            }
         });
     }
 
@@ -45,6 +51,12 @@ class UserContext {
         return this.repoUser.update(id, {agendamento});
     }
 
+    static agendamentosDia(dia: string){
+        return this.repoUser.find({
+            select: ["id", "nome", "agendamento"],
+            where: {agendamento: dia}
+        });
+    }
 
     static async getUniqueAgendamentoDays(): Promise<string[]> {
         const users = await this.repoUser.find({

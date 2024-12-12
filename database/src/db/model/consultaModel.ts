@@ -16,7 +16,10 @@ export class Consulta {
     @Column({ type: 'text', nullable: true })
     nota!: string | null;
 
-    @ManyToOne(() => User, user => user.consulta)
+    @Column({ name: "id_paciente" })
+    idPaciente!: string; 
+
+    @ManyToOne(() => User, {nullable: false})
     @JoinColumn({ name: "id_paciente" })
     paciente!: User;
 }

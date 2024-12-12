@@ -4,9 +4,12 @@ import e, {Request, Response} from "express";
 const consultaReq = {
     createConsulta: async (req: Request, res: Response) => {
         try{
-            const consulta = await ConsultaContext.createConsulta(req.body.consulta);
-            console.log(consulta);
-            console.log(req.body.consulta);
+            const dataConsulta = req.body.consulta;
+            dataConsulta.idPaciente = req.body.consulta.id_paciente;
+            delete dataConsulta.id_paciente;
+            
+            const consulta = await ConsultaContext.createConsulta(dataConsulta);
+            
             return res.status(201).json(consulta);
         }
         catch (error) {
