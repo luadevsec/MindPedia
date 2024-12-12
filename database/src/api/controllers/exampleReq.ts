@@ -64,6 +64,28 @@ const exampleController = {
             return res.status(400).json({message: "Erro ao buscar fila!"});
         }
     
+    },
+    agendadamentosDia: async (req: Request, res: Response) => {
+        const dia = req.params.dia;
+        console.log(dia)
+
+        try {
+            const agendamentos = await UserContext.agendamentosDia(dia);
+
+            const consultas = agendamentos.map(user => ({
+                today: agendamentos.length,
+                paciente: {
+                    id: user.id,
+                    nome: user.nome,
+                    hora: user.agendamento.split('T')[1].split(':').slice(0, 2).join(':')
+                }
+            }));
+            return res.status(200).json(consultas);
+            
+        }  catch (error) {  
+            console.log(error);
+            return res.status(400).json({message: "Erro ao buscar agendamentos!"});
+        }
     }
 
 }
