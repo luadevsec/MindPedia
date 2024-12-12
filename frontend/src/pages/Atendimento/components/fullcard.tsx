@@ -1,48 +1,48 @@
-import { Col, Container, Row } from 'react-bootstrap';
-import { Paciente } from '../../../contexts/paciente';
+import { Col, Container, Row } from "react-bootstrap";
+import { Paciente } from "../../../contexts/paciente";
 
-interface cardProps {
-    paciente: Paciente;
+interface CardProps {
+  paciente: Paciente;
 }
 
-const FullCard = ({ paciente }: cardProps) => {
-    const sobre = ['nome', 'genero', 'etnia', 'estadoCivil', 'dataNascimento', 'email', 'telefone'] as const;
-    const mais = ['profissao', 'hobby', 'sexualidade', 'nacionalidade', 'rg', 'cpf', 'naturalidade'] as const;
-    const contato = ['nome', 'parentesco', 'telefone'] as const;
+const FullCard = ({ paciente }: CardProps) => {
+  const mais = ["profissao", "sexualidade", "nacionalidade", "naturalidade"] as const;
+  const contato = ["nome", "parentesco", "telefone"] as const;
 
-    return (
-        <Container fluid className="p-4">
-            <Row className="gx-3 gy-4">
-                {/* Primeira coluna (altura 3) */}
-                <Col md={3} className="bg-info p-3" style={{ minHeight: '30vh' }}>
-                    <h1>Sobre mim</h1>
-                    {sobre.map((item) => (
-                        <p key={item}>
-                            {item}: {paciente[item]}
-                        </p>
-                    ))}
-                </Col>
-                {/* Segunda coluna (altura 3) */}
-                <Col md={3} className="bg-info p-3" style={{ minHeight: '30vh' }}>
-                    <h1>Mais informações</h1>
-                    {mais.map((item) => (
-                        <p key={item}>
-                            {item}: {paciente[item]}
-                        </p>
-                    ))}
-                </Col>
-                {/* Terceira coluna (altura 3) */}
-                <Col md={3} className="bg-info p-3" style={{ minHeight: '30vh' }}>
-                    <h1>Contato de emergência</h1>
-                    {contato.map((item) => (
-                        <p key={item}>
-                            {item}: {paciente.contatoEmergencia[item]}
-                        </p>
-                    ))}
-                </Col>
-            </Row>
-        </Container>
-    );
-}
+  return (
+    <Container
+      fluid
+      className="p-4"
+      style={{
+        backgroundColor: "#070D44", // Fundo da paleta
+        color: "#AFEFFD", // Texto
+        borderRadius: "8px", // Bordas arredondadas
+      }}
+    >
+      <Row className="gx-4 gy-4">
+        {/* Coluna: Mais informações */}
+        <Col md={6} className="p-3" style={{ backgroundColor: "#024CAA", borderRadius: "8px" }}>
+          <h2 className="text-white">Mais Informações</h2>
+          {mais.map((item) => (
+            <p key={item} style={{ color: "#AFEFFD" }}>
+              <strong>{item.charAt(0).toUpperCase() + item.slice(1)}:</strong> {paciente[item]}
+            </p>
+          ))}
+        </Col>
+
+        {/* Coluna: Contato de emergência */}
+        <Col md={6} className="p-3" style={{ backgroundColor: "#EC7105", borderRadius: "8px" }}>
+          <h2 className="text-white">Contato de Emergência</h2>
+          {contato.map((item) => (
+            <p key={item} style={{ color: "#070D44" }}>
+              <strong>{item.charAt(0).toUpperCase() + item.slice(1)}:</strong>{" "}
+              {paciente.contatoEmergencia[item]}
+            </p>
+          ))}
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default FullCard;

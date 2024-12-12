@@ -1,5 +1,5 @@
 import { Form, Button } from "react-bootstrap";
-import { Historico, Resumo, Consulta, Nota, Agendamento } from "../hooks/typeMock";
+import { Historico, Consulta, Agendamento } from "../hooks/typeMock";
 
 interface PainelConteudoProps {
   conteudo: string;
@@ -74,31 +74,28 @@ export const PainelConteudo = ({
       return (
         <>
           <p>
-  Próxima consulta: {agendamentobonito?.data || "ainda não agendado"}{" "}
-  {agendamentobonito?.hora ? `às ${agendamentobonito.hora}` : ""}
-</p>
-<p>
-  Última consulta: {historico.consultas?.[0]?.data || "N/A"}
-</p>
-<p>
-  Última nota: {historico.notas?.[0]?.conteudo || "N/A"}
-</p>
-<p>
-  Último resumo: {historico.resumo?.[0]?.conteudo || "N/A"}
-</p>
+            Próxima consulta: {agendamentobonito?.data || "ainda não agendado"}{" "}
+            {agendamentobonito?.hora ? `às ${agendamentobonito.hora}` : ""}
+          </p>
+          <p>
+            Última consulta: {historico.consultas?.[0]?.data || "N/A"}
+          </p>
+          <p>
+            Última nota: {historico.notas?.[0] || "N/A"}
+          </p>
+          <p>
+            Último resumo: {historico.resumos?.[0] || "N/A"}
+          </p>
 
         </>
       );
 
     case "Resumos":
-      return historico.resumo?.length > 0 ? (
-        historico.resumo.map((item: Resumo, index: number) => (
+      return historico.resumos?.length > 0 ? (
+        historico.resumos.map((item: string, index: number) => (
           <div key={index}>
             <p>
-              <strong>Data:</strong> {item.data}
-            </p>
-            <p>
-              <strong>Conteúdo:</strong> {item.conteudo}
+              {item}
             </p>
             <hr />
           </div>
@@ -135,13 +132,10 @@ export const PainelConteudo = ({
 
     case "Notas":
       return historico.notas?.length > 0 ? (
-        historico.notas.map((item: Nota, index: number) => (
+        historico.notas.map((item: string, index: number) => (
           <div key={index}>
             <p>
-              <strong>Data:</strong> {item.data}
-            </p>
-            <p>
-              <strong>Conteúdo:</strong> {item.conteudo}
+              {item}
             </p>
             <hr />
           </div>

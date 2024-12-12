@@ -23,15 +23,16 @@ const Painel = ({ id, agendamento, historico }: PainelProps) => {
   } = usePainel(agendamento, id);
 
   return (
-    <Container fluid>
+    <Container fluid >
       <PainelNavbar conteudo={conteudo} onNavClick={handleNavClick} />
       <Container
         className="mt-5"
         style={{
-          maxHeight: "400px",
+          maxHeight: "70vh",
           overflowY: "auto",
           border: "1px solid #ddd",
           padding: "10px",
+
         }}
       >
         <h1>{conteudo}</h1>
