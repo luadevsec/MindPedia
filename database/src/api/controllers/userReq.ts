@@ -78,7 +78,6 @@ const userReq = {
     getUniqueAgendamentoDays: async (req: Request, res: Response) => {
         try {
             const dias = await UserContext.getUniqueAgendamentoDays();
-            console.log(dias);
             return res.json({ dias });
         } catch (error) {
             console.error(error);

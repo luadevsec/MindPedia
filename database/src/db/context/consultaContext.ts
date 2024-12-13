@@ -34,7 +34,7 @@ class ConsultaContext {
                 paciente: { id: id },
                 resumo: Not(IsNull()),
             },
-            select: ["resumo"]
+            select: ["data", "resumo"]
         });
     }
 }

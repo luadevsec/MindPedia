@@ -21,7 +21,10 @@ const exampleController = {
             const consultas = await ConsultaContext.getConsultaById(id);
             
             const historico = {
-                resumos: resumos.map(resumo => resumo.resumo),
+                resumos: resumos.map(resumo => ({
+                    data: resumo.data,
+                    conteudo: resumo.resumo
+                })),
                 notas: notas.map(nota => nota.nota),
                 consultas: consultas.map(consulta => ({
                     data: consulta.data,
@@ -29,7 +32,6 @@ const exampleController = {
                     notas: consulta.nota || null,
                 })),
             };
-
             const ficha = {
                 paciente: user,
                 historico: historico
