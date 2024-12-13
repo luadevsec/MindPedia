@@ -1,4 +1,4 @@
-import { Repository, FindOperator, IsNull, Not } from "typeorm";
+import { Repository, FindOperator, IsNull, Not, And} from "typeorm";
 import { Consulta } from "../model/consultaModel";
 import AppDataSource from "../../dataSource";
 
@@ -34,10 +34,10 @@ class ConsultaContext {
         return this.repoConsulta.find({
             where: {
                 paciente: { id: id },
-                resumo: Not(IsNull()),
+                resumo: And(Not(IsNull()), Not("")),
             },
             select: ["data", "resumo"],
-            order: {"data": "DESC"}
+            order: {data: "DESC"}
         });
     }
 }
