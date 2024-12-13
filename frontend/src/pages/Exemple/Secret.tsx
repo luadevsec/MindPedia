@@ -4,6 +4,7 @@ import UsernameVerification from './components/fetchTest';
 import useDate from '../../utils/useDate';
 import Menu from './components/menu';
 import Ficha from './components/ficha';
+import Dias from './components/dias';
 
 const Example = () => {
   const { getCurrentDate, convertDate, visualDate } = useDate();
@@ -30,6 +31,7 @@ const Secret: React.FC = () => (
     <Example />
     <Ficha />
     <Menu />
+    <Dias />
   </div>
 );
 

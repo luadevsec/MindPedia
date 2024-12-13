@@ -1,4 +1,4 @@
-import { In, IsNull, Not, Repository } from "typeorm";
+import { Between, In, IsNull, Not, Repository } from "typeorm";
 import { User } from "../model/userModel";
 import AppDataSource from "../../dataSource";
 
@@ -50,13 +50,29 @@ class UserContext {
     static updateAgendamento(id: string, agendamento: string){
         return this.repoUser.update(id, {agendamento});
     }
-
-    static agendamentosDia(dia: string){
+    static async agendamentosDia(dia: string) {
+        // Converte o dia para início e fim do dia em formato ISO
+        const inicioDoDia = new Date(dia);
+        inicioDoDia.setUTCHours(0, 0, 0, 0);
+    
+        const fimDoDia = new Date(dia);
+        fimDoDia.setUTCHours(23, 59, 59, 999);
+    
+        // Busca registros no intervalo do dia
         return this.repoUser.find({
             select: ["id", "nome", "agendamento"],
-            where: {agendamento: dia}
+            where: {
+                agendamento: Between(inicioDoDia.toISOString(), fimDoDia.toISOString()),
+            },
         });
     }
+    
+    static async getAllAgendamentos() {
+        return this.repoUser.find({
+            select: ["id", "nome", "agendamento"],
+        });
+    }
+    
 
     static async getUniqueAgendamentoDays(): Promise<string[]> {
         const users = await this.repoUser.find({

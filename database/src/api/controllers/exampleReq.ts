@@ -64,27 +64,43 @@ const exampleController = {
     
     },
     agendadamentosDia: async (req: Request, res: Response) => {
-        const dia = req.params.dia;
-        console.log(dia)
-
+        const dia = req.body.dia; // Dia no formato "YYYY-MM-DD"
+        console.log(dia);
+    
         try {
-            const agendamentos = await UserContext.agendamentosDia(dia);
-
-            const consultas = agendamentos.map(user => ({
-                today: agendamentos.length,
-                paciente: {
-                    id: user.id,
-                    nome: user.nome,
-                    hora: user.agendamento.split('T')[1].split(':').slice(0, 2).join(':')
-                }
+            // Busca todos os agendamentos do banco
+            const todosAgendamentos = await UserContext.getAllAgendamentos();
+    
+            // Filtra os agendamentos do dia solicitado
+            const agendamentosDoDia = todosAgendamentos.filter(user => 
+                user.agendamento.startsWith(dia)
+            );
+    
+            // Agrupa os agendamentos por dia
+            const agendamentosAgrupados = [...new Set(todosAgendamentos.map(user => 
+                user.agendamento.split('T')[0]
+            ))].map(d => ({
+                dia: d,
+                pacientes: todosAgendamentos
+                    .filter(user => user.agendamento.startsWith(d))
+                    .map(user => ({
+                        id: user.id,
+                        nome: user.nome,
+                        hora: user.agendamento.split('T')[1].split(':').slice(0, 2).join(':'),
+                    })),
             }));
-            return res.status(200).json(consultas);
-            
-        }  catch (error) {  
+    
+            // Retorna o total de consultas para o dia e os agendamentos agrupados
+            return res.status(200).json({
+                today: agendamentosDoDia.length,
+                agendamentos: agendamentosAgrupados,
+            });
+        } catch (error) {
             console.log(error);
-            return res.status(400).json({message: "Erro ao buscar agendamentos!"});
+            return res.status(400).json({ message: "Erro ao buscar agendamentos!" });
         }
-    }
+    },    
+    
 
 }
 export default exampleController;

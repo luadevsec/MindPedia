@@ -7,6 +7,6 @@ const example = Router();
 example.post("/agendar", exampleController.agendar);
 example.post("/ficha", exampleController.ficha);
 example.get("/fila", exampleController.fila);
-example.get("/dia", exampleController.agendadamentosDia);
+example.post("/dia", exampleController.agendadamentosDia);
 
 export default example;

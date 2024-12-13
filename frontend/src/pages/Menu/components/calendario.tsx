@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import useDia from "../hooks/useDia";
 
 const getDaysInMonth = (year, month) => {
   const date = new Date(year, month, 1);
@@ -14,9 +15,11 @@ const getDaysInMonth = (year, month) => {
 interface CalendarioProps {
   days: string[];
 }
+
 const Calendario = ({ days }: CalendarioProps) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const { agendamentos } = useDia();
 
   const daysInMonth = getDaysInMonth(
     currentDate.getFullYear(),
@@ -60,16 +63,21 @@ const Calendario = ({ days }: CalendarioProps) => {
     (_, i) => new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, i + 1)
   );
 
-  // Função para verificar se o dia está no array "days"
   const isSpecialDay = (date: Date) => {
-    console.log(date);
-    const dateString = date.toISOString().split('T')[0]; // Formato 'aaaa-mm-dd'
-    console.log(dateString);
+    const dateString = date.toISOString().split('T')[0];
     return days.includes(dateString);
   };
 
-  console.log(isSpecialDay(daysInMonth[12]));
-  console.log(daysInMonth);
+  const handleDayClick = (day: Date) => {
+    setSelectedDay(day.toISOString().split('T')[0]); // Armazena o dia no formato 'YYYY-MM-DD'
+  };
+
+  // Busca os dados do dia selecionado
+  const selectedDayData = agendamentos.agendamentos.find(
+    (agendamento) => agendamento.dia === selectedDay
+  );
+
+  const totalPacientes = selectedDayData?.pacientes.length || 0;
 
   return (
     <div
@@ -169,17 +177,12 @@ const Calendario = ({ days }: CalendarioProps) => {
                 padding: "10px",
                 margin: "5px auto",
                 backgroundColor:
-                  selectedDay === day.getDate()
+                  selectedDay === day.toISOString().split("T")[0]
                     ? "#EC7105"
                     : isSpecialDay(day)
-                    ? "#FF5733" // Cor para os dias especiais
+                    ? "#FF5733"
                     : "#024CAA",
-                color:
-                  selectedDay === day.getDate()
-                    ? "#070D44"
-                    : isSpecialDay(day)
-                    ? "#070D44"
-                    : "#AFEFFD",
+                color: "#AFEFFD",
                 borderRadius: "50%",
                 cursor: "pointer",
                 width: "40px",
@@ -188,7 +191,7 @@ const Calendario = ({ days }: CalendarioProps) => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onClick={() => setSelectedDay(day.getDate())}
+              onClick={() => handleDayClick(day)}
             >
               {day.getDate()}
             </div>
@@ -225,7 +228,14 @@ const Calendario = ({ days }: CalendarioProps) => {
             borderRadius: "6px",
           }}
         >
-          <strong>Dia {selectedDay} selecionado!</strong>
+          <p>Tem {totalPacientes} consulta(s) para este dia.</p>
+          <ul>
+            {selectedDayData?.pacientes.map((paciente) => (
+              <li key={paciente.id}>
+                {paciente.hora} - {paciente.nome}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
