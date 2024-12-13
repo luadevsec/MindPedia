@@ -1,5 +1,5 @@
 import { Form, Button } from "react-bootstrap";
-import { Historico, Consulta, Agendamento } from "../hooks/typeMock";
+import { Historico, Consulta, Agendamento, Resumo } from "../hooks/typeMock";
 
 interface PainelConteudoProps {
   conteudo: string;
@@ -89,16 +89,22 @@ export const PainelConteudo = ({
             Última nota: {historico.notas?.[0] || "N/A"}
           </p>
           <p>
-            Último resumo: {historico.resumos?.[0] || "N/A"}
+            Último resumo: {historico.resumos?.[0]?.conteudo || "N/A"}
           </p>
         </>
       );
 
     case "Resumos":
-      return historico.resumos?.length > 0 ? (
-        historico.resumos.map((item: string, index: number) => (
+      return historico.resumos && historico.resumos.length > 0 ? (
+        historico.resumos.map((item, index) => (
           <div key={index}>
-            <p>{item}</p>
+            <p>
+              <strong>Data:</strong> {formatDate(item.data)?.data}{" "}
+              {formatDate(item?.data)?.hora && `às ${formatDate(item?.data)?.hora}`}
+            </p>
+            <p>
+              <strong>Resumo:</strong> {item?.conteudo}
+            </p>
             <hr />
           </div>
         ))

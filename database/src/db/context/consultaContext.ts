@@ -15,6 +15,7 @@ class ConsultaContext {
             where: {
                 paciente: { id: id },
             },
+            order: {"data": "DESC"}
         });
     }
 
@@ -24,7 +25,8 @@ class ConsultaContext {
                 paciente: { id: id },
                 nota: Not(IsNull()),
             },
-            select: ["nota"]
+            select: ["nota"],
+            order: {"data": "DESC"}
         });
     }
 
@@ -34,7 +36,8 @@ class ConsultaContext {
                 paciente: { id: id },
                 resumo: Not(IsNull()),
             },
-            select: ["data", "resumo"]
+            select: ["data", "resumo"],
+            order: {"data": "DESC"}
         });
     }
 }
