@@ -58,7 +58,7 @@ export const useCadastroForm = () => {
       }
     };
   
-    const setFoto = (foto: string) => setFormData((prev) => ({ ...prev, foto }));
+    const setFoto = (idFoto: string) => setFormData((prev) => ({ ...prev, idFoto }));
   
     return { formData, handleChange, setFoto, handleSubmit, loading, error };
   };
