@@ -7,7 +7,7 @@ const BasicInfoSection = ({ formData, handleChange, setFoto }: any) => (
     <h2>Informações Básicas</h2>
     <Col md={4}>
       <FotoSelect
-        initialFoto={formData.foto ? `${formData.foto}.jpeg` : undefined}
+        initialFoto={formData.idFoto ? `${formData.idFoto}.jpeg` : undefined}
         onSelect={(fotoId: string) => setFoto(fotoId.split(".")[0])}
       />
     </Col>
