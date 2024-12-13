@@ -70,6 +70,7 @@ class UserContext {
     static async getAllAgendamentos() {
         return this.repoUser.find({
             select: ["id", "nome", "agendamento"],
+            where : { agendamento: Not(IsNull()) }
         });
     }
     
@@ -79,7 +80,6 @@ class UserContext {
             select: ["agendamento"],
             where: { agendamento: Not(IsNull()) }, // Modifiquei o filtro para excluir nulos ou indefinidos
         });
-        console.log(users);
     
         const uniqueDays = [...new Set(users
             .map(user => new Date(user.agendamento).toISOString().split("T")[0]) // Extrai a data

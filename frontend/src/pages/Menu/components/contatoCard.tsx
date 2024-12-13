@@ -50,7 +50,7 @@ const ContatoCard = ({
         <div>
           <Card.Title className="mb-1">{contato.nome}</Card.Title>
           <Card.Text className="text-muted">
-            {formatDateToBrazilian(contato.consulta)}
+            {contato.consulta ? formatDateToBrazilian(contato.consulta) : ""}
           </Card.Text>
         </div>
       </Card.Body>

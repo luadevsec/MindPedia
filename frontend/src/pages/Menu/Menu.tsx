@@ -4,13 +4,15 @@ import ContatoCard from "./components/contatoCard";
 import Calendario from "./components/calendario";
 import CardAtual from "./components/cardAtual";
 import useMenuAxios from "./hooks/useMenuAxios";
+import useDia from "./hooks/useDia";
 
 const Menu = () => {
   const { contatos, contatoAtual, handleContatoClick, unicDays } = useMenuAxios();
+  const { agendamentos } = useDia();
   
   return (
     <>
-      <Header />
+      <Header consultas={agendamentos?.today} />
       <Container fluid style={{ height: "87vh", backgroundColor: '#070D44' }}>
         <Row className="h-100">
           {/* Card Atual */}
@@ -28,7 +30,7 @@ const Menu = () => {
             className="d-flex justify-content-center align-items-center"
             style={{ backgroundColor: '#070D44' }}
           >
-            <Calendario days={unicDays} />
+            <Calendario days={unicDays} agendamentos={agendamentos} />
           </Col>
 
           {/* Lista de Contatos */}

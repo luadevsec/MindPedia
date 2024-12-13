@@ -10,6 +10,21 @@ const CardAtual = ({ contato }: cardProps) => {
   const nome = contato?.nome || "Você ainda não tem paciente";
   const foto = contato?.foto || "logo";
 
+  const formatDateToBrazilian = (isoString: string): string => {
+    const date = new Date(isoString);
+    const formatter = new Intl.DateTimeFormat("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "America/Sao_Paulo",
+    });
+  
+    // Formatando e retornando no formato dd/mm/aaaa - hh:mm
+    return formatter.format(date).replace(", ", " - ");
+  };
+
   return (
     <Card
       className="mb-3 shadow-sm"
@@ -31,7 +46,7 @@ const CardAtual = ({ contato }: cardProps) => {
             {nome}
           </Card.Title>
           <Card.Text className=" mb-3" style={{ color: '#070D44' }}>
-            ID: {id}
+           {contato?.consulta ? formatDateToBrazilian(contato.consulta) : "Sem consulta marcada"}
           </Card.Text>
         </div>
         <div className="d-flex justify-content-between w-100">

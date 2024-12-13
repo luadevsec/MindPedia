@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
-const Header = () => {
+interface HeaderProps {
+  consultas: string;
+}
+
+const Header = ({ consultas }: HeaderProps) => {
   const [date, setDate] = useState(new Date());
-  const [consultas, setConsultas] = useState(4);
 
   useEffect(() => {
     const timer = setInterval(() => setDate(new Date()), 1000);
@@ -16,15 +19,15 @@ const Header = () => {
   return (
     <Container
       fluid
-      className="p-4 text-center"
-      style={{ backgroundColor: '#024CAA', color: '#070D44' }}
+      className="text-center"
+      style={{ backgroundColor: '#024CAA', color: '#070D44', height: "13vh" }}
     >
       <Container>
         <h2>
           {formattedDate} - {formattedTime}
         </h2>
         <h3>
-          {consultas} consultas para hoje.
+          {consultas ? `${consultas} consultas para hoje` : "Nenhuma consulta para hoje"}
         </h3>
       </Container>
     </Container>

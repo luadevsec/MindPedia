@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
-import useDia from "../hooks/useDia";
 
 const getDaysInMonth = (year, month) => {
   const date = new Date(year, month, 1);
@@ -14,12 +13,12 @@ const getDaysInMonth = (year, month) => {
 
 interface CalendarioProps {
   days: string[];
+  agendamentos: any;
 }
 
-const Calendario = ({ days }: CalendarioProps) => {
+const Calendario = ({ days = [], agendamentos }: CalendarioProps) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
-  const { agendamentos } = useDia();
 
   const daysInMonth = getDaysInMonth(
     currentDate.getFullYear(),
@@ -230,11 +229,17 @@ const Calendario = ({ days }: CalendarioProps) => {
         >
           <p>Tem {totalPacientes} consulta(s) para este dia.</p>
           <ul>
-            {selectedDayData?.pacientes.map((paciente) => (
+            {selectedDayData?.pacientes.map((paciente) => {
+
+              // Titar -3 horas do horario
+              const horareal = (paciente.hora.split(":")[0] - 3) + ":" + paciente.hora.split(":")[1];
+
+              return (
               <li key={paciente.id}>
-                {paciente.hora} - {paciente.nome}
+                {horareal} - {paciente.nome}
               </li>
-            ))}
+              )
+            })}
           </ul>
         </div>
       )}
