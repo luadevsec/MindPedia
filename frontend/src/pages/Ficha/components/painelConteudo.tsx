@@ -42,7 +42,11 @@ export const PainelConteudo = ({
     }
   };
 
+  // Formata o agendamento atual
   const agendamentobonito = agendamentoAtual ? formatDate(agendamentoAtual) : null;
+
+  // Formata a última consulta
+  const ultimaConsulta = historico.consultas?.[0]?.data ? formatDate(historico.consultas[0].data) : null;
 
   switch (conteudo) {
     case "Agendar":
@@ -78,7 +82,8 @@ export const PainelConteudo = ({
             {agendamentobonito?.hora ? `às ${agendamentobonito.hora}` : ""}
           </p>
           <p>
-            Última consulta: {historico.consultas?.[0]?.data || "N/A"}
+            Última consulta: {ultimaConsulta?.data || "N/A"}{" "}
+            {ultimaConsulta?.hora ? `às ${ultimaConsulta.hora}` : ""}
           </p>
           <p>
             Última nota: {historico.notas?.[0] || "N/A"}
@@ -86,7 +91,6 @@ export const PainelConteudo = ({
           <p>
             Último resumo: {historico.resumos?.[0] || "N/A"}
           </p>
-
         </>
       );
 
@@ -94,9 +98,7 @@ export const PainelConteudo = ({
       return historico.resumos?.length > 0 ? (
         historico.resumos.map((item: string, index: number) => (
           <div key={index}>
-            <p>
-              {item}
-            </p>
+            <p>{item}</p>
             <hr />
           </div>
         ))
@@ -109,7 +111,8 @@ export const PainelConteudo = ({
         historico.consultas.map((item: Consulta, index: number) => (
           <div key={index}>
             <p>
-              <strong>Data:</strong> {item.data}
+              <strong>Data:</strong> {formatDate(item.data)?.data}{" "}
+              {formatDate(item.data)?.hora && `às ${formatDate(item.data)?.hora}`}
             </p>
             <p>
               <strong>Resumo:</strong>{" "}
@@ -134,9 +137,7 @@ export const PainelConteudo = ({
       return historico.notas?.length > 0 ? (
         historico.notas.map((item: string, index: number) => (
           <div key={index}>
-            <p>
-              {item}
-            </p>
+            <p>{item}</p>
             <hr />
           </div>
         ))
@@ -148,6 +149,5 @@ export const PainelConteudo = ({
       return <p>Selecione uma seção para visualizar os dados.</p>;
   }
 };
-
 
 export default PainelConteudo;
