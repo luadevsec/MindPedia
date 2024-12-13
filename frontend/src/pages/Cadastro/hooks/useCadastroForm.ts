@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCadastroService } from "../services/useCadastroService";
+import axios from "axios";
 
 
 export const useCadastroForm = () => {
@@ -42,6 +43,7 @@ export const useCadastroForm = () => {
         alert("Erro ao cadastrar. Verifique os dados e tente novamente.");
       }
     };
+
   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       const { name, value } = e.target;

@@ -20,6 +20,7 @@ const Painel = ({ id, agendamento, historico }: PainelProps) => {
     handleAgendar,
     setNovaData,
     setNovaHora,
+    handleRemoverAgendamento,
   } = usePainel(agendamento, id);
 
   return (
@@ -45,6 +46,7 @@ const Painel = ({ id, agendamento, historico }: PainelProps) => {
           onAgendar={handleAgendar}
           setNovaData={setNovaData}
           setNovaHora={setNovaHora}
+          onRemoverAgendamento={handleRemoverAgendamento}
         />
       </Container>
     </Container>

@@ -1,5 +1,5 @@
 import { Form, Button } from "react-bootstrap";
-import { Historico, Consulta, Agendamento, Resumo } from "../hooks/typeMock";
+import { Historico, Consulta, Agendamento } from "../hooks/typeMock";
 
 interface PainelConteudoProps {
   conteudo: string;
@@ -10,6 +10,7 @@ interface PainelConteudoProps {
   onAgendar: () => void;
   setNovaData: (data: string) => void;
   setNovaHora: (hora: string) => void;
+  onRemoverAgendamento?: () => void;
 }
 
 export const PainelConteudo = ({
@@ -20,6 +21,7 @@ export const PainelConteudo = ({
   novaHora,
   onAgendar,
   setNovaData,
+  onRemoverAgendamento,
   setNovaHora,
 }: PainelConteudoProps) => {
   // Função utilitária para converter ISOString para uma data formatada
@@ -71,24 +73,27 @@ export const PainelConteudo = ({
           <Button variant="primary" onClick={onAgendar}>
             Agendar
           </Button>
+          <Button variant="danger" className="ms-2" onClick={onRemoverAgendamento}>
+            Remover agendamento
+          </Button>
         </Form>
       );
 
     case "Geral":
       return (
         <>
-          <p>
+          <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
             Próxima consulta: {agendamentobonito?.data || "ainda não agendado"}{" "}
             {agendamentobonito?.hora ? `às ${agendamentobonito.hora}` : ""}
           </p>
-          <p>
+          <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
             Última consulta: {ultimaConsulta?.data || "N/A"}{" "}
             {ultimaConsulta?.hora ? `às ${ultimaConsulta.hora}` : ""}
           </p>
-          <p>
+          <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
             Última nota: {historico.notas?.[0] || "N/A"}
           </p>
-          <p>
+          <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
             Último resumo: {historico.resumos?.[0]?.conteudo || "N/A"}
           </p>
         </>
@@ -98,11 +103,11 @@ export const PainelConteudo = ({
       return historico.resumos && historico.resumos.length > 0 ? (
         historico.resumos.map((item, index) => (
           <div key={index}>
-            <p>
+            <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
               <strong>Data:</strong> {formatDate(item.data)?.data}{" "}
               {formatDate(item?.data)?.hora && `às ${formatDate(item?.data)?.hora}`}
             </p>
-            <p>
+            <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
               <strong>Resumo:</strong> {item?.conteudo}
             </p>
             <hr />
@@ -116,17 +121,17 @@ export const PainelConteudo = ({
       return historico.consultas?.length > 0 ? (
         historico.consultas.map((item: Consulta, index: number) => (
           <div key={index}>
-            <p>
+            <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
               <strong>Data:</strong> {formatDate(item.data)?.data}{" "}
               {formatDate(item.data)?.hora && `às ${formatDate(item.data)?.hora}`}
             </p>
-            <p>
+            <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
               <strong>Resumo:</strong>{" "}
               {typeof item.resumo === "object" && item.resumo
                 ? item.resumo.conteudo
                 : item.resumo || "N/A"}
             </p>
-            <p>
+            <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
               <strong>Notas:</strong>{" "}
               {typeof item.notas === "object" && item.notas
                 ? item.notas.conteudo
@@ -143,7 +148,9 @@ export const PainelConteudo = ({
       return historico.notas?.length > 0 ? (
         historico.notas.map((item: string, index: number) => (
           <div key={index}>
-            <p>{item}</p>
+            <p style={{ wordWrap: "break-word", overflowWrap: "break-word", whiteSpace: "normal" }}>
+              {item}
+            </p>
             <hr />
           </div>
         ))

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useConsultaService } from "../services/consultaService";
 import { CargaConsultar } from "../../../contexts/cargaConsultar";
 import useDate from "../../../utils/useDate";
+import usePainel from "../../Ficha/hooks/usePainel";
 
 interface useMainProps {
   idPaciente: string;
@@ -41,6 +42,9 @@ const useMain = ({ idPaciente }: useMainProps) => {
     }
   }, [req, error, idPaciente, data, navigate, fetchData]); // Só executa quando 'req' for atualizado
 
+
+  const { handleRemoverAgendamento } = usePainel(idPaciente, idPaciente);
+
   const handleFinalizar = async () => {
     // Obtém a data no formato ReturnDate (inclui o objeto raw Date)
     const currentDate = getCurrentDate();
@@ -57,6 +61,7 @@ const useMain = ({ idPaciente }: useMainProps) => {
 
     console.log(payload);
     setReq(payload); // Atualiza 'req' com os dados completos
+    handleRemoverAgendamento(); // Remove o agendamento
   };
 
   const handleCancelar = () => {

@@ -23,7 +23,6 @@ const usePainel = (agendamento: string | null, id : string) => {
           agendamento: novoAgendamentoISO,
         });
         setAgendamentoAtual(novoAgendamentoISO);
-        alert(`Consulta agendada para ${novaData} às ${novaHora}`);
         setConteudo("Geral");
       } catch (error) {
         console.error(error);
@@ -38,6 +37,22 @@ const usePainel = (agendamento: string | null, id : string) => {
       alert("Por favor, preencha todos os campos para agendar.");
     }
   };
+
+  const handleRemoverAgendamento = async () => {
+    try {
+      await axios.post(`http://localhost:6990/example/agendar`, {
+        id: id,
+        agendamento: null,
+      });
+      setAgendamentoAtual(null);
+      setConteudo("Geral");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setNovaData("");
+      setNovaHora("");
+    }
+  }
   
 
   return {
@@ -49,6 +64,7 @@ const usePainel = (agendamento: string | null, id : string) => {
     handleAgendar,
     setNovaData,
     setNovaHora,
+    handleRemoverAgendamento,
   };
 };
 
