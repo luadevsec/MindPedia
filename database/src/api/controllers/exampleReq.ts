@@ -6,9 +6,7 @@ const exampleController = {
     agendar : async (req: Request, res: Response) => {
         try {
             const { id, agendamento } = req.body;
-            console.log(agendamento)
-            const agendamentoC = agendamento.split(':')[0] + ':' + agendamento.split(':')[1];
-            await UserContext.updateAgendamento(id, agendamentoC);
+            await UserContext.updateAgendamento(id, agendamento);
             return res.status(200).json({ message: "Consulta agendada com sucesso!" });
         } catch (error) {
             return res.status(400).json({ message: "Erro ao agendar consulta!" });

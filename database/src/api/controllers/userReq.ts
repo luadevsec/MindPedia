@@ -65,7 +65,7 @@ const userReq = {
                 nome: user.nome,
                 foto: user.idFoto,
                 consulta: user.agendamento,
-                today: user.agendamento.split('T')[0] === new Date().toISOString().split('T')[0],
+                today: user.agendamento ? (user.agendamento.split('T')[0] === new Date().toISOString().split('T')[0]) : false,
             }));
     
             return res.json({ pacientes });
